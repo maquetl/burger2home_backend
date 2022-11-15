@@ -48,6 +48,9 @@ paths:
         - name: expandPrices
           in: query
           type: boolean
+        - name: availableProductsOnly
+          in: query
+          type: boolean
       responses: 
         '200': 
           description: OK
@@ -341,13 +344,13 @@ paths:
   
   
             
-  /products/{productIdentifier}/allergens: 
+  /ingredients/{ingredientIdentifier}/allergens: 
     get: 
-      summary : get allergens based on a product id
+      summary : get allergens based on a ingredient id
       tags: 
         - Allergens
       parameters: 
-        - name: productIdentifier
+        - name: ingredientIdentifier
           in: path
           required: true
           type: integer
@@ -578,11 +581,59 @@ paths:
           description: OK
           schema: 
             type: string
+            
+  /languages:
+    post: 
+      summary: creates a new language
+      tags: 
+        - Languages
+      parameters: 
+        - name: language
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/allergen'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer
+    get:
+      summary: get all existing languages.
+      tags: 
+        - Languages
+      responses: 
+        '200': 
+          description: ok 
+          schema: 
+            $ref: '#/definitions/languageList'
+            
+  /languages/{languageIdentifier}:
+    get: 
+      summary: get a language based on its identifier
+      tags: 
+        - Languages
+      parameters: 
+        - name: languageIdentifier
+          in: path
+          required: true
+          type: integer
+      responses: 
+        '200': 
+          description: ok 
+          schema: 
+            $ref: '#/definitions/language'
+            
+    
+            
     
             
 definitions:
 
-
+  languageList:
+    type: array
+    items: 
+      $ref: '#/definitions/language'
 
   productList: 
     type: array
@@ -651,6 +702,17 @@ definitions:
     items: 
       $ref: '#/definitions/allergen-translation'
     
+      
+  language:
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      name: 
+        type: string
+      abbreviation: 
+        type: string
       
   product:
     type: object
