@@ -1,0 +1,1039 @@
+swagger: '2.0'
+info:
+  description: ''
+  version: 1.0.0
+  title: Burger2Home
+host: localhost:8080
+basePath: /
+schemes:
+  - https
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  OAuth2:
+    type: oauth2
+    flow: application
+    tokenUrl: localhost:8080/oauth2/token
+    description: OAuth 2.0 with Client Credentias Grant type
+  
+  
+paths:
+
+  ##########################################
+  ###  PRODUCTS
+  ##########################################
+
+
+  /products:
+    get: 
+      summary: get all products
+      tags: 
+        - Products
+      parameters: 
+        - name : language
+          in : query
+          type: string
+        - name: expandIngredients
+          in : query
+          type: boolean
+        - name: expandAllergens
+          in: query
+          type: boolean
+        - name: expandTranslations
+          in: query
+          type: boolean
+        - name: expandPrices
+          in: query
+          type: boolean
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            $ref : '#/definitions/productList'
+          
+    post: 
+      summary : create a new product
+      tags: 
+        - Products
+      parameters:
+        - name : new product
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/product'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: integer
+            
+            
+  /products/{productIdentifier}:
+    get:
+      summary : get a product based on an id
+      tags:
+        - Products
+      parameters:
+        - name: productIdentifier
+          in: path
+          required: true
+          type: integer
+        - name : language
+          in : query
+          type: string
+        - name: expandIngredients
+          in : query
+          type: boolean
+        - name: expandAllergens
+          in: query
+          type: boolean
+        - name: expandTranslations
+          in: query
+          type: boolean
+        - name: expandPrices
+          in: query
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref : '#/definitions/product'
+            
+  ##########################################
+  ###  TRANSLATIONS
+  ##########################################          
+    
+  /products/{productIdentifier}/translations:
+    get: 
+      summary : get all product translations based on a product identifier
+      tags: 
+        - Translations
+      parameters: 
+        - name : productIdentifier
+          in: path
+          required: true
+          type: integer 
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref : '#/definitions/productTranslationList'
+          
+    
+    
+            
+  /products/translations:
+    post: 
+      summary : create a new product translation
+      tags: 
+        - Translations
+      parameters: 
+        - name : new product translation
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/product-translation'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer
+            
+  /ingredients/{ingredientIdentifier}/translations:
+    get: 
+      summary : get all ingredient translations based on an ingredient identifier
+      tags: 
+        - Translations
+      parameters: 
+        - name : ingredientIdentifier
+          in: path
+          required: true
+          type: integer 
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref : '#/definitions/ingredientTranslationList'          
+            
+  /ingredients/translations:
+    post: 
+      summary : create a new ingredient translation
+      tags: 
+        - Translations
+      parameters: 
+        - name : new ingredient translation
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/ingredient-translation'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer 
+            
+  /allergens/{allergenIdentifier}/translations:
+    get: 
+      summary : get all allergen translations based on an allergen identifier
+      tags: 
+        - Translations
+      parameters: 
+        - name : allergenIdentifier
+          in: path
+          required: true
+          type: integer 
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref : '#/definitions/allergenTranslationList'                    
+            
+  /allergens/translations:
+    post: 
+      summary : create a new allergen translation
+      tags: 
+        - Translations
+      parameters: 
+        - name : new allergen translation
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/allergen-translation'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer
+            
+            
+  /families/{familyIdentifier}/translations:
+    get: 
+      summary : get all family translations based on a family identifier
+      tags: 
+        - Translations
+      parameters: 
+        - name : familyIdentifier
+          in: path
+          required: true
+          type: integer 
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref : '#/definitions/familyTranslationList'             
+            
+            
+  /families/translations:
+    post: 
+      summary : create a new product family translation
+      tags: 
+        - Translations
+      parameters: 
+        - name : new family translation
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/family-translation'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer
+            
+  /discounts/{discountIdentifier}/translations:
+    get: 
+      summary : get all discount translations based on a discount identifier
+      tags: 
+        - Translations
+      parameters: 
+        - name : discountIdentifier
+          in: path
+          required: true
+          type: integer 
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref : '#/definitions/discountTranslationList'              
+            
+  /discounts/translations:
+    post: 
+      summary : create a new discount translation
+      tags: 
+        - Translations
+      parameters: 
+        - name : new discount translation
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/discount-translation'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer                
+            
+            
+  ##########################################
+  ###  INGREDIENTS
+  ##########################################
+  
+  
+  /products/{productIdentifier}/ingredients: 
+    get: 
+      summary : get ingredients based on a product id
+      tags: 
+        - Ingredients
+      parameters: 
+        - name: productIdentifier
+          in: path
+          required: true
+          type: integer
+        - name : language
+          in : query
+          type: string
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            $ref: '#/definitions/ingredientList'
+            
+  /ingredients:
+    get: 
+      summary : get all existing ingredients
+      parameters: 
+        - name : language
+          in : query
+          type: string
+      tags: 
+        - Ingredients
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            $ref: '#/definitions/ingredientList'
+            
+    post: 
+      summary : create a new ingredient
+      tags: 
+        - Ingredients
+      parameters: 
+        - name: new ingredient
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/ingredient'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer
+    
+            
+            
+  ##########################################
+  ###  ALLERGENS
+  ##########################################         
+  
+  
+  
+            
+  /products/{productIdentifier}/allergens: 
+    get: 
+      summary : get allergens based on a product id
+      tags: 
+        - Allergens
+      parameters: 
+        - name: productIdentifier
+          in: path
+          required: true
+          type: integer
+        - name : language
+          in : query
+          type: string
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            $ref: '#/definitions/allergenList'
+    
+  /allergens:
+    get: 
+      summary : get all existing allergens
+      tags: 
+        - Allergens
+      responses: 
+        '200': 
+          description: ok
+          schema: 
+            $ref: '#/definitions/allergenList'
+    post: 
+      summary: create a new allergen
+      tags: 
+        - Allergens
+      parameters: 
+        - name: new allergen
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/allergen'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: integer
+  
+  
+  ##########################################
+  ###  CUSTOMERS
+  ##########################################   
+  
+  /customers: 
+    get: 
+      summary : get all existing customers
+      tags: 
+        - Customers
+      parameters: 
+        - name: expandPrivileges
+          type: boolean
+          in: query
+        - name: expandAddresses
+          type: boolean
+          in: query
+        - name: expandCreditCards
+          type: boolean
+          in: query
+      responses: 
+        '200' : 
+          description: OK
+          schema: 
+            $ref: '#/definitions/customerList'
+            
+  /customers/{customerIdentifier}: 
+    get: 
+      summary : get a customer based on an id
+      tags: 
+        - Customers
+      parameters: 
+        - name: customerIdentifier
+          in: path
+          required: true
+          type: integer
+        - name: expandPrivileges
+          type: boolean
+          in: query
+        - name: expandAddresses
+          type: boolean
+          in: query
+        - name: expandCreditCards
+          type: boolean
+          in: query
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            $ref: '#/definitions/customer'
+            
+  
+      
+            
+  ##########################################
+  ###  ORDERS
+  ##########################################          
+  
+  /orders:
+    get: 
+      summary : get all existing orders
+      tags: 
+        - Orders
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            $ref: '#/definitions/orderList'
+  
+  /orders/{orderIdentifier}:
+    get:
+      summary : get an order based on an id
+      tags: 
+        - Orders
+      parameters: 
+        - name: orderIdentifier
+          in: path
+          required: true
+          type: integer
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref: '#/definitions/order'
+            
+  /customers/{customerIdentifier}/orders/:
+    get: 
+      summary : get all the orders of a customer based on the customer id
+      tags: 
+       - Orders
+      parameters: 
+        - name: customerIdentifier
+          in: path
+          required: true
+          type: integer
+      responses: 
+        '200':
+          description: OK
+          schema: 
+            $ref: '#/definitions/order-without-customer-List'
+ 
+  ##########################################
+  ###  BASKET
+  ##########################################
+ 
+  /customers/{customerIdentifier}/basket:
+    get: 
+      summary : get the basket of a customer based on the customer id
+      tags:
+        - Basket
+      parameters:
+        - name: customerIdentifier
+          in : path
+          required: true
+          type: integer
+      responses: 
+        '200': 
+          description: ok
+          schema: 
+            $ref: '#/definitions/basket'
+ 
+ 
+  ##########################################
+  ###  PRICES
+  ##########################################
+            
+  
+  /price-history/{productIdentifier}:
+    get: 
+      summary : get the history of prices of a product based on the product id
+      tags: 
+        - Prices
+      parameters: 
+        - name: productIdentifier
+          in: path
+          required: true
+          type: integer
+      responses: 
+        '200': 
+          description: ok 
+          schema: 
+            $ref: '#/definitions/price-without-product-List'
+            
+  ##########################################
+  ###  REGISTER/LOGIN
+  ##########################################
+            
+  /users/register: 
+    post: 
+      summary : creates a new user. This user will not yet be confirmed before clicking the activation link in the mail.
+      tags: 
+        - Users
+      parameters: 
+        - name: new user
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/new-user'
+      responses: 
+        '200':
+          description: OK
+          
+  /users/confirm-account/{verification-token}:
+    get: 
+      summary : verifies an account after clicking the link in the mail
+      tags: 
+        - Users
+      parameters: 
+        - name: verification-token
+          in: path
+          required: true
+          type: string
+      responses: 
+        '200': 
+          description: OK
+          
+  /users/login:
+    post: 
+      summary : tries to log in a user
+      tags: 
+        - Users
+      parameters: 
+        - name: credentials
+          in : body
+          required: true
+          schema: 
+            $ref : '#/definitions/login-credentials'
+      responses: 
+        '200': 
+          description: OK
+          schema: 
+            type: string
+    
+            
+definitions:
+
+
+
+  productList: 
+    type: array
+    items: 
+      $ref: '#/definitions/product'
+      
+  allergenList: 
+    type: array
+    items: 
+      $ref: '#/definitions/allergen'
+      
+  priceList: 
+    type: array
+    items: 
+      $ref: '#/definitions/price'
+      
+  
+  price-without-product-List:
+    type: array
+    items: 
+      $ref: '#/definitions/price-without-product'
+      
+  orderList: 
+    type: array
+    items: 
+      $ref: '#/definitions/order'
+      
+  
+  order-without-customer-List: 
+    type: array
+    items: 
+      $ref: '#/definitions/order-without-customer'
+      
+  customerList: 
+    type: array
+    items: 
+      $ref: '#/definitions/customer'
+      
+  ingredientList: 
+    type: array
+    items: 
+      $ref: '#/definitions/ingredient'
+      
+  productTranslationList: 
+    type: array
+    items: 
+      $ref: '#/definitions/product-translation'
+      
+  ingredientTranslationList: 
+    type: array
+    items: 
+      $ref: '#/definitions/ingredient-translation'
+  
+  familyTranslationList: 
+    type: array
+    items: 
+      $ref: '#/definitions/family-translation'
+      
+  discountTranslationList: 
+    type: array
+    items: 
+      $ref: '#/definitions/discount-translation'
+      
+  allergenTranslationList: 
+    type: array
+    items: 
+      $ref: '#/definitions/allergen-translation'
+    
+      
+  product:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      name:
+        type: string
+      description:
+        type: string
+      current_price:
+        type: integer
+        format: float
+      current_discount: 
+        type: integer
+        format: float
+      picture_url: 
+        type: string
+      family: 
+        $ref: '#/definitions/family'
+      ingredients: 
+        type: array
+        items: 
+          $ref: '#/definitions/ingredient'
+      translations: 
+        type: array
+        items: 
+          $ref: '#/definitions/product-translation'
+      allergens: 
+        type: array
+        items: 
+          $ref: '#/definitions/allergen'
+      prices: 
+        type: array
+        items: 
+          $ref: '#/definitions/price'
+        
+  product-translation: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      product-id: 
+        type: integer
+      language: 
+        type: string
+      name-translation:
+        type: string
+      description-translation: 
+        type: string
+    example: 
+      id: 4
+      product-id: 1
+      language: EN
+      name-translation: Cheeseburger
+      description-translation: Delicious burger with a lot of cheese
+  
+    
+      
+        
+  price:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      value:
+        type: integer
+        format: float
+      start_date:
+        type: string
+        format: date-time
+      end_date:
+        type: string
+        format: date-time
+      status:
+        type: string
+      product:
+        $ref: '#/definitions/product'
+        
+  
+  price-without-product:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      value:
+        type: integer
+        format: float
+      start_date:
+        type: string
+        format: date-time
+      end_date:
+        type: string
+        format: date-time
+      status:
+        type: string
+      
+        
+        
+  customer:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      email:
+        type: string
+      username:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      privileges:
+        type: array
+        items: 
+          type: string
+      addresses: 
+        type: array
+        items: 
+          $ref: '#/definitions/address'
+      credit_cards: 
+        type: array
+        items: 
+          $ref: '#/definitions/credit_card'
+  
+  new-user: 
+    type: object
+    properties:
+      email:
+        type: string
+      password: 
+        type: string
+      username:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+        
+  login-credentials:       
+    type: object
+    properties:
+      email:
+        type: string
+      password: 
+        type: string
+      username:
+        type: string
+  
+  minimal_customer: 
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      email:
+        type: string
+      username:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      privilege: 
+        type: string
+      
+         
+          
+  address:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      country:
+        type: string
+      city:
+        type: string
+      zip:
+        type: integer
+      street:
+        type: string
+      house_number:
+        type: integer
+      extension:
+        type: integer
+        
+        
+        
+  ingredient:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      name:
+        type: string
+      stock: 
+        type: integer
+  
+  ingredient-translation: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      ingredient-id: 
+        type: integer
+      language: 
+        type: string
+      name-translation: 
+        type: string
+      
+        
+        
+  discount:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      value:
+        type: integer
+        format: float
+      description: 
+        type: string
+      start:
+        type: string
+        format: date-time
+      end:
+        type: string
+        format: date-time
+      product: 
+        $ref: '#/definitions/product'
+  
+  
+  discount-translation: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      discount-id: 
+        type: integer
+      language: 
+        type: string
+      description-translation: 
+        type: string
+        
+        
+  family: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      name: 
+        type: string
+        
+  
+  family-translation:
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      family-id: 
+        type: integer
+      language: 
+        type: string
+      name-translation: 
+        type: string
+  
+        
+        
+  order:
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      customer: 
+        $ref: '#/definitions/minimal_customer'
+      address: 
+        $ref: '#/definitions/address'
+      payment_option: 
+        type: string
+      external_transaction_identifier: 
+        type: string
+      status: 
+        type: string
+      datetime: 
+        type: string
+        format: date-time
+      total_price: 
+        type: integer
+        format: float
+        
+  
+  order-without-customer: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      address: 
+        $ref: '#/definitions/address'
+      payment_option: 
+        type: string
+      external_transaction_identifier: 
+        type: string
+      status: 
+        type: string
+      datetime: 
+        type: string
+        format: date-time
+      total_price: 
+        type: integer
+        format: float
+  
+  
+        
+        
+  basket: 
+    type: object 
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      products: 
+        type: array
+        items: 
+          $ref: '#/definitions/product'
+          
+          
+          
+          
+  credit_card: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      number: 
+        type: string
+      security_code: 
+        type: string
+      holder: 
+        type: string
+      
+  
+  allergen: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      description: 
+        type: string
+      
+        
+  allergen-translation: 
+    type: object
+    properties: 
+      id: 
+        type: integer
+        readOnly: true
+      allergen-id: 
+        type: integer
+      language: 
+        type: string
+      description-translation: 
+        type: string
+        
+        
+        
+        
+        
+        
+        
+        

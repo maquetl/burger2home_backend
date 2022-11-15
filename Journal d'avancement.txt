@@ -1,0 +1,35 @@
+CALENDRIER 
+
+Semaine 37
+- Réunion avec Mr Martel le 14/9
+
+Semaine 38
+- Réunion avec Mr Martel
+- Première version du cahier des charges
+
+Semaine 39
+- Réunion avec Mr Martel le 28/9
+- Création d'un swagger 
+
+Semaine 40
+- Edition et avancement sur api (swagger)
+
+Semaine 41
+- Avancement sur api 
+
+Semaine 42 (17/10 -> 23/10)
+- Avancement sur api
+ 
+Semaine 43 (24/10 -> 30/10)
+- Prise d'information sur le système d'authentification OAuth
+
+Semaine 44 (31/10 -> 6/11)
+- Prise d'information sur le framework springboot
+
+Semaine 45 (7/11 -> 13/11)
+- Commencement de la création de la base de données 
+
+Semaine 46 (14/11 -> 20/11)
+
+Semaine 47 (21/11 -> 27/11)
+
