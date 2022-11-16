@@ -1,5 +1,8 @@
 package com.isl.lionelmaquet.burger2home;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.isl.lionelmaquet.burger2home.Address.Address;
 import com.isl.lionelmaquet.burger2home.Basket.Basket;
 import com.isl.lionelmaquet.burger2home.CreditCard.CreditCard;
