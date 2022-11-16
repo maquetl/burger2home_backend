@@ -3,7 +3,7 @@ package com.isl.lionelmaquet.burger2home.Order;
 import com.isl.lionelmaquet.burger2home.Address.Address;
 import com.isl.lionelmaquet.burger2home.CreditCard.CreditCard;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
-import com.isl.lionelmaquet.burger2home.User;
+import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 import java.time.Instant;

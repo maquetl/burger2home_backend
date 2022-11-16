@@ -1,6 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Role;
 
-import com.isl.lionelmaquet.burger2home.User;
+import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;

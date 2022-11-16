@@ -1,7 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Basket;
 
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLine;
-import com.isl.lionelmaquet.burger2home.User;
+import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 import java.time.Instant;

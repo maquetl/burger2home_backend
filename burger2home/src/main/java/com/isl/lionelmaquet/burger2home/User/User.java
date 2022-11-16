@@ -1,4 +1,4 @@
-package com.isl.lionelmaquet.burger2home;
+package com.isl.lionelmaquet.burger2home.User;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

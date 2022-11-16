@@ -1,10 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Address;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.isl.lionelmaquet.burger2home.User;
+import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 
