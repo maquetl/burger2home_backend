@@ -376,4 +376,24 @@ CREATE TABLE `burger2home`.`order_line` (
     REFERENCES `burger2home`.`product` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+    
+/* TESTING */
+
+CREATE TABLE `burger2home`.`test_burger` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `burger2home`.`testfk` (
+  `id` INT NOT NULL,
+  `test_burger_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_testfk_to_test_burger_idx` (`test_burger_id` ASC) VISIBLE,
+  CONSTRAINT `fk_testfk_to_test_burger`
+    FOREIGN KEY (`test_burger_id`)
+    REFERENCES `burger2home`.`test_burger` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
 
