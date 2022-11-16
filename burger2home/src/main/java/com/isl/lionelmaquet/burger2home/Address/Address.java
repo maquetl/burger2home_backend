@@ -1,6 +1,5 @@
 package com.isl.lionelmaquet.burger2home.Address;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
@@ -31,10 +30,8 @@ public class Address {
     @Column(name = "note")
     private String note;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @JsonIgnore
     private User user;
 
     public Integer getId() {

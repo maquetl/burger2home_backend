@@ -1,10 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Role;
 
-import com.isl.lionelmaquet.burger2home.User.User;
-
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "role")
@@ -16,9 +12,6 @@ public class Role {
 
     @Column(name = "name", length = 20)
     private String name;
-
-    @OneToMany(mappedBy = "role")
-    private Set<User> users = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -34,14 +27,6 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
 }

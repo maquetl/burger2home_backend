@@ -1,17 +1,8 @@
 package com.isl.lionelmaquet.burger2home.User;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.isl.lionelmaquet.burger2home.Address.Address;
-import com.isl.lionelmaquet.burger2home.Basket.Basket;
-import com.isl.lionelmaquet.burger2home.CreditCard.CreditCard;
-import com.isl.lionelmaquet.burger2home.Order.Order;
 import com.isl.lionelmaquet.burger2home.Role.Role;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -45,18 +36,6 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Order> orders = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<Basket> baskets = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<CreditCard> creditCards = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<Address> addresses = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -128,38 +107,6 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    public Set<Basket> getBaskets() {
-        return baskets;
-    }
-
-    public void setBaskets(Set<Basket> baskets) {
-        this.baskets = baskets;
-    }
-
-    public Set<CreditCard> getCreditCards() {
-        return creditCards;
-    }
-
-    public void setCreditCards(Set<CreditCard> creditCards) {
-        this.creditCards = creditCards;
-    }
-
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
     }
 
 }
