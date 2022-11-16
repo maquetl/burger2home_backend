@@ -1,23 +1,23 @@
 /* GENERAL */
 
 CREATE TABLE `burger2home`.`language` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(60) NOT NULL,
   `abbreviation` VARCHAR(5) NULL,
   PRIMARY KEY (`id`));
 
 /* PRODUCT */
 
 CREATE TABLE `burger2home`.`product` (
-  `id` INT NOT NULL,
-  `image_url` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
   
 CREATE TABLE `burger2home`.`product_translation` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `description` MEDIUMTEXT NULL,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(100) NULL,
   `product_id` INT NOT NULL,
   `language_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -34,7 +34,7 @@ CREATE TABLE `burger2home`.`product_translation` (
 
 
 CREATE TABLE `burger2home`.`price` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `amount` FLOAT NOT NULL,
   `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `end_date` DATETIME NULL,
@@ -50,12 +50,12 @@ CREATE TABLE `burger2home`.`price` (
 /* INGREDIENT */
     
 CREATE TABLE `burger2home`.`ingredient` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`));
   
 CREATE TABLE `burger2home`.`ingredient_translation` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(60) NOT NULL,
   `language_id` INT NOT NULL,
   `ingredient_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -71,7 +71,7 @@ CREATE TABLE `burger2home`.`ingredient_translation` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `burger2home`.`product_ingredient` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `ingredient_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -87,7 +87,7 @@ CREATE TABLE `burger2home`.`product_ingredient` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `burger2home`.`stock_historization` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `ingredient_id` INT NOT NULL,
   `amount` INT NOT NULL,
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -102,11 +102,11 @@ CREATE TABLE `burger2home`.`stock_historization` (
 /* ALLERGEN */
     
 CREATE TABLE `burger2home`.`allergen` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`));
   
   CREATE TABLE `burger2home`.`allergen_ingredient` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `allergen_id` INT NOT NULL,
   `ingredient_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -124,8 +124,8 @@ CREATE TABLE `burger2home`.`allergen` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `burger2home`.`allergen_translation` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(60) NOT NULL,
   `language_id` INT NOT NULL,
   `allergen_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -146,15 +146,15 @@ CREATE TABLE `burger2home`.`allergen_translation` (
 /* PRODUCT FAMILY */
 
 CREATE TABLE `burger2home`.`product_family` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `burger2home`.`product_family_translation` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_family_id` INT NOT NULL,
   `language_id` INT NOT NULL,
   `description` MEDIUMTEXT NULL,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(60) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_product_family_translation_to_product_family_idx` (`product_family_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_family_translation_to_language`
@@ -169,7 +169,7 @@ CREATE TABLE `burger2home`.`product_family_translation` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `burger2home`.`product_family_product` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `product_family_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -189,7 +189,7 @@ CREATE TABLE `burger2home`.`product_family_product` (
 /* PROMOTION */
 
 CREATE TABLE `burger2home`.`promotion` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `amount` FLOAT NOT NULL,
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `start_date` DATETIME NULL,
@@ -197,7 +197,7 @@ CREATE TABLE `burger2home`.`promotion` (
   PRIMARY KEY (`id`));
 
 CREATE TABLE `burger2home`.`promotion_translation` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `description` MEDIUMTEXT NULL,
   `promotion_id` INT NOT NULL,
   `language_id` INT NOT NULL,
@@ -216,7 +216,7 @@ CREATE TABLE `burger2home`.`promotion_translation` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `burger2home`.`promotion_product` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `promotion_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -236,21 +236,21 @@ CREATE TABLE `burger2home`.`promotion_product` (
 /* ROLE */
 
 CREATE TABLE `burger2home`.`role` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NULL,
   PRIMARY KEY (`id`));
 
 /* USER */
 
 CREATE TABLE `burger2home`.`user` (
-  `id` INT NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `firstname` VARCHAR(45) NULL,
-  `lastname` VARCHAR(45) NULL,
-  `image_url` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NULL,
-  `username` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(70) NOT NULL,
+  `firstname` VARCHAR(60) NULL,
+  `lastname` VARCHAR(60) NULL,
+  `image_url` VARCHAR(255) NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `status` VARCHAR(20) NULL,
+  `username` VARCHAR(60) NOT NULL,
   `role_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_to_role_idx` (`role_id` ASC) VISIBLE,
@@ -263,7 +263,7 @@ CREATE TABLE `burger2home`.`user` (
 /* ADDRESS */
 
 CREATE TABLE `burger2home`.`address` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NOT NULL,
   `zipcode` INT NOT NULL,
   `street` VARCHAR(45) NOT NULL,
@@ -282,7 +282,7 @@ CREATE TABLE `burger2home`.`address` (
 /* BASKET */ 
 
 CREATE TABLE `burger2home`.`basket` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `last_update` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NULL,
   PRIMARY KEY (`id`),
@@ -294,7 +294,7 @@ CREATE TABLE `burger2home`.`basket` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `burger2home`.`basket_line` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `basket_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   `amount` INT NOT NULL,
@@ -316,7 +316,7 @@ CREATE TABLE `burger2home`.`basket_line` (
 /* CREDIT CARD */
 
 CREATE TABLE `burger2home`.`credit_card` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `holder_name` VARCHAR(45) NOT NULL,
   `number` INT NOT NULL,
   `validity_date` DATE NOT NULL,
@@ -332,7 +332,7 @@ CREATE TABLE `burger2home`.`credit_card` (
 /* ORDER */
 
 CREATE TABLE `burger2home`.`order` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `credit_card_id` INT NOT NULL,
   `address_id` INT NOT NULL,
@@ -359,7 +359,7 @@ CREATE TABLE `burger2home`.`order` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `burger2home`.`order_line` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `order_id` INT NULL,
   `product_id` INT NOT NULL,
   `amount` INT UNSIGNED NOT NULL,
@@ -381,12 +381,12 @@ CREATE TABLE `burger2home`.`order_line` (
 /* TESTING */
 
 CREATE TABLE `burger2home`.`test_burger` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `burger2home`.`testfk` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `test_burger_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_testfk_to_test_burger_idx` (`test_burger_id` ASC) VISIBLE,
