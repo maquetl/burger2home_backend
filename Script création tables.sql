@@ -71,10 +71,9 @@ CREATE TABLE `burger2home`.`ingredient_translation` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `burger2home`.`product_ingredient` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `ingredient_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`product_id`, `ingredient_id`),
   CONSTRAINT `fk_product_ingredient_to_product`
     FOREIGN KEY (`product_id`)
     REFERENCES `burger2home`.`product` (`id`)
@@ -106,10 +105,9 @@ CREATE TABLE `burger2home`.`allergen` (
   PRIMARY KEY (`id`));
   
   CREATE TABLE `burger2home`.`allergen_ingredient` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `allergen_id` INT NOT NULL,
   `ingredient_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`allergen_id`, `ingredient_id`),
   INDEX `fk_allergen_ingredient_to_allergen_idx` (`allergen_id` ASC) VISIBLE,
   INDEX `fk_allergen_ingredient_to_ingredient_idx` (`ingredient_id` ASC) VISIBLE,
   CONSTRAINT `fk_allergen_ingredient_to_allergen`
@@ -169,10 +167,9 @@ CREATE TABLE `burger2home`.`product_family_translation` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `burger2home`.`product_family_product` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `product_family_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`product_id`, `product_family_id`),
   INDEX `fk_product_family_product_to_product_family_idx` (`product_family_id` ASC) VISIBLE,
   INDEX `fk_product_family_product_to_product_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_product_family_product_to_product_family`
@@ -216,10 +213,9 @@ CREATE TABLE `burger2home`.`promotion_translation` (
     ON UPDATE NO ACTION);
     
 CREATE TABLE `burger2home`.`promotion_product` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `promotion_id` INT NOT NULL,
   `product_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`promotion_id`, `product_id`),
   INDEX `promotion_product_to_promotion_idx` (`promotion_id` ASC) VISIBLE,
   INDEX `promotion_product_to_product_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `promotion_product_to_promotion`
@@ -379,7 +375,7 @@ CREATE TABLE `burger2home`.`order_line` (
     
     
 /* TESTING */
-
+/*
 CREATE TABLE `burger2home`.`test_burger` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
@@ -394,6 +390,6 @@ CREATE TABLE `burger2home`.`testfk` (
     FOREIGN KEY (`test_burger_id`)
     REFERENCES `burger2home`.`test_burger` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION);*/
 
 
