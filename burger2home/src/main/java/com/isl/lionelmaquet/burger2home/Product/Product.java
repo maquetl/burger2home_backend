@@ -2,8 +2,8 @@ package com.isl.lionelmaquet.burger2home.Product;
 
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Price.Price;
-import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
+import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
 import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
 
 import javax.persistence.*;
