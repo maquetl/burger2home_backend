@@ -16,8 +16,8 @@ public class CreditCard {
     @Column(name = "holder_name", nullable = false, length = 45)
     private String holderName;
 
-    @Column(name = "number", nullable = false)
-    private Integer number;
+    @Column(name = "number", nullable = false, length = 20)
+    private String number;
 
     @Column(name = "validity_date", nullable = false)
     private LocalDate validityDate;
@@ -42,11 +42,11 @@ public class CreditCard {
         this.holderName = holderName;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

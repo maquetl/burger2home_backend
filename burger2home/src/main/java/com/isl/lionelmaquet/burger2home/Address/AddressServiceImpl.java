@@ -17,4 +17,9 @@ public class AddressServiceImpl implements AddressService{
     public List<Address> getAll() {
         return addressRepository.findAll();
     }
+
+    @Override
+    public List<Address> getJuprelleAddresses() {
+        return addressRepository.findJuprelleAddresses();
+    }
 }

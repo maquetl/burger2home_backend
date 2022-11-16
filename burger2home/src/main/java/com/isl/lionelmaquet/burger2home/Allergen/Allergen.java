@@ -1,10 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Allergen;
 
-import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
-
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "allergen")
@@ -14,12 +10,6 @@ public class Allergen {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToMany
-    @JoinTable(name = "allergen_ingredient",
-            joinColumns = @JoinColumn(name = "allergen_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private Set<Ingredient> ingredients = new LinkedHashSet<>();
-
     public Integer getId() {
         return id;
     }
@@ -28,12 +18,5 @@ public class Allergen {
         this.id = id;
     }
 
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
+    //TODO [JPA Buddy] generate columns from DB
 }

@@ -18,6 +18,6 @@ public class AddressController {
 
     @GetMapping("/address")
     public List<Address> index(){
-        return addressService.getAll();
+        return addressService.getJuprelleAddresses();
     }
 }

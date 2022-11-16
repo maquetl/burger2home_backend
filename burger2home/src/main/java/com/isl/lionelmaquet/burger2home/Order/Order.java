@@ -2,13 +2,10 @@ package com.isl.lionelmaquet.burger2home.Order;
 
 import com.isl.lionelmaquet.burger2home.Address.Address;
 import com.isl.lionelmaquet.burger2home.CreditCard.CreditCard;
-import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
 import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "`order`")
@@ -35,9 +32,6 @@ public class Order {
 
     @Column(name = "status")
     private String status;
-
-    @OneToMany(mappedBy = "order")
-    private Set<OrderLine> orderLines = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -85,14 +79,6 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Set<OrderLine> getOrderLines() {
-        return orderLines;
-    }
-
-    public void setOrderLines(Set<OrderLine> orderLines) {
-        this.orderLines = orderLines;
     }
 
 }

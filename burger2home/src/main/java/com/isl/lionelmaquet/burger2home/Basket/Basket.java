@@ -1,12 +1,9 @@
 package com.isl.lionelmaquet.burger2home.Basket;
 
-import com.isl.lionelmaquet.burger2home.BasketLine.BasketLine;
 import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "basket")
@@ -22,9 +19,6 @@ public class Basket {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @OneToMany(mappedBy = "basket")
-    private Set<BasketLine> basketLines = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -48,14 +42,6 @@ public class Basket {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Set<BasketLine> getBasketLines() {
-        return basketLines;
-    }
-
-    public void setBasketLines(Set<BasketLine> basketLines) {
-        this.basketLines = basketLines;
     }
 
 }

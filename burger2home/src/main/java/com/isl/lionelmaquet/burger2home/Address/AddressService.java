@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AddressService {
     public List<Address> getAll();
+    public List<Address> getJuprelleAddresses();
 }

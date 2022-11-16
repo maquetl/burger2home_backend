@@ -1,8 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Product;
 
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
-import com.isl.lionelmaquet.burger2home.Price.Price;
-import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
 import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
 import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
 
@@ -32,12 +30,6 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "product_family_id"))
     private Set<ProductFamily> productFamilies = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "product")
-    private Set<Price> prices = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "product")
-    private Set<ProductTranslation> productTranslations = new LinkedHashSet<>();
 
     @ManyToMany
     @JoinTable(name = "product_ingredient",
@@ -75,22 +67,6 @@ public class Product {
 
     public void setProductFamilies(Set<ProductFamily> productFamilies) {
         this.productFamilies = productFamilies;
-    }
-
-    public Set<Price> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(Set<Price> prices) {
-        this.prices = prices;
-    }
-
-    public Set<ProductTranslation> getProductTranslations() {
-        return productTranslations;
-    }
-
-    public void setProductTranslations(Set<ProductTranslation> productTranslations) {
-        this.productTranslations = productTranslations;
     }
 
     public Set<Ingredient> getIngredients() {
