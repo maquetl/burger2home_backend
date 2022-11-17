@@ -43,27 +43,17 @@ public class ProductServiceImpl implements ProductService {
 
         List<ProductBO> productBOS = new ArrayList<>();
 
-        System.out.println("STEP 0");
         List<Product> products = productRepository.findAll();
 
         for(Product p : products){
             ProductBO pbo = new ProductBO();
 
             // STEP 1 : Get basic id and image url
-            System.out.println("STEP 1");
             pbo.setId(p.getId());
             pbo.setImageUrl(p.getImageUrl());
 
             // STEP 2 : Get its status based on the stocks of its ingredients
-            System.out.println("STEP 2");
-            Boolean isAvailable = true;
-            for (Ingredient i : p.getIngredients()){
-                Integer amount = stockHistorizationService.getCurrentStock(i.getId()).getAmount();
-                if( amount == 0){
-                    isAvailable = false;
-                    break;
-                }
-            }
+            Boolean isAvailable = isAvailable(p);
             if (!isAvailable && availableProductsOnly) {
                 continue;
             }
@@ -71,75 +61,56 @@ public class ProductServiceImpl implements ProductService {
 
 
             // STEP 3 : Get its name and description based on the language
-            System.out.println("STEP 3");
             ProductTranslation productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), language);
             pbo.setName(productTranslation.getName());
             pbo.setDescription(productTranslation.getDescription());
 
 
             // STEP 4 : Get its current price
-            System.out.println("STEP 4");
             Price currentPrice = priceService.getCurrentPriceByProductId(p.getId());
-            pbo.setCurrentPrice(currentPrice.getAmount());
+            Float currentPriceAmount = currentPrice.getAmount();
+            pbo.setCurrentPrice(currentPriceAmount);
 
             // STEP 5 : Get its current discount (if present)
-            System.out.println("STEP 5");
-            Optional<Promotion> currentPromotion = promotionService.getCurrentPromotion(p);
-            pbo.setCurrentDiscount(0f);
-            currentPromotion.ifPresent((promo) -> pbo.setCurrentDiscount(promo.getAmount()));
-            // Set the actual price
-            Float actualPrice = pbo.getCurrentPrice() - (pbo.getCurrentPrice() * pbo.getCurrentDiscount() / 100);
-            pbo.setActualPrice(actualPrice);
+            promotionService.getCurrentPromotion(p).ifPresentOrElse((promo) -> {
+                Float promoAmount = promo.getAmount();
+                pbo.setCurrentDiscount(promoAmount);
+                pbo.setActualPrice(currentPriceAmount - (currentPriceAmount * promoAmount / 100));
+            }, () -> {
+                pbo.setCurrentDiscount(0f);
+                pbo.setActualPrice(currentPriceAmount);
+            });
 
-            // STEP 6 : Set ingredients
-            System.out.println("STEP 6");
-            for(Ingredient i : p.getIngredients()){
+
+            // STEP 6 : Map ingredients & allergens to DTO (already present in entity)
+            for (Ingredient i : p.getIngredients()){
                 String ingredientName = i.getIngredientTranslations().stream().filter((it) -> it.getLanguage().getAbbreviation().equals(language)).toList().get(0).getName();
                 if(!pbo.getIngredients().contains(ingredientName)) {
                     pbo.getIngredients().add(ingredientName);
                 }
-            }
 
-
-            // STEP 7 : Set allergens
-            System.out.println("STEP 7");
-            List<String> allergens = new ArrayList<>();
-
-            for (Ingredient i : p.getIngredients()){
                 for (Allergen a : i.getAllergens() ){
                     for (AllergenTranslation at : a.getAllergenTranslations()){
-                        if(at.getLanguage().getAbbreviation().equals(language) && !allergens.contains(at.getName())){
-                            allergens.add(at.getName());
+                        if(at.getLanguage().getAbbreviation().equals(language) && !pbo.getAllergens().contains(at.getName())){
+                            pbo.getAllergens().add(at.getName());
                         }
                     }
                 }
             }
-            pbo.setAllergens(allergens);
 
             productBOS.add(pbo);
         }
-
-
-
-
-
-
-
-
-
-
-
-        // STEP 7 : Optional : Get its allergens
-
-
-
-        /*
-        for(ProductBO pbo : productBOS){
-            List<Price> prices =  priceRepository.findPricesByProductId(pbo.product.getId());
-            pbo.setPrices(prices);
-        }*/
-
         return productBOS;
+    }
 
+
+    private Boolean isAvailable(Product product){
+        for (Ingredient i : product.getIngredients()){
+            Integer amount = stockHistorizationService.getCurrentStock(i.getId()).getAmount();
+            if(amount == 0){
+                return false;
+            }
+        }
+        return true;
     }
 }
