@@ -1,10 +1,13 @@
 package com.isl.lionelmaquet.burger2home.Language;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Table(name = "language")
+@JsonSerialize
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

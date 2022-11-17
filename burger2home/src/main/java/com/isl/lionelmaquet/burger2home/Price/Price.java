@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Price;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.Product.Product;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Price {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_id", nullable = false)
+    @JsonIgnore
     private Product product;
 
     public Integer getId() {

@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Ingredient.Translation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 
@@ -22,6 +23,7 @@ public class IngredientTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ingredient_id", nullable = false)
+    @JsonIgnore
     private Ingredient ingredient;
 
     public Integer getId() {

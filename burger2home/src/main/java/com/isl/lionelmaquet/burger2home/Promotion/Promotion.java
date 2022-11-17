@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Promotion;
 
 import com.isl.lionelmaquet.burger2home.Product.Product;
+import com.isl.lionelmaquet.burger2home.Promotion.Translation.PromotionTranslation;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -32,6 +33,9 @@ public class Promotion {
             joinColumns = @JoinColumn(name = "promotion_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "promotion")
+    private Set<PromotionTranslation> promotionTranslations = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -79,6 +83,14 @@ public class Promotion {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public Set<PromotionTranslation> getPromotionTranslations() {
+        return promotionTranslations;
+    }
+
+    public void setPromotionTranslations(Set<PromotionTranslation> promotionTranslations) {
+        this.promotionTranslations = promotionTranslations;
     }
 
 }

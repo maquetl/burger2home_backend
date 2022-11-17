@@ -16,8 +16,4 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping("/address")
-    public List<Address> index(){
-        return addressService.getJuprelleAddresses();
-    }
 }

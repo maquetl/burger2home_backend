@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Promotion.Translation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
 
@@ -19,6 +20,7 @@ public class PromotionTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "promotion_id", nullable = false)
+    @JsonIgnore
     private Promotion promotion;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

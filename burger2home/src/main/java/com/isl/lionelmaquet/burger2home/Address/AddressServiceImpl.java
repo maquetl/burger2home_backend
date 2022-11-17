@@ -19,7 +19,8 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public List<Address> getJuprelleAddresses() {
-        return addressRepository.findJuprelleAddresses();
+    public List<Address> getByUser(Integer userId) {
+        return null;
     }
+
 }

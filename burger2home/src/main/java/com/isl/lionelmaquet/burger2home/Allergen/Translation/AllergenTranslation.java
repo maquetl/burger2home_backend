@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Allergen.Translation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 
@@ -22,6 +23,7 @@ public class AllergenTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "allergen_id", nullable = false)
+    @JsonIgnore
     private Allergen allergen;
 
     public Integer getId() {

@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.ProductFamily;
 
 import com.isl.lionelmaquet.burger2home.Product.Product;
+import com.isl.lionelmaquet.burger2home.ProductFamily.Translation.ProductFamilyTranslation;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -14,6 +15,9 @@ public class ProductFamily {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @OneToMany(mappedBy = "productFamily")
+    private Set<ProductFamilyTranslation> productFamilyTranslations = new LinkedHashSet<>();
+
     @ManyToMany
     @JoinTable(name = "product_family_product",
             joinColumns = @JoinColumn(name = "product_family_id"),
@@ -26,6 +30,14 @@ public class ProductFamily {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Set<ProductFamilyTranslation> getProductFamilyTranslations() {
+        return productFamilyTranslations;
+    }
+
+    public void setProductFamilyTranslations(Set<ProductFamilyTranslation> productFamilyTranslations) {
+        this.productFamilyTranslations = productFamilyTranslations;
     }
 
     public Set<Product> getProducts() {

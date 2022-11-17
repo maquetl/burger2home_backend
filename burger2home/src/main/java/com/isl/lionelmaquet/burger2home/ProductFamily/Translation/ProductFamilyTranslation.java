@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.ProductFamily.Translation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
 
@@ -15,6 +16,7 @@ public class ProductFamilyTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_family_id", nullable = false)
+    @JsonIgnore
     private ProductFamily productFamily;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
