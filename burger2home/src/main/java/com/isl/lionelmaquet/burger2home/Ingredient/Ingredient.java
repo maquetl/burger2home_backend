@@ -1,5 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Ingredient;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Ingredient.Translation.IngredientTranslation;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ingredient")
+@JsonSerialize
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,20 @@ public class Ingredient {
 
     @OneToMany(mappedBy = "ingredient")
     private Set<IngredientTranslation> ingredientTranslations = new LinkedHashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "allergen_ingredient",
+            joinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "allergen_id", referencedColumnName = "id"))
+    private Set<Allergen> allergens = new LinkedHashSet<>();
+
+    public Set<Allergen> getAllergens() {
+        return allergens;
+    }
+
+    public void setAllergens(Set<Allergen> allergens) {
+        this.allergens = allergens;
+    }
 
     public Integer getId() {
         return id;

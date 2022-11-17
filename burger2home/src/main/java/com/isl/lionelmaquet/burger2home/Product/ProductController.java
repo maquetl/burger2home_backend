@@ -15,10 +15,8 @@ public class ProductController {
 
     @GetMapping("/product")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
-                                 @RequestParam(defaultValue = "false") Boolean expandIngredients,
-                                 @RequestParam(defaultValue = "false") Boolean expandAllergens,
                                  @RequestParam(defaultValue = "false") Boolean availableProductsOnly
                                  ){
-        return productService.getAll(language, expandIngredients, expandAllergens, availableProductsOnly);
+        return productService.getAll(language, availableProductsOnly);
     }
 }

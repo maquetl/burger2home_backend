@@ -17,11 +17,11 @@ public class AllergenTranslation {
     @Column(name = "name", nullable = false, length = 60)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "allergen_id", nullable = false)
     @JsonIgnore
     private Allergen allergen;

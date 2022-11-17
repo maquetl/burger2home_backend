@@ -4,7 +4,10 @@ import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Price.Price;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ProductBO {
     private Integer id;
@@ -12,10 +15,11 @@ public class ProductBO {
     private String description;
     private Float currentPrice;
     private Float currentDiscount;
+    private Float actualPrice;
     private String imageUrl;
     private Boolean isAvailable;
-    private List<Ingredient> ingredients;
-    private List<Allergen> allergens;
+    private List<String> ingredients = new ArrayList<>();
+    private List<String> allergens = new ArrayList<>();
 
     public ProductBO() {
     }
@@ -68,14 +72,6 @@ public class ProductBO {
         this.currentDiscount = currentDiscount;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public Boolean getAvailable() {
         return isAvailable;
     }
@@ -84,11 +80,27 @@ public class ProductBO {
         isAvailable = available;
     }
 
-    public List<Allergen> getAllergens() {
+    public Float getActualPrice() {
+        return actualPrice;
+    }
+
+    public void setActualPrice(Float actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<String> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(List<Allergen> allergens) {
+    public void setAllergens(List<String> allergens) {
         this.allergens = allergens;
     }
 }

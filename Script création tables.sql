@@ -86,8 +86,8 @@ CREATE TABLE `burger2home`.`price` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `amount` FLOAT NOT NULL,
   `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_date` DATETIME NULL,
-  `start_date` DATETIME NULL,
+  `end_date` DATETIME NOT NULL DEFAULT "9999-12-31 23:59:59",
+  `start_date` DATETIME NOT NULL,
   `product_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_price_to_product`
@@ -98,10 +98,10 @@ CREATE TABLE `burger2home`.`price` (
     
 INSERT IGNORE INTO `burger2home`.`price` (`id`, `amount`, `creation_date`, `end_date`,`start_date`, `product_id`)
 VALUES
-(1, "5.99", CURRENT_TIMESTAMP(), CURRENT_DATE(), "2021-01-01 20:05:01", 1),
-(2, "6.99", CURRENT_TIMESTAMP(), NULL, CURRENT_DATE(), 1),
-(3, "5.99", CURRENT_TIMESTAMP(), NULL, CURRENT_DATE(), 2),
-(4, "2.99", CURRENT_TIMESTAMP(), NULL, CURRENT_DATE(), 3);
+(1, "5.99", DEFAULT, CURRENT_DATE(), "2021-01-01 20:05:01", 1),
+(2, "6.99", DEFAULT, DEFAULT, CURRENT_DATE(), 1),
+(3, "5.99", DEFAULT, DEFAULT, CURRENT_DATE(), 2),
+(4, "2.99", DEFAULT, DEFAULT, CURRENT_DATE(), 3);
     
 /* INGREDIENT */
     
@@ -181,7 +181,7 @@ VALUES
 (2, 1, 86, "2021-05-06 11:02:27"),
 (3, 2, 94, CURRENT_TIMESTAMP()),
 (4, 2, 75, "2021-05-06 11:02:27"),
-(5, 3, 78, CURRENT_TIMESTAMP()),
+(5, 3, 0, CURRENT_TIMESTAMP()),
 (6, 3, 100, "2021-05-06 11:02:27");
 
 /* ALLERGEN */
@@ -311,13 +311,13 @@ CREATE TABLE `burger2home`.`promotion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `amount` FLOAT NOT NULL,
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `start_date` DATETIME NULL,
-  `end_date` DATETIME NULL,
+  `start_date` DATETIME NOT NULL,
+  `end_date` DATETIME NOT NULL DEFAULT "9999-12-31 23:59:59",
   PRIMARY KEY (`id`));
   
 INSERT IGNORE INTO `burger2home`.`promotion` (`id`, `amount`, `creation_date`, `start_date`, `end_date`)
 VALUES
-(1, 50, CURRENT_TIMESTAMP(), "2022-11-20 00:00:00", "2022-11-27 00:00:00");
+(1, 50, DEFAULT, "2022-11-10 00:00:00", "2023-11-27 00:00:00");
 
 CREATE TABLE `burger2home`.`promotion_translation` (
   `id` INT NOT NULL AUTO_INCREMENT,

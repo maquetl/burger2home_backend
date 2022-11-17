@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Ingredient.Translation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ingredient_translation")
+@JsonSerialize
 public class IngredientTranslation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +19,11 @@ public class IngredientTranslation {
     @Column(name = "name", nullable = false, length = 60)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "ingredient_id", nullable = false)
     @JsonIgnore
     private Ingredient ingredient;

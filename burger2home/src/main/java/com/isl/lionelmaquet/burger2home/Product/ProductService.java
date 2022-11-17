@@ -6,6 +6,6 @@ import java.util.List;
 
 
 public interface ProductService {
-    List<ProductBO> getAll(String language, Boolean expandIngredients, Boolean expandAllergens, Boolean availableProductsOnly);
+    List<ProductBO> getAll(String language, Boolean availableProductsOnly);
 }
 
