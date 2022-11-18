@@ -42,65 +42,76 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductBO> getAll(String language, Boolean availableProductsOnly) {
 
         List<ProductBO> productBOS = new ArrayList<>();
-
         List<Product> products = productRepository.findAll();
 
-        for(Product p : products){
-            ProductBO pbo = new ProductBO();
+        for(Product product : products){
+            getProductBO(product, language, availableProductsOnly).ifPresent(pbo -> productBOS.add(pbo));
+        }
+        return productBOS;
+    }
 
-            // STEP 1 : Get basic id and image url
-            pbo.setId(p.getId());
-            pbo.setImageUrl(p.getImageUrl());
+    @Override
+    public Optional<ProductBO> getSingle(Integer productId, String language) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isPresent()){
+            return getProductBO(product.get(), language, false);
+        }
+        return Optional.empty();
+    }
 
-            // STEP 2 : Get its status based on the stocks of its ingredients
-            Boolean isAvailable = isAvailable(p);
-            if (!isAvailable && availableProductsOnly) {
-                continue;
+    // This method returns an empty optional if the boolean mustBeAvailable is set to true and the product is not available
+    private Optional<ProductBO> getProductBO(Product p, String languageAbbr, Boolean mustBeAvailable){
+        ProductBO pbo = new ProductBO();
+
+        // STEP 1 : Get its status based on the stocks of its ingredients
+        Boolean isAvailable = isAvailable(p);
+        if (!isAvailable && mustBeAvailable) {
+            return Optional.empty();
+        }
+        pbo.setAvailable(isAvailable);
+
+        // STEP 2 : Get basic id and image url
+        pbo.setId(p.getId());
+        pbo.setImageUrl(p.getImageUrl());
+
+        // STEP 3 : Get its name and description based on the language
+        ProductTranslation productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), languageAbbr);
+        pbo.setName(productTranslation.getName());
+        pbo.setDescription(productTranslation.getDescription());
+
+
+        // STEP 4 : Get its current price
+        Price currentPrice = priceService.getCurrentPriceByProductId(p.getId());
+        Float currentPriceAmount = currentPrice.getAmount();
+        pbo.setCurrentPrice(currentPriceAmount);
+
+        // STEP 5 : Get its current discount (if present)
+        promotionService.getCurrentPromotion(p).ifPresentOrElse((promo) -> {
+            Float promoAmount = promo.getAmount();
+            pbo.setCurrentDiscount(promoAmount);
+            pbo.setActualPrice(currentPriceAmount - (currentPriceAmount * promoAmount / 100));
+        }, () -> {
+            pbo.setCurrentDiscount(0f);
+            pbo.setActualPrice(currentPriceAmount);
+        });
+
+
+        // STEP 6 : Map ingredients & allergens to DTO (already present in entity)
+        for (Ingredient i : p.getIngredients()){
+            String ingredientName = i.getIngredientTranslations().stream().filter((it) -> it.getLanguage().getAbbreviation().equals(languageAbbr)).toList().get(0).getName();
+            if(!pbo.getIngredients().contains(ingredientName)) {
+                pbo.getIngredients().add(ingredientName);
             }
-            pbo.setAvailable(isAvailable);
 
-
-            // STEP 3 : Get its name and description based on the language
-            ProductTranslation productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), language);
-            pbo.setName(productTranslation.getName());
-            pbo.setDescription(productTranslation.getDescription());
-
-
-            // STEP 4 : Get its current price
-            Price currentPrice = priceService.getCurrentPriceByProductId(p.getId());
-            Float currentPriceAmount = currentPrice.getAmount();
-            pbo.setCurrentPrice(currentPriceAmount);
-
-            // STEP 5 : Get its current discount (if present)
-            promotionService.getCurrentPromotion(p).ifPresentOrElse((promo) -> {
-                Float promoAmount = promo.getAmount();
-                pbo.setCurrentDiscount(promoAmount);
-                pbo.setActualPrice(currentPriceAmount - (currentPriceAmount * promoAmount / 100));
-            }, () -> {
-                pbo.setCurrentDiscount(0f);
-                pbo.setActualPrice(currentPriceAmount);
-            });
-
-
-            // STEP 6 : Map ingredients & allergens to DTO (already present in entity)
-            for (Ingredient i : p.getIngredients()){
-                String ingredientName = i.getIngredientTranslations().stream().filter((it) -> it.getLanguage().getAbbreviation().equals(language)).toList().get(0).getName();
-                if(!pbo.getIngredients().contains(ingredientName)) {
-                    pbo.getIngredients().add(ingredientName);
-                }
-
-                for (Allergen a : i.getAllergens() ){
-                    for (AllergenTranslation at : a.getAllergenTranslations()){
-                        if(at.getLanguage().getAbbreviation().equals(language) && !pbo.getAllergens().contains(at.getName())){
-                            pbo.getAllergens().add(at.getName());
-                        }
+            for (Allergen a : i.getAllergens() ){
+                for (AllergenTranslation at : a.getAllergenTranslations()){
+                    if(at.getLanguage().getAbbreviation().equals(languageAbbr) && !pbo.getAllergens().contains(at.getName())){
+                        pbo.getAllergens().add(at.getName());
                     }
                 }
             }
-
-            productBOS.add(pbo);
         }
-        return productBOS;
+        return Optional.of(pbo);
     }
 
 
