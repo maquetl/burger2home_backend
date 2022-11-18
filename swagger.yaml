@@ -36,18 +36,6 @@ paths:
         - name : language
           in : query
           type: string
-        - name: expandIngredients
-          in : query
-          type: boolean
-        - name: expandAllergens
-          in: query
-          type: boolean
-        - name: expandTranslations
-          in: query
-          type: boolean
-        - name: expandPrices
-          in: query
-          type: boolean
         - name: availableProductsOnly
           in: query
           type: boolean
@@ -87,18 +75,6 @@ paths:
         - name : language
           in : query
           type: string
-        - name: expandIngredients
-          in : query
-          type: boolean
-        - name: expandAllergens
-          in: query
-          type: boolean
-        - name: expandTranslations
-          in: query
-          type: boolean
-        - name: expandPrices
-          in: query
-          type: boolean
       responses:
         '200':
           description: OK
@@ -724,32 +700,27 @@ definitions:
         type: string
       description:
         type: string
-      current_price:
+      currentPrice:
         type: integer
         format: float
-      current_discount: 
+      currentDiscount: 
         type: integer
         format: float
-      picture_url: 
+      actualPrice:
+        type: integer
+        format: float
+      imageUrl: 
         type: string
-      family: 
-        $ref: '#/definitions/family'
       ingredients: 
         type: array
         items: 
-          $ref: '#/definitions/ingredient'
-      translations: 
-        type: array
-        items: 
-          $ref: '#/definitions/product-translation'
+          $ref: string
       allergens: 
         type: array
         items: 
-          $ref: '#/definitions/allergen'
-      prices: 
-        type: array
-        items: 
-          $ref: '#/definitions/price'
+          type: string
+      available: 
+        type: boolean
         
   product-translation: 
     type: object
