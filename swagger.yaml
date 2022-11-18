@@ -42,8 +42,8 @@ paths:
       responses: 
         '200': 
           description: OK
-          schema: 
-            $ref : '#/definitions/productList'
+          schema:
+            $ref: '#/definitions/productList'
           
     post: 
       summary : create a new product
@@ -714,7 +714,7 @@ definitions:
       ingredients: 
         type: array
         items: 
-          $ref: string
+          type: string
       allergens: 
         type: array
         items: 
