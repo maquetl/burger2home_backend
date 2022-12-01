@@ -27,4 +27,19 @@ public class ProductController {
                                                 @RequestParam(defaultValue = "EN") String language){
         return productService.getSingle(productIdentifier, language);
     }
+
+    @GetMapping(value = "/public")
+    public String publicEndpoint() {
+        return "This page is public.";
+    }
+
+    @GetMapping(value = "/private")
+    public String privateEndpoint() {
+        return "All good. You can see this because you are Authenticated.";
+    }
+
+    @GetMapping(value = "/private-scoped")
+    public String privateScopedEndpoint() {
+        return "All good. You can see this because you are Authenticated with a Token granted the 'read:messages' scope";
+    }
 }
