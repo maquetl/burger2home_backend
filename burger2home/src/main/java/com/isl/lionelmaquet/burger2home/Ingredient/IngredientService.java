@@ -1,5 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Ingredient;
 
+import com.isl.lionelmaquet.burger2home.Ingredient.Translation.IngredientTranslation;
+
 import java.util.List;
 import java.util.Optional;
 
