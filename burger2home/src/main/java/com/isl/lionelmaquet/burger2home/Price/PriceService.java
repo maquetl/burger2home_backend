@@ -1,5 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Price;
 
+import java.util.Optional;
+
 public interface PriceService {
-    Price getCurrentPriceByProductId(Integer productId);
+    Optional<Price> getCurrentPriceByProductId(Integer productId);
 }

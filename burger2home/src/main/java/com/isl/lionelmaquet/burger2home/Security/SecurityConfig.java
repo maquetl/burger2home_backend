@@ -28,11 +28,9 @@ public class SecurityConfig {
         an OAuth2 Resource Server, using JWT validation.
         */
         http.authorizeRequests()
-                .mvcMatchers("/public").permitAll()
-                .mvcMatchers("/private").authenticated()
-                .mvcMatchers("/private-scoped").hasAuthority("SCOPE_read:messages")
+                .mvcMatchers("/**").permitAll()
                 .and().cors()
-                .and().oauth2ResourceServer().jwt();
+                .and().csrf().disable();
         return http.build();
     }
 

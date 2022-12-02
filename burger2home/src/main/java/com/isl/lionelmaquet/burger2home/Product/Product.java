@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
@@ -26,6 +27,18 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredients = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private Set<ProductTranslation> productTranslations = new LinkedHashSet<>();
+
+    public Set<ProductTranslation> getProductTranslations() {
+        return productTranslations;
+    }
+
+    public void setProductTranslations(Set<ProductTranslation> productTranslations) {
+        this.productTranslations = productTranslations;
+    }
+
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -33,6 +46,8 @@ public class Product {
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+
 
     public Integer getId() {
         return id;

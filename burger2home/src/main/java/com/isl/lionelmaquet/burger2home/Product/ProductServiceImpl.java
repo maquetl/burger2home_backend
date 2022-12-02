@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     StockHistorizationService stockHistorizationService;
 
     @Override
-    public List<ProductBO> getAll(String language, Boolean availableProductsOnly) {
+    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly) {
 
         List<ProductBO> productBOS = new ArrayList<>();
         List<Product> products = productRepository.findAll();
@@ -51,12 +51,37 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<ProductBO> getSingle(Integer productId, String language) {
+    public Optional<ProductBO> getSingleProductBO(Integer productId, String language) {
         Optional<Product> product = productRepository.findById(productId);
         if (product.isPresent()){
             return getProductBO(product.get(), language, false);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<Product> getSingleProduct(Integer productId) {
+        return productRepository.findById(productId);
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public void createProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    @Override
+    public void deleteProduct(Integer productId) {
+        productRepository.deleteById(productId);
+    }
+
+    @Override
+    public void modifyProduct(Product product) {
+        productRepository.save(product);
     }
 
     // This method returns an empty optional if the boolean mustBeAvailable is set to true and the product is not available
@@ -75,14 +100,16 @@ public class ProductServiceImpl implements ProductService {
         pbo.setImageUrl(p.getImageUrl());
 
         // STEP 3 : Get its name and description based on the language
-        ProductTranslation productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), languageAbbr);
-        pbo.setName(productTranslation.getName());
-        pbo.setDescription(productTranslation.getDescription());
+        Optional<ProductTranslation> productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), languageAbbr);
+        productTranslation.ifPresent(pt -> {
+            pbo.setName(pt.getName());
+            pbo.setDescription(pt.getDescription());
+        });
 
 
         // STEP 4 : Get its current price
-        Price currentPrice = priceService.getCurrentPriceByProductId(p.getId());
-        Float currentPriceAmount = currentPrice.getAmount();
+        Optional<Price> currentPrice = priceService.getCurrentPriceByProductId(p.getId());
+        Float currentPriceAmount = currentPrice.isPresent() ? currentPrice.get().getAmount() : null;
         pbo.setCurrentPrice(currentPriceAmount);
 
         // STEP 5 : Get its current discount (if present)

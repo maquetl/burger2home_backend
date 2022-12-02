@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Product.Translation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 import com.isl.lionelmaquet.burger2home.Product.Product;
@@ -25,7 +26,7 @@ public class ProductTranslation {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     @ManyToOne(optional = false)

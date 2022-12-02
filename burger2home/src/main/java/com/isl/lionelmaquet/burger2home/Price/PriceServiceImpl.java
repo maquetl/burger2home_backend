@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PriceServiceImpl implements PriceService {
@@ -12,7 +13,7 @@ public class PriceServiceImpl implements PriceService {
     PriceRepository priceRepository;
 
     @Override
-    public Price getCurrentPriceByProductId(Integer productId) {
-        return priceRepository.findCurrentPriceByProductId(productId);
+    public Optional<Price> getCurrentPriceByProductId(Integer productId) {
+        return Optional.ofNullable(priceRepository.findCurrentPriceByProductId(productId));
     }
 }
