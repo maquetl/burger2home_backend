@@ -1,9 +1,12 @@
 package com.isl.lionelmaquet.burger2home.Role;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "role")
+@JsonSerialize
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
