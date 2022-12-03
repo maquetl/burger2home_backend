@@ -1,6 +1,8 @@
 package com.isl.lionelmaquet.burger2home.Allergen.Translation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 
@@ -8,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "allergen_translation")
+@JsonSerialize
 public class AllergenTranslation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +26,7 @@ public class AllergenTranslation {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "allergen_id", nullable = false)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Allergen allergen;
 
     public Integer getId() {
