@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Language;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Language {
     private Integer id;
 
     @Column(name = "creation_date", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant creationDate;
 
     @Column(name = "name", nullable = false, length = 60)

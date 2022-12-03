@@ -22,7 +22,7 @@ public class CreditCard {
     @Column(name = "validity_date", nullable = false)
     private LocalDate validityDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
