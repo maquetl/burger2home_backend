@@ -15,12 +15,12 @@ public class ProductFamilyTranslation {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "product_family_id", nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ProductFamily productFamily;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
