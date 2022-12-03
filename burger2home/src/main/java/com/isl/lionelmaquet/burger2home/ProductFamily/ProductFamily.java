@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.ProductFamily;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.isl.lionelmaquet.burger2home.Product.Product;
 import com.isl.lionelmaquet.burger2home.ProductFamily.Translation.ProductFamilyTranslation;
 
@@ -16,12 +17,14 @@ public class ProductFamily {
     private Integer id;
 
     @OneToMany(mappedBy = "productFamily")
+    @JsonIgnore
     private Set<ProductFamilyTranslation> productFamilyTranslations = new LinkedHashSet<>();
 
     @ManyToMany
     @JoinTable(name = "product_family_product",
             joinColumns = @JoinColumn(name = "product_family_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @JsonIgnore
     private Set<Product> products = new LinkedHashSet<>();
 
     public Integer getId() {
