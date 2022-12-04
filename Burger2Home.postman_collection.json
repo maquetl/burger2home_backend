@@ -52,7 +52,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue du bidule\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue du bidule\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,13 +103,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/addresses/2",
+							"raw": "{{base-url}}/addresses/4",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"addresses",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -232,13 +232,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/5",
+							"raw": "{{base-url}}/allergens/4",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
-								"5"
+								"4"
 							]
 						}
 					},
@@ -312,7 +312,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"oeufs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergen\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"oeufs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergenId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -339,7 +339,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 5,\r\n    \"name\" : \"oeufsssss\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergen\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : 5,\r\n    \"name\" : \"oeufsssss\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergenId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -444,7 +444,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"lastUpdate\" : \"2022-12-01 20:00:00\",\r\n    \"user\" : {\"id\" : 1},\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"lastUpdate\" : \"2022-12-01 20:00:00\",\r\n    \"userId\" : 1,\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -470,7 +470,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"lastUpdate\" : \"2022-12-01 23:00:00\",\r\n    \"user\" : {\"id\" : 1},\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"lastUpdate\" : \"2022-12-01 23:00:00\",\r\n    \"user\" : 1,\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -573,7 +573,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"basket\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 2\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"basketId\" : 1,\r\n    \"productId\" : 1,\r\n    \"amount\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -599,7 +599,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"basket\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 3\r\n}",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"basketId\" : 1,\r\n    \"productId\" : 1,\r\n    \"amount\" : 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -624,13 +624,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/basketLines/2",
+							"raw": "{{base-url}}/basketLines/3",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"basketLines",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -685,7 +685,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"userId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -711,7 +711,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 1,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"userId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -945,7 +945,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"bacon\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"ingredient\" : {\r\n        \"id\" : 2\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"bacon\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"ingredientId\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -972,7 +972,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 7,\r\n    \"name\" : \"eggggggs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"ingredient\" : {\r\n        \"id\" : 2\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : 7,\r\n    \"name\" : \"eggggggs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"ingredientId\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1187,7 +1187,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"user\" : {\"id\" : 1},\r\n    \"creditCard\" : {\"id\" : 1},\r\n    \"address\" : {\"id\" : 1},\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : null,\r\n    \"orderLines\" : [{\"id\" : 1}, {\"id\" : 3}]\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"user\" : 1,\r\n    \"creditCard\" : 1,\r\n    \"address\" : 1,\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : null,\r\n    \"orderLines\" : [{\"id\" : 1}, {\"id\" : 3}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1316,7 +1316,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": null,\r\n    \"order\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 1\r\n    }",
+							"raw": "{\r\n    \"id\": null,\r\n    \"orderId\" : 1,\r\n    \"productId\" : 1,\r\n    \"amount\" : 1\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1342,7 +1342,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"order\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 2\r\n    }",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"orderId\" : 1,\r\n    \"productId\" : 1,\r\n    \"amount\" : 2\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1445,7 +1445,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"amount\" : 9.80,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"product\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"amount\" : 9.80,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"productId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1471,7 +1471,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 5,\r\n    \"amount\" : 10,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"product\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\" : 5,\r\n    \"amount\" : 10,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"productId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1514,184 +1514,175 @@
 			"name": "Products",
 			"item": [
 				{
-					"name": "Admin",
-					"item": [
-						{
-							"name": "MODIFY - Single product",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": 1,\r\n    \"imageUrl\": \"new test url\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 2\r\n        },\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+					"name": "GET - All productsBO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products?language=EN&availableProductsOnly=false",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "EN",
+									"description": "EN / FR"
 								},
-								"url": {
-									"raw": "{{base-url}}/admin/products",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"admin",
-										"products"
-									]
+								{
+									"key": "availableProductsOnly",
+									"value": "false",
+									"description": "true / false"
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "CREATE - Single product Copy",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": null,\r\n    \"imageUrl\": \"test nouveau produit\",\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base-url}}/admin/products",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"admin",
-										"products"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET - Single product",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{base-url}}/admin/products/1",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"admin",
-										"products",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET - All Products",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base-url}}/products",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"products"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE - Single Product",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{base-url}}/admin/products/6",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"admin",
-										"products",
-										"6"
-									]
-								}
-							},
-							"response": []
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "Public",
-					"item": [
-						{
-							"name": "GET - All products",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base-url}}/products?language=EN&availableProductsOnly=false",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"products"
-									],
-									"query": [
-										{
-											"key": "language",
-											"value": "EN",
-											"description": "EN / FR"
-										},
-										{
-											"key": "availableProductsOnly",
-											"value": "false",
-											"description": "true / false"
-										}
-									]
+					"name": "GET - Single product BO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/1?language=EN",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"1"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "EN",
+									"description": "EN / FR"
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET - Single product",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base-url}}/products/5?language=EN",
-									"host": [
-										"{{base-url}}"
-									],
-									"path": [
-										"products",
-										"5"
-									],
-									"query": [
-										{
-											"key": "language",
-											"value": "EN",
-											"description": "EN / FR"
-										}
-									]
-								}
-							},
-							"response": []
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "GET - All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/admin/products",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/admin/products/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"imageUrl\": \"new test url\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 2\r\n        },\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/admin/products",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single product Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"imageUrl\": \"test nouveau produit\",\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/admin/products",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/admin/products/6",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products",
+								"6"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1999,7 +1990,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"productFamily\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 1},\r\n    \"description\" : \"meilleurs burgers !!!\",\r\n    \"name\" : \"Plus achetés\"\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"productFamilyId\" : 1,\r\n    \"language\" : {\"id\" : 1},\r\n    \"description\" : \"meilleurs burgers !!!\",\r\n    \"name\" : \"Plus achetés\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2027,7 +2018,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 5,\r\n    \"productFamily\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 1},\r\n    \"description\" : \"Meilleurs burgers.\",\r\n    \"name\" : \"Plus achetés\"\r\n}",
+							"raw": "{\r\n    \"id\" : 5,\r\n    \"productFamilyId\" : 1,\r\n    \"language\" : {\"id\" : 1},\r\n    \"description\" : \"Meilleurs burgers.\",\r\n    \"name\" : \"Plus achetés\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2246,7 +2237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"description\" : \"description de promo\",\r\n    \"promotion\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 1}\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"description\" : \"description de promo\",\r\n    \"promotionId\" : 1,\r\n    \"language\" : {\"id\" : 1}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2273,7 +2264,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 3,\r\n    \"description\" : \"description de promotions !\",\r\n    \"promotion\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 2}\r\n}",
+							"raw": "{\r\n    \"id\" : 3,\r\n    \"description\" : \"description de promotions !\",\r\n    \"promotionId\" : 1,\r\n    \"language\" : {\"id\" : 2}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2507,7 +2498,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"ingredient\" : {\"id\" : 1},\r\n    \"amount\" : 40,\r\n    \"creationDate\" : \"2022-02-05 20:00:00\"\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"ingredientId\" : 1,\r\n    \"amount\" : 40,\r\n    \"creationDate\" : \"2022-02-05 20:00:00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2533,7 +2524,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 7,\r\n    \"ingredient\" : {\"id\" : 1},\r\n    \"amount\" : 20,\r\n    \"creationDate\" : \"2022-02-05 20:00:00\"\r\n}",
+							"raw": "{\r\n    \"id\" : 7,\r\n    \"ingredientId\" : 1,\r\n    \"amount\" : 20,\r\n    \"creationDate\" : \"2022-02-05 20:00:00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
