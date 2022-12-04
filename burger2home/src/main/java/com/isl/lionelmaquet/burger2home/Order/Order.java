@@ -1,5 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Order;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isl.lionelmaquet.burger2home.Address.Address;
 import com.isl.lionelmaquet.burger2home.CreditCard.CreditCard;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
@@ -18,25 +20,27 @@ public class Order {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "credit_card_id", nullable = false)
     private CreditCard creditCard;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
     @Column(name = "order_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant orderDate;
 
     @Column(name = "status")
     private String status;
 
     @OneToMany(mappedBy = "order")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<OrderLine> orderLines = new LinkedHashSet<>();
 
     public Integer getId() {

@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.CreditCard;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class CreditCard {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     public Integer getId() {
