@@ -1,0 +1,2713 @@
+{
+	"info": {
+		"_postman_id": "a2b28f0c-1616-42e6-9314-a4a9c57f0825",
+		"name": "Burger2Home",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Addresses",
+			"item": [
+				{
+					"name": "GET - Single address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/addresses/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - All addresses by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/1/addresses",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/addresses",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue du bidule\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/addresses",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/addresses/2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"addresses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Allergens",
+			"item": [
+				{
+					"name": "GET - All allergens",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - All allergens by ingredient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/3/allergens",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"3",
+								"allergens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single allergen by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single allergen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/allergens",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single allergen",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/allergens",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single Allergen",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens/5",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AllergenTranslations",
+			"item": [
+				{
+					"name": "GET - All translations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single translation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens/translations/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"translations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple translations by allergen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens/1/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"1",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single translation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"oeufs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergen\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/allergens/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 5,\r\n    \"name\" : \"oeufsssss\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergen\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/allergens/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/allergens/translations/5",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"allergens",
+								"translations",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Baskets",
+			"item": [
+				{
+					"name": "GET - All baskets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/baskets",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single basket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/baskets/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single basket by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/1/basket",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"basket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"lastUpdate\" : \"2022-12-01 20:00:00\",\r\n    \"user\" : {\"id\" : 1},\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/baskets",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single basket",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"lastUpdate\" : \"2022-12-01 23:00:00\",\r\n    \"user\" : {\"id\" : 1},\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/baskets",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single basket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/baskets/2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BasketLines",
+			"item": [
+				{
+					"name": "GET - All basket lines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/basketLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"basketLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single Basket line",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/basketLines/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"basketLines",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiples basket lines by basket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/baskets/1/basketLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets",
+								"1",
+								"basketLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single basket line",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"basket\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/basketLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"basketLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single basket line",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"basket\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/basketLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"basketLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single basket line",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/basketLines/2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"basketLines",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CreditCards",
+			"item": [
+				{
+					"name": "GET - Single Credit Card",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/creditcards/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"creditcards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple Credit Cards by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/1/creditcards",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"creditcards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single Credit Card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/creditcards",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"creditcards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single Credit Card",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"user\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/creditcards",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"creditcards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single Credit Card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/creditcards/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"creditcards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ingredients",
+			"item": [
+				{
+					"name": "GET - All ingredients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single ingedient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple ingredients by product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/3/ingredients",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"3",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single ingredient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"allergens\" : [\r\n        {\"id\" : 1}, \r\n        {\"id\" : 2}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/ingredients",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single ingredient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 4,\r\n    \"allergens\" : [\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/ingredients",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single ingredient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/4",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IngredientTranslations",
+			"item": [
+				{
+					"name": "GET - All translations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple Translations by ingredient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/1/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"1",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single translation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/translations/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"translations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single translation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"bacon\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"ingredient\" : {\r\n        \"id\" : 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/ingredients/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 7,\r\n    \"name\" : \"eggggggs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"ingredient\" : {\r\n        \"id\" : 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/ingredients/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/translations/2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"translations",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Languages",
+			"item": [
+				{
+					"name": "GET - All languages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/languages",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"languages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single language",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/languages/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"languages",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single language",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"creationDate\" : \"2022-12-02 18:35:11\",\r\n    \"name\" : \"Italian\",\r\n    \"abbreviation\" : \"It\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/languages",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"languages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single language",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 3,\r\n    \"creationDate\" : \"2022-12-01 22:10:59\",\r\n    \"name\" : \"Italian\",\r\n    \"abbreviation\" : \"Ita\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/languages",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"languages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single language",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/languages/3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"languages",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "GET - All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple orders by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/1/orders",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"user\" : {\"id\" : 1},\r\n    \"creditCard\" : {\"id\" : 1},\r\n    \"address\" : {\"id\" : 1},\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : null,\r\n    \"orderLines\" : [{\"id\" : 1}, {\"id\" : 3}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/orders",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"user\" : {\"id\" : 1},\r\n    \"creditCard\" : {\"id\" : 1},\r\n    \"address\" : {\"id\" : 1},\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : null,\r\n    \"orderLines\" : [{\"id\" : 1}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/orders",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders/2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderLines",
+			"item": [
+				{
+					"name": "GET - All Order lines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orderLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orderLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single order line",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orderLines/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orderLines",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple order lines by order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders/1/orderLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"orderLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single order line",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"order\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/orderLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orderLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single order line",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"order\" : 1,\r\n    \"product\" : {\"id\" : 1},\r\n    \"amount\" : 2\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/orderLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orderLines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - SIngle orde rline",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orderLines/3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orderLines",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prices",
+			"item": [
+				{
+					"name": "GET - All Prices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/prices",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"prices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single prices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/prices/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"prices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiples Prices by product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/1/prices",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"prices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single Price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"amount\" : 9.80,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"product\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/prices",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"prices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single Price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 5,\r\n    \"amount\" : 10,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"product\" : {\r\n        \"id\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/prices",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"prices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single price",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/prices/5",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"prices",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "MODIFY - Single product",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"imageUrl\": \"new test url\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 2\r\n        },\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/products",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE - Single product Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": null,\r\n    \"imageUrl\": \"test nouveau produit\",\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/products",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET - Single product",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/products/1",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET - All Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/products",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE - Single Product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/admin/products/6",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Public",
+					"item": [
+						{
+							"name": "GET - All products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/products?language=EN&availableProductsOnly=false",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "language",
+											"value": "EN",
+											"description": "EN / FR"
+										},
+										{
+											"key": "availableProductsOnly",
+											"value": "false",
+											"description": "true / false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET - Single product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/products/5?language=EN",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"products",
+										"5"
+									],
+									"query": [
+										{
+											"key": "language",
+											"value": "EN",
+											"description": "EN / FR"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ProductTranslations",
+			"item": [
+				{
+					"name": "GET - All Translations by product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/admin/products/3/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products",
+								"3",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single Translation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": null,\r\n        \"description\": \"A new test translation.\",\r\n        \"name\": \"Cheeseburger\",\r\n        \"language\": {\r\n            \"id\": 1\r\n        },\r\n        \"product\": {\r\n            \"id\" : 5\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/admin/products/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single Translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 8,\r\n        \"description\": \"Delicoussssss\",\r\n        \"name\": \"Cheeseburger\",\r\n        \"language\": {\r\n            \"id\": 1\r\n        },\r\n        \"product\": {\r\n            \"id\" : 4\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/admin/products/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single Translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/admin/products/translations/6",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"admin",
+								"products",
+								"translations",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductFamilies",
+			"item": [
+				{
+					"name": "GET - All families",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single Family",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple families by product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/1/families",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"families"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single family",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/products/families",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify - Single family",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/products/families",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single Family",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families/3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductFamilyTranslations",
+			"item": [
+				{
+					"name": "GET - All translations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single translation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families/translations/5",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"translations",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple translations by product family",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families/1/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"1",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single translation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"productFamily\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 1},\r\n    \"description\" : \"meilleurs burgers !!!\",\r\n    \"name\" : \"Plus achetés\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/products/families/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 5,\r\n    \"productFamily\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 1},\r\n    \"description\" : \"Meilleurs burgers.\",\r\n    \"name\" : \"Plus achetés\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/products/families/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - SIngle translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/families/translations/5",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								"families",
+								"translations",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Promotions",
+			"item": [
+				{
+					"name": "GET - All Promotions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single promotion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single promotion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"amount\" : 25,\r\n    \"creationDate\" : \"2022-02-05 18:51:23\",\r\n    \"startDate\" : \"2022-02-06 18:00:00\",\r\n    \"endDate\" : \"2022-02-25 18:00:00\",\r\n    \"products\" : [{\"id\" : 2}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/promotions",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single promotion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"amount\" : 50,\r\n    \"creationDate\" : \"2022-02-05 18:51:23\",\r\n    \"startDate\" : \"2022-02-06 18:00:00\",\r\n    \"endDate\" : \"2022-02-25 18:00:00\",\r\n    \"products\" : [{\"id\" : 2}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/promotions",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single promotion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions/3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PromotionTranslations",
+			"item": [
+				{
+					"name": "GET - All translations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single translation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions/translations/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"translations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Multiple translations by promotion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions/1/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"1",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single translation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"description\" : \"description de promo\",\r\n    \"promotion\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 1}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/promotions/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Single translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 3,\r\n    \"description\" : \"description de promotions !\",\r\n    \"promotion\" : {\"id\" : 1},\r\n    \"language\" : {\"id\" : 2}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/promotions/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Single translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/promotions/translations/3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"promotions",
+								"translations",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "GET - All Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/roles",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/roles/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Role by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/1/role",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"Stock manager\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/roles",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 4,\r\n    \"name\" : \"Stock administrator\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/roles",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/roles/4",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stocks",
+			"item": [
+				{
+					"name": "GET - All stocks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/stocks",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/stocks/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Stocks by ingredient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/ingredients/1/stocks",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients",
+								"1",
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"ingredient\" : {\"id\" : 1},\r\n    \"amount\" : 40,\r\n    \"creationDate\" : \"2022-02-05 20:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/stocks",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Stock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 7,\r\n    \"ingredient\" : {\"id\" : 1},\r\n    \"amount\" : 20,\r\n    \"creationDate\" : \"2022-02-05 20:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/stocks",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Stock",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/stocks/7",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"stocks",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET - All users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Single user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"email\" : \"test@gmail.com\",\r\n    \"firstname\" : \"prenom\",\r\n    \"lastname\" : \"nom de famille\",\r\n    \"imageURL\" : \"ceci est une url\",\r\n    \"password\" : \"ceci est chiffré\",\r\n    \"status\" : \"confirmé\",\r\n    \"username\" : \"ceci est un pseudo\",\r\n    \"role\" : {\"id\" : 1}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/users",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"email\" : \"test@gmail.com\",\r\n    \"firstname\" : \"prenom\",\r\n    \"lastname\" : \"nom de famille\",\r\n    \"imageURL\" : \"ceci est une url\",\r\n    \"password\" : \"ceci est chiffré\",\r\n    \"status\" : \"confirmé\",\r\n    \"username\" : \"ceci est un autre pseudo\",\r\n    \"role\" : {\"id\" : 1}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/users",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}
