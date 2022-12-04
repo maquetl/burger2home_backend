@@ -12,4 +12,6 @@ public interface StockHistorizationRepository extends JpaRepository<StockHistori
 
     // Get current stock
     List<StockHistorization> findTopByIngredientIdOrderByCreationDateDesc(Integer ingredientId);
+
+    List<StockHistorization> findByIngredientId(Integer ingredientIdentifier);
 }

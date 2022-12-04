@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Basket;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLine;
 import com.isl.lionelmaquet.burger2home.User.User;
 
@@ -17,13 +18,14 @@ public class Basket {
     private Integer id;
 
     @Column(name = "last_update")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant lastUpdate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "basket")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "basket")
     private Set<BasketLine> basketLines = new LinkedHashSet<>();
 
     public Integer getId() {

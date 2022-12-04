@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.StockHistorization;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class StockHistorization {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "ingredient_id", nullable = false)
     private Ingredient ingredient;
 
@@ -21,6 +22,7 @@ public class StockHistorization {
     private Integer amount;
 
     @Column(name = "creation_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant creationDate;
 
     public Integer getId() {

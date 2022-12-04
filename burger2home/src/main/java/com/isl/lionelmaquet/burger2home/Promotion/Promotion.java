@@ -1,5 +1,8 @@
 package com.isl.lionelmaquet.burger2home.Promotion;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isl.lionelmaquet.burger2home.Product.Product;
 import com.isl.lionelmaquet.burger2home.Promotion.Translation.PromotionTranslation;
 
@@ -20,21 +23,26 @@ public class Promotion {
     private Float amount;
 
     @Column(name = "creation_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant creationDate;
 
     @Column(name = "start_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant startDate;
 
     @Column(name = "end_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant endDate;
 
     @ManyToMany
     @JoinTable(name = "promotion_product",
             joinColumns = @JoinColumn(name = "promotion_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Product> products = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "promotion")
+    @JsonIgnore
     private Set<PromotionTranslation> promotionTranslations = new LinkedHashSet<>();
 
     public Integer getId() {

@@ -13,11 +13,12 @@ public class BasketLine {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "basket_id", nullable = false)
-    private Basket basket;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "basket_id", nullable = false)
+    @Column(name = "basket_id")
+    private Long basket;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
@@ -32,11 +33,11 @@ public class BasketLine {
         this.id = id;
     }
 
-    public Basket getBasket() {
+    public Long getBasket() {
         return basket;
     }
 
-    public void setBasket(Basket basket) {
+    public void setBasket(Long basket) {
         this.basket = basket;
     }
 
