@@ -14,9 +14,8 @@ public class StockHistorization {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ingredient_id", nullable = false)
-    private Ingredient ingredient;
+    @Column(name = "ingredient_id")
+    private Integer ingredientId;
 
     @Column(name = "amount", nullable = false)
     private Integer amount;
@@ -33,12 +32,12 @@ public class StockHistorization {
         this.id = id;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public Integer getIngredientId() {
+        return ingredientId;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientId(Integer ingredientId) {
+        this.ingredientId = ingredientId;
     }
 
     public Integer getAmount() {

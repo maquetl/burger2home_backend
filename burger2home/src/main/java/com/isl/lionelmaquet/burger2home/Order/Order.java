@@ -20,17 +20,14 @@ public class Order {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id")
+    private Integer user;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "credit_card_id", nullable = false)
-    private CreditCard creditCard;
+    @Column(name = "credit_card_id")
+    private Integer creditCard;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "address_id", nullable = false)
-    private Address address;
+    @Column(name = "address_id")
+    private Integer address;
 
     @Column(name = "order_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
@@ -39,7 +36,7 @@ public class Order {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "orderId")
     private Set<OrderLine> orderLines = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -50,27 +47,27 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
+    public Integer getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Integer user) {
         this.user = user;
     }
 
-    public CreditCard getCreditCard() {
+    public Integer getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(CreditCard creditCard) {
+    public void setCreditCard(Integer creditCard) {
         this.creditCard = creditCard;
     }
 
-    public Address getAddress() {
+    public Integer getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Integer address) {
         this.address = address;
     }
 

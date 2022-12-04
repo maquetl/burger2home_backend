@@ -27,7 +27,7 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredients = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "productId", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<ProductTranslation> productTranslations = new LinkedHashSet<>();
 

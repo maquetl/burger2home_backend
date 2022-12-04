@@ -24,10 +24,8 @@ public class AllergenTranslation {
     @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "allergen_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Allergen allergen;
+    @Column(name = "allergen_id")
+    private Integer allergenId;
 
     public Integer getId() {
         return id;
@@ -53,12 +51,12 @@ public class AllergenTranslation {
         this.language = language;
     }
 
-    public Allergen getAllergen() {
-        return allergen;
+    public Integer getAllergenId() {
+        return allergenId;
     }
 
-    public void setAllergen(Allergen allergen) {
-        this.allergen = allergen;
+    public void setAllergenId(Integer allergenId) {
+        this.allergenId = allergenId;
     }
 
 }

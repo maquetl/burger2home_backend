@@ -18,7 +18,7 @@ public class Allergen {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "allergen")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "allergenId")
     @JsonIgnore
     private Set<AllergenTranslation> allergenTranslations = new LinkedHashSet<>();
 

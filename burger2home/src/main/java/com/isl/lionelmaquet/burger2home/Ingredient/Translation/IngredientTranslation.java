@@ -24,10 +24,8 @@ public class IngredientTranslation {
     @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ingredient_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Ingredient ingredient;
+    @Column(name = "ingredient_id")
+    private Integer ingredientId;
 
     public Integer getId() {
         return id;
@@ -53,12 +51,12 @@ public class IngredientTranslation {
         this.language = language;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public Integer getIngredientId() {
+        return ingredientId;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientId(Integer ingredientId) {
+        this.ingredientId = ingredientId;
     }
 
 }

@@ -14,11 +14,10 @@ public class OrderLine {
     private Integer id;
 
     @Column(name = "order_id")
-    private Integer order;
+    private Integer orderId;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @Column(name = "product_id")
+    private Integer productId;
 
     @Column(name = "amount", columnDefinition = "INT UNSIGNED not null")
     private Long amount;
@@ -31,20 +30,20 @@ public class OrderLine {
         this.id = id;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public Product getProduct() {
-        return product;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Long getAmount() {

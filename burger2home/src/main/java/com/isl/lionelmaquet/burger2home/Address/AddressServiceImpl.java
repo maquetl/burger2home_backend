@@ -31,7 +31,7 @@ public class AddressServiceImpl implements AddressService{
 
     @Override
     public List<Address> getAddressesByUser(Integer userIdentifier) {
-        return addressRepository.findAddressesByUser(userIdentifier);
+        return addressRepository.findByUserId(userIdentifier);
     }
 
     @Override

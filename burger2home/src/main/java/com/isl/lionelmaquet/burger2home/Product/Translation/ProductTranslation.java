@@ -24,10 +24,8 @@ public class ProductTranslation {
     @Column(name = "name", length = 100)
     private String name;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Product product;
+    @Column(name = "product_id")
+    private Integer productId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)
@@ -57,12 +55,12 @@ public class ProductTranslation {
         this.name = name;
     }
 
-    public Product getProduct() {
-        return product;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Language getLanguage() {

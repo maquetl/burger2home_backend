@@ -19,7 +19,7 @@ public class Ingredient {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToMany(mappedBy = "ingredient")
+    @OneToMany(mappedBy = "ingredientId")
     @JsonIgnore
     private Set<IngredientTranslation> ingredientTranslations = new LinkedHashSet<>();
 

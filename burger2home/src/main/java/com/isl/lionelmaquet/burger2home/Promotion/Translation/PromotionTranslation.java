@@ -19,10 +19,8 @@ public class PromotionTranslation {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "promotion_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Promotion promotion;
+    @Column(name = "promotion_id")
+    private Integer promotionId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)
@@ -44,12 +42,12 @@ public class PromotionTranslation {
         this.description = description;
     }
 
-    public Promotion getPromotion() {
-        return promotion;
+    public Integer getPromotionId() {
+        return promotionId;
     }
 
-    public void setPromotion(Promotion promotion) {
-        this.promotion = promotion;
+    public void setPromotionId(Integer promotionId) {
+        this.promotionId = promotionId;
     }
 
     public Language getLanguage() {

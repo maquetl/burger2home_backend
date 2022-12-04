@@ -41,7 +41,7 @@ public class Promotion {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Product> products = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "promotion")
+    @OneToMany(mappedBy = "promotionId")
     @JsonIgnore
     private Set<PromotionTranslation> promotionTranslations = new LinkedHashSet<>();
 

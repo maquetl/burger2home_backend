@@ -24,7 +24,7 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     @Override
     public List<OrderLine> getOrderLinesByOrder(Integer orderIdentifier) {
-        return orderLineRepository.findByOrder(orderIdentifier);
+        return orderLineRepository.findByOrderId(orderIdentifier);
     }
 
     @Override

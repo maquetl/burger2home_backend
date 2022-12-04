@@ -1,8 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Address;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isl.lionelmaquet.burger2home.User.User;
 
 import javax.persistence.*;
 
@@ -33,10 +31,8 @@ public class Address {
     @Column(name = "note")
     private String note;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -94,12 +90,12 @@ public class Address {
         this.note = note;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
 }

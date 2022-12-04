@@ -16,7 +16,7 @@ public class ProductFamily {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToMany(mappedBy = "productFamily")
+    @OneToMany(mappedBy = "productFamilyId")
     @JsonIgnore
     private Set<ProductFamilyTranslation> productFamilyTranslations = new LinkedHashSet<>();
 

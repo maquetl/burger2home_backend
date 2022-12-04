@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BasketLineRepository extends JpaRepository<BasketLine, Integer> {
-    @Query("SELECT b.basketLines FROM Basket b WHERE b.id = ?1")
     List<BasketLine> findByBasketId(Integer basketIdentifier);
 }

@@ -13,14 +13,11 @@ public class BasketLine {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "basket_id", nullable = false)
     @Column(name = "basket_id")
-    private Long basket;
+    private Long basketId;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @Column(name = "product_id")
+    private Integer productId;
 
     @Column(name = "amount", nullable = false)
     private Integer amount;
@@ -33,20 +30,20 @@ public class BasketLine {
         this.id = id;
     }
 
-    public Long getBasket() {
-        return basket;
+    public Long getBasketId() {
+        return basketId;
     }
 
-    public void setBasket(Long basket) {
-        this.basket = basket;
+    public void setBasketId(Long basketId) {
+        this.basketId = basketId;
     }
 
-    public Product getProduct() {
-        return product;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getAmount() {

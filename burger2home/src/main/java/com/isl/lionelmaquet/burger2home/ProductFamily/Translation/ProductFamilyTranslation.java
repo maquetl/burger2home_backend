@@ -15,10 +15,8 @@ public class ProductFamilyTranslation {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_family_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private ProductFamily productFamily;
+    @Column(name = "product_family_id")
+    private Integer productFamilyId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)
@@ -39,12 +37,12 @@ public class ProductFamilyTranslation {
         this.id = id;
     }
 
-    public ProductFamily getProductFamily() {
-        return productFamily;
+    public Integer getProductFamilyId() {
+        return productFamilyId;
     }
 
-    public void setProductFamily(ProductFamily productFamily) {
-        this.productFamily = productFamily;
+    public void setProductFamilyId(Integer productFamilyId) {
+        this.productFamilyId = productFamilyId;
     }
 
     public Language getLanguage() {

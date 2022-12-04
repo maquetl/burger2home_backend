@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
-    @Query("SELECT a FROM Address a WHERE a.user.id = ?1")
-    List<Address> findAddressesByUser(Integer userId);
+    List<Address> findByUserId(Integer userId);
 }

@@ -21,11 +21,10 @@ public class Basket {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant lastUpdate;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "basket")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "basketId")
     private Set<BasketLine> basketLines = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -44,12 +43,12 @@ public class Basket {
         this.lastUpdate = lastUpdate;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Integer userId) {
+        this.userId = userId;
     }
 
     public Set<BasketLine> getBasketLines() {

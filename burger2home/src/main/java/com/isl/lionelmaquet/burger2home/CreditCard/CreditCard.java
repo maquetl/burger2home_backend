@@ -23,10 +23,8 @@ public class CreditCard {
     @Column(name = "validity_date", nullable = false)
     private LocalDate validityDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -60,12 +58,12 @@ public class CreditCard {
         this.validityDate = validityDate;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
 }

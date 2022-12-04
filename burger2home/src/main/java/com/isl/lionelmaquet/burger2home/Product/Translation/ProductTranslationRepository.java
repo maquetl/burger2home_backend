@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ProductTranslationRepository extends JpaRepository<ProductTranslation, Integer> {
 
-    @Query("SELECT p FROM ProductTranslation p WHERE p.product.id = ?1 AND p.language.abbreviation = ?2")
+    @Query("SELECT p FROM ProductTranslation p WHERE p.productId = ?1 AND p.language.abbreviation = ?2")
     ProductTranslation findByProductAndLanguage(Integer productId, String languageAbbr);
 
     List<ProductTranslation> findByProductId(Integer productId);
