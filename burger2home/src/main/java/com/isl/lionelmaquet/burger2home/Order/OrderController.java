@@ -10,36 +10,36 @@ import java.util.Optional;
 public class OrderController {
 
     @Autowired
-    OrderService serv;
+    OrderService orderService;
 
     @GetMapping("/orders")
     List<Order> getAllOrders(){
-        return serv.getAllOrders();
+        return orderService.getAllOrders();
     }
 
     @GetMapping("/orders/{orderIdentifier}")
     Optional<Order> getSingleOrder(@PathVariable Integer orderIdentifier){
-        return serv.getSingleOrder(orderIdentifier);
+        return orderService.getSingleOrder(orderIdentifier);
     }
 
     @GetMapping("/users/{userIdentifier}/orders")
     List<Order> getOrdersByUser(@PathVariable Integer userIdentifier){
-        return serv.getOrdersByUser(userIdentifier);
+        return orderService.getOrdersByUser(userIdentifier);
     }
 
     @PostMapping("/orders")
     void createSingleOrder(@RequestBody Order order){
-        serv.createOrder(order);
+        orderService.createOrder(order);
     }
 
     @PutMapping("/orders")
     void modifySingleOrder(@RequestBody Order order){
-        serv.modifyOrder(order);
+        orderService.modifyOrder(order);
     }
 
     @DeleteMapping("/orders/{orderIdentifier}")
     void deleteSingleOrder(@PathVariable Integer orderIdentifier){
-        serv.deleteOrder(orderIdentifier);
+        orderService.deleteOrder(orderIdentifier);
     }
 
 }

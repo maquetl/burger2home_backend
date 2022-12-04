@@ -10,35 +10,35 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    OrderRepository rep;
+    OrderRepository orderRepository;
 
     @Override
     public List<Order> getAllOrders() {
-        return rep.findAll();
+        return orderRepository.findAll();
     }
 
     @Override
     public Optional<Order> getSingleOrder(Integer orderIdentifier) {
-        return rep.findById(orderIdentifier);
+        return orderRepository.findById(orderIdentifier);
     }
 
     @Override
     public List<Order> getOrdersByUser(Integer userIdentifier) {
-        return rep.findByUserId(userIdentifier);
+        return orderRepository.findByUserId(userIdentifier);
     }
 
     @Override
     public void createOrder(Order order) {
-        rep.save(order);
+        orderRepository.save(order);
     }
 
     @Override
     public void modifyOrder(Order order) {
-        rep.save(order);
+        orderRepository.save(order);
     }
 
     @Override
     public void deleteOrder(Integer orderIdentifier) {
-        rep.deleteById(orderIdentifier);
+        orderRepository.deleteById(orderIdentifier);
     }
 }

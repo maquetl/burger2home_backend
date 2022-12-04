@@ -40,7 +40,6 @@ public class Order {
     private String status;
 
     @OneToMany(mappedBy = "order")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<OrderLine> orderLines = new LinkedHashSet<>();
 
     public Integer getId() {

@@ -13,11 +13,10 @@ public class OrderLine {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Column(name = "order_id")
+    private Integer order;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
@@ -32,11 +31,11 @@ public class OrderLine {
         this.id = id;
     }
 
-    public Order getOrder() {
+    public Integer getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Integer order) {
         this.order = order;
     }
 
