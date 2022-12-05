@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-
-    @Query("SELECT o FROM Order o WHERE o.user = ?1")
     List<Order> findByUserId(Integer userIdentifier);
 }

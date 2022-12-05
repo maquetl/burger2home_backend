@@ -21,13 +21,13 @@ public class Order {
     private Integer id;
 
     @Column(name = "user_id")
-    private Integer user;
+    private Integer userId;
 
     @Column(name = "credit_card_id")
-    private Integer creditCard;
+    private Integer creditCardId;
 
     @Column(name = "address_id")
-    private Integer address;
+    private Integer addressId;
 
     @Column(name = "order_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
@@ -47,28 +47,28 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(Integer user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getCreditCard() {
-        return creditCard;
+    public Integer getCreditCardId() {
+        return creditCardId;
     }
 
-    public void setCreditCard(Integer creditCard) {
-        this.creditCard = creditCard;
+    public void setCreditCardId(Integer creditCardId) {
+        this.creditCardId = creditCardId;
     }
 
-    public Integer getAddress() {
-        return address;
+    public Integer getAddressId() {
+        return addressId;
     }
 
-    public void setAddress(Integer address) {
-        this.address = address;
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
     public Instant getOrderDate() {
