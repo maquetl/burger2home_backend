@@ -19,7 +19,7 @@ public class AddressController {
         return addressService.getSingleAddress(addressIdentifier);
     }
 
-    @GetMapping("users/{userIdentifier}/addresses")
+    @GetMapping("/users/{userIdentifier}/addresses")
     List<Address> getAddressesByUser(@PathVariable Integer userIdentifier){
         return addressService.getAddressesByUser(userIdentifier);
     }

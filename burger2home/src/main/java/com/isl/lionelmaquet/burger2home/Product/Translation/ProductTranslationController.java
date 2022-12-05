@@ -13,22 +13,22 @@ public class ProductTranslationController {
     @Autowired
     ProductTranslationService productTranslationService;
 
-    @GetMapping("/admin/products/{productIdentifier}/translations")
+    @GetMapping("/products/{productIdentifier}/translations")
     public List<ProductTranslation> getProductTranslation(@PathVariable Integer productIdentifier){
         return productTranslationService.getByProduct(productIdentifier);
     }
 
-    @PostMapping("/admin/products/translations")
+    @PostMapping("/products/translations")
     public void createProductTranslation(@RequestBody ProductTranslation productTranslation){
         productTranslationService.createProductTranslation(productTranslation);
     }
 
-    @DeleteMapping("/admin/products/translations/{translationId}")
+    @DeleteMapping("/products/translations/{translationId}")
     public void deleteProductTranslation(@PathVariable Integer translationId){
         productTranslationService.deleteById(translationId);
     }
 
-    @PutMapping("/admin/products/translations")
+    @PutMapping("/products/translations")
     public void modifyProductTranslation(@RequestBody ProductTranslation productTranslation){
         productTranslationService.modifyProductTranslation(productTranslation);
     }

@@ -12,40 +12,40 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/products")
+    @GetMapping("/products/summaries")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
                                  @RequestParam(defaultValue = "false") Boolean availableProductsOnly
                                  ){
         return productService.getAllProductBOs(language, availableProductsOnly);
     }
 
-    @GetMapping("/products/{productIdentifier}")
+    @GetMapping("/products/summaries/{productIdentifier}/")
     public Optional<ProductBO> getSingleProductBO(@PathVariable Integer productIdentifier,
                                                 @RequestParam(defaultValue = "EN") String language){
         return productService.getSingleProductBO(productIdentifier, language);
     }
 
-    @GetMapping("/admin/products/{productIdentifier}")
+    @GetMapping("/products/{productIdentifier}")
     public Optional<Product> getSingleProduct(@PathVariable Integer productIdentifier){
         return productService.getSingleProduct(productIdentifier);
     }
 
-    @GetMapping("/admin/products")
+    @GetMapping("/products")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
 
-    @PostMapping("/admin/products")
+    @PostMapping("/products")
     public void createNewProduct(@RequestBody Product product){
         if(product.getId() == null) productService.createProduct(product);
     }
 
-    @DeleteMapping("/admin/products/{productIdentifier}")
+    @DeleteMapping("/products/{productIdentifier}")
     public void deleteProdut(@PathVariable Integer productIdentifier){
         productService.deleteProduct(productIdentifier);
     }
 
-    @PutMapping("/admin/products")
+    @PutMapping("/products")
     public void modifyProduct(@RequestBody Product product){
         productService.modifyProduct(product);
     }
