@@ -12,6 +12,10 @@ public class CreditCardServiceImpl implements CreditCardService {
     @Autowired
     CreditCardRepository creditCardRepository;
 
+    @Override
+    public List<CreditCard> getAllCreditCards() {
+        return creditCardRepository.findAll();
+    }
 
     @Override
     public Optional<CreditCard> getCreditCard(Integer creditCardIdentifier) {
@@ -37,4 +41,6 @@ public class CreditCardServiceImpl implements CreditCardService {
     public void deleteCreditCard(Integer creditCardIdentifier) {
         creditCardRepository.deleteById(creditCardIdentifier);
     }
+
+
 }

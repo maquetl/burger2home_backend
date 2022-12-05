@@ -14,6 +14,11 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
+    @GetMapping("/addresses")
+    List<Address> getAllAddresses(){
+        return addressService.getAll();
+    }
+
     @GetMapping("/addresses/{addressIdentifier}")
     Optional<Address> getSingleAddress(@PathVariable Integer addressIdentifier){
         return addressService.getSingleAddress(addressIdentifier);

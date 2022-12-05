@@ -13,4 +13,6 @@ public interface CreditCardService {
     void modifyCreditCard(CreditCard creditCard);
 
     void deleteCreditCard(Integer creditCardIdentifier);
+
+    List<CreditCard> getAllCreditCards();
 }

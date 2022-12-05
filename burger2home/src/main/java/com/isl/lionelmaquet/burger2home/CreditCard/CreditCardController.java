@@ -13,6 +13,11 @@ public class CreditCardController {
     @Autowired
     CreditCardService creditCardService;
 
+    @GetMapping("/creditcards")
+    List<CreditCard> getAllCreditCards(){
+        return creditCardService.getAllCreditCards();
+    }
+
     @GetMapping("/creditcards/{creditCardIdentifier}")
     Optional<CreditCard> getSingleCreditCard(@PathVariable Integer creditCardIdentifier){
         return creditCardService.getCreditCard(creditCardIdentifier);
