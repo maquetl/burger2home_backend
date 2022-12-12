@@ -37,31 +37,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/login", "/oauth/**").permitAll()
-                .anyRequest().authenticated()
+//        http.authorizeRequests()
+//                .antMatchers("/", "/login", "/oauth/**").permitAll()
+//                .anyRequest().authenticated()
+////                .and()
+////                .formLogin().permitAll()
 //                .and()
-//                .formLogin().permitAll()
-                .and()
-                .oauth2Login().permitAll()
-                .userInfoEndpoint()
-                .userService(oauthUserService);
-
-        http.oauth2Login()
-                .userInfoEndpoint()
-                .userService(oauthUserService)
-                .and()
-                .successHandler(new AuthenticationSuccessHandler() {
-
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) throws IOException, ServletException {
-
-                        DefaultOidcUser oauthUser = (DefaultOidcUser) authentication.getPrincipal();
-                        String email = oauthUser.getAttribute("email");
-                        userService.processOAuthPostLogin(email);
-                    }
-                });
+//                .oauth2Login().permitAll()
+//                .userInfoEndpoint()
+//                .userService(oauthUserService);
+//
+//        http.oauth2Login()
+//                .userInfoEndpoint()
+//                .userService(oauthUserService)
+//                .and()
+//                .successHandler(new AuthenticationSuccessHandler() {
+//
+//                    @Override
+//                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//                                                        Authentication authentication) throws IOException, ServletException {
+//
+//                        DefaultOidcUser oauthUser = (DefaultOidcUser) authentication.getPrincipal();
+//                        String email = oauthUser.getAttribute("email");
+//                        userService.processOAuthPostLogin(email);
+//                    }
+//                });
     }
 
 

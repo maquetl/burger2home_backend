@@ -382,11 +382,11 @@ VALUES
 
 CREATE TABLE `burger2home`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(70) NOT NULL,
+  `email` VARCHAR(70) NULL,
   `firstname` VARCHAR(60) NULL,
   `lastname` VARCHAR(60) NULL,
   `image_url` VARCHAR(255) NULL,
-  `password` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(50) NULL,
   `status` VARCHAR(20) NULL,
   `username` VARCHAR(60) NOT NULL,
   `role_id` INT NULL,
@@ -398,9 +398,10 @@ CREATE TABLE `burger2home`.`user` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
+    
 INSERT IGNORE INTO `burger2home`.`user` (`id`, `email`, `firstname`, `lastname`, `image_url`, `password`, `status`, `username`, `role_id`)
 VALUES
-(1, "lionel.maquet@gmail.com", "Lionel", "Maquet", NULL, "lionel", "Validated", "Lio", 1);
+(1, "lione.maquet@gmail.com", "Lionel", "Maquet", NULL, "lionel", "Validated", "Lio", 1);
 
 /* ADDRESS */
 
