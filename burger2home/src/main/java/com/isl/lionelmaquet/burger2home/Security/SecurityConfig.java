@@ -1,55 +1,68 @@
 package com.isl.lionelmaquet.burger2home.Security;
 
+import com.isl.lionelmaquet.burger2home.User.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${auth0.audience}")
-    private String audience;
+    @Autowired
+    UserService userService;
 
-    @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
-    private String issuer;
+    @Autowired
+    private CustomOAuth2UserService oauthUserService;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        /*
-        This is where we configure the security required for our endpoints and setup our app to serve as
-        an OAuth2 Resource Server, using JWT validation.
-        */
+    @Override
+    protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/**").permitAll()
-                .and().cors()
-                .and().csrf().disable();
-        return http.build();
+                .antMatchers("/", "/login", "/oauth/**").permitAll()
+                .anyRequest().authenticated()
+//                .and()
+//                .formLogin().permitAll()
+                .and()
+                .oauth2Login().permitAll()
+                .userInfoEndpoint()
+                .userService(oauthUserService);
+
+        http.oauth2Login()
+                .userInfoEndpoint()
+                .userService(oauthUserService)
+                .and()
+                .successHandler(new AuthenticationSuccessHandler() {
+
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
+
+                        DefaultOidcUser oauthUser = (DefaultOidcUser) authentication.getPrincipal();
+                        String email = oauthUser.getAttribute("email");
+                        userService.processOAuthPostLogin(email);
+                    }
+                });
     }
 
-    @Bean
-    JwtDecoder jwtDecoder() {
-        /*
-        By default, Spring Security does not validate the "aud" claim of the token, to ensure that this token is
-        indeed intended for our app. Adding our own validator is easy to do:
-        */
 
-        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
-                JwtDecoders.fromOidcIssuerLocation(issuer);
-
-        OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(audience);
-        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
-        OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator);
-
-        jwtDecoder.setJwtValidator(withAudience);
-
-        return jwtDecoder;
-    }
 }

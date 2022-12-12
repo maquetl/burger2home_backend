@@ -12,7 +12,7 @@ public class User {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "email", nullable = false, length = 70)
+    @Column(name = "email", length = 70)
     private String email;
 
     @Column(name = "firstname", length = 60)
@@ -24,7 +24,7 @@ public class User {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", length = 50)
     private String password;
 
     @Column(name = "status", length = 20)

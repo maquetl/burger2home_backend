@@ -36,4 +36,18 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Integer userIdentifier) {
         rep.deleteById(userIdentifier);
     }
+
+    public void processOAuthPostLogin(String username) {
+        Optional<User> existUser = rep.findByUsername(username);
+
+        if (!existUser.isPresent()) {
+            User newUser = new User();
+            newUser.setUsername(username);
+//            newUser.setProvider(Provider.GOOGLE);
+//            newUser.setEnabled(true);
+
+            rep.save(newUser);
+        }
+
+    }
 }

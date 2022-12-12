@@ -13,4 +13,6 @@ public interface UserService {
     void modifyUser(User user);
 
     void deleteUser(Integer userIdentifier);
+
+    void processOAuthPostLogin(String username);
 }

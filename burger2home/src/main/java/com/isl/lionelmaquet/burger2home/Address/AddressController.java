@@ -1,12 +1,19 @@
 package com.isl.lionelmaquet.burger2home.Address;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sun.security.auth.UserPrincipal;
 import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.oauth2.server.resource.web.HeaderBearerTokenResolver;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class AddressController {

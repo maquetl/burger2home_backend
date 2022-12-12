@@ -1,9 +1,13 @@
 package com.isl.lionelmaquet.burger2home.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,6 +23,12 @@ public class UserController {
     @GetMapping("/users/{userIdentifier}")
     Optional<User> getSingleUser(@PathVariable Integer userIdentifier){
         return serv.getSingleUser(userIdentifier);
+    }
+
+    @GetMapping("/login/oauth2/code/google")
+    public String callback(@RequestParam Map<String, String> requestParamMap) {
+        System.out.println("Code = " + requestParamMap.get("code"));
+        return "OK";
     }
 
     @PostMapping("/users")
