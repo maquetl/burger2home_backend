@@ -9,8 +9,99 @@
 			"name": "Addresses",
 			"item": [
 				{
-					"name": "GET - Single address",
+					"name": "GET - All addresses",
 					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/addresses",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single address",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "ya29.a0AeTM1if-knoqxGVoQgQ5Wx6dcNxkkFkPc2Ck9Wy5u1YE3_xOA2BI2tnZ8TKss2NGfGzmagNvOQ68QD1vizVqp3QUOjLpA4nsNDVRTuiJli10WRXQe7t-CtpQM6UF8tg7VuaC3015JK7d0bjHqZHl9xZvD_-1bAaCgYKAfcSARESFQHWtWOmyWtG3jw8i9PgSNdVtd5LTg0165",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "openid profile email",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "180844364346-g2datq62u23urm7582blajsges0lp1gg.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://oauth2.googleapis.com/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://www.getpostman.com/oauth2/callback",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Google OAuth Postman",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -747,6 +838,23 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET - All Credit Cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/creditcards",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"creditcards"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -755,6 +863,19 @@
 			"item": [
 				{
 					"name": "GET - All ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"http://localhost:8080/ingredients\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -906,14 +1027,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/1/translations",
+							"raw": "{{base-url}}/users/1/creditcards",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"ingredients",
+								"users",
 								"1",
-								"translations"
+								"creditcards"
 							]
 						}
 					},
@@ -1213,7 +1334,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"user\" : {\"id\" : 1},\r\n    \"creditCard\" : {\"id\" : 1},\r\n    \"address\" : {\"id\" : 1},\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : null,\r\n    \"orderLines\" : [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"userId\" : 1,\r\n    \"creditCardId\" : 1,\r\n    \"addressId\" : 1,\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : null,\r\n    \"orderLines\" : [{\"id\" : 1}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1514,17 +1635,18 @@
 			"name": "Products",
 			"item": [
 				{
-					"name": "GET - All productsBO",
+					"name": "GET - All products Summaries",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products?language=EN&availableProductsOnly=false",
+							"raw": "{{base-url}}/products/summaries?language=EN&availableProductsOnly=false",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"products"
+								"products",
+								"summaries"
 							],
 							"query": [
 								{
@@ -1543,17 +1665,18 @@
 					"response": []
 				},
 				{
-					"name": "GET - Single product BO",
+					"name": "GET - Single product Summary",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/1?language=EN",
+							"raw": "{{base-url}}/products/summaries/1?language=EN",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
+								"summaries",
 								"1"
 							],
 							"query": [
@@ -1573,12 +1696,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/admin/products",
+							"raw": "{{base-url}}/products",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products"
 							]
 						}
@@ -1598,12 +1720,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base-url}}/admin/products/1",
+							"raw": "{{base-url}}/products/1",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products",
 								"1"
 							]
@@ -1626,12 +1747,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/admin/products",
+							"raw": "{{base-url}}/products",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products"
 							]
 						}
@@ -1653,12 +1773,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/admin/products",
+							"raw": "{{base-url}}/products",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products"
 							]
 						}
@@ -1671,12 +1790,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/admin/products/6",
+							"raw": "{{base-url}}/products/6",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products",
 								"6"
 							]
@@ -1695,12 +1813,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/admin/products/3/translations",
+							"raw": "{{base-url}}/products/3/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products",
 								"3",
 								"translations"
@@ -1724,12 +1841,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/admin/products/translations",
+							"raw": "{{base-url}}/products/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products",
 								"translations"
 							]
@@ -1752,12 +1868,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/admin/products/translations",
+							"raw": "{{base-url}}/products/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products",
 								"translations"
 							]
@@ -1771,12 +1886,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/admin/products/translations/6",
+							"raw": "{{base-url}}/products/translations/6",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"admin",
 								"products",
 								"translations",
 								"6"
@@ -2670,8 +2784,74 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET ME",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "Oauth2 Google",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile email",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "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",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "180844364346-g2datq62u23urm7582blajsges0lp1gg.apps.googleusercontent.com",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://oauth2.googleapis.com/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://accounts.google.com/o/oauth2/auth",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.getpostman.com/oauth2/callback",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Google OAuth Postman",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	],
 	"event": [
