@@ -24,7 +24,7 @@ public class BasketLineServiceImpl implements BasketLineService {
 
     @Override
     public List<BasketLine> getBasketLinesByBasket(Integer basketIdentifier) {
-        return rep.findByBasketId(basketIdentifier);
+        return rep.findByBasketId(Long.valueOf(basketIdentifier));
     }
 
     @Override

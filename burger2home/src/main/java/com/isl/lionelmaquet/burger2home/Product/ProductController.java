@@ -19,7 +19,7 @@ public class ProductController {
         return productService.getAllProductBOs(language, availableProductsOnly);
     }
 
-    @GetMapping("/products/summaries/{productIdentifier}/")
+    @GetMapping("/products/summaries/{productIdentifier}")
     public Optional<ProductBO> getSingleProductBO(@PathVariable Integer productIdentifier,
                                                 @RequestParam(defaultValue = "EN") String language){
         return productService.getSingleProductBO(productIdentifier, language);
