@@ -33,11 +33,20 @@ public class Order {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant orderDate;
 
-    @Column(name = "status")
-    private String status;
-
     @OneToMany(mappedBy = "orderId")
     private Set<OrderLine> orderLines = new LinkedHashSet<>();
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -79,20 +88,17 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
 
     public void setOrderLines(Set<OrderLine> orderLines) {
         this.orderLines = orderLines;
+    }
+
+
+    public enum Status {
+        waiting_for_payment, confirmed, delivered
     }
 
 }

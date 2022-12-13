@@ -496,7 +496,7 @@ CREATE TABLE `burger2home`.`order` (
   `credit_card_id` INT NOT NULL,
   `address_id` INT NOT NULL,
   `order_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` VARCHAR(255) NULL,
+  `status` ENUM('waiting_for_payment', 'confirmed', 'delivered') NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_order_to_user_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_order_to_credit_card_idx` (`credit_card_id` ASC) VISIBLE,
@@ -519,7 +519,7 @@ CREATE TABLE `burger2home`.`order` (
     
 INSERT IGNORE INTO `burger2home`.`order` (`id`, `user_id`, `credit_card_id`, `address_id`, `order_date`, `status`)
 VALUES
-(1, 1, 1, 1, CURRENT_TIMESTAMP(), "Delivered");
+(1, 1, 1, 1, CURRENT_TIMESTAMP(), 'waiting_for_payment');
     
 CREATE TABLE `burger2home`.`order_line` (
   `id` INT NOT NULL AUTO_INCREMENT,
