@@ -20,10 +20,7 @@ public class ProductFamily {
     @JsonIgnore
     private Set<ProductFamilyTranslation> productFamilyTranslations = new LinkedHashSet<>();
 
-    @ManyToMany
-    @JoinTable(name = "product_family_product",
-            joinColumns = @JoinColumn(name = "product_family_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @ManyToMany(mappedBy = "productFamilies")
     @JsonIgnore
     private Set<Product> products = new LinkedHashSet<>();
 

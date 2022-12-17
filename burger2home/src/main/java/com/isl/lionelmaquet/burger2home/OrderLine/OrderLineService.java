@@ -10,7 +10,7 @@ public interface OrderLineService {
 
     List<OrderLine> getOrderLinesByOrder(Integer orderIdentifier);
 
-    void createOrderLine(OrderLine orderLine);
+    OrderLine createOrderLine(OrderLine orderLine);
 
     void modifyOrderLine(OrderLine orderLine);
 

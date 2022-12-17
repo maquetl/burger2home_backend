@@ -20,7 +20,7 @@ public class OrderLine {
     private Integer productId;
 
     @Column(name = "amount", columnDefinition = "INT UNSIGNED not null")
-    private Long amount;
+    private Integer amount;
 
     public Integer getId() {
         return id;
@@ -46,11 +46,11 @@ public class OrderLine {
         this.productId = productId;
     }
 
-    public Long getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

@@ -30,6 +30,11 @@ public class ProductController {
         return productService.getSingleProduct(productIdentifier);
     }
 
+    @GetMapping("/products/families/{productFamilyIdentifier}/products")
+    public List<Product> getProductsByFamily(@PathVariable Integer productFamilyIdentifier){
+        return productService.getProductsByFamily(productFamilyIdentifier);
+    }
+
     @GetMapping("/products")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();

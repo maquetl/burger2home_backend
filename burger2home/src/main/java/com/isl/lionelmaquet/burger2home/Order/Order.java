@@ -40,6 +40,17 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(name = "payment_intent")
+    private String paymentIntent;
+
+    public String getPaymentIntent() {
+        return paymentIntent;
+    }
+
+    public void setPaymentIntent(String paymentIntent) {
+        this.paymentIntent = paymentIntent;
+    }
+
     public Status getStatus() {
         return status;
     }

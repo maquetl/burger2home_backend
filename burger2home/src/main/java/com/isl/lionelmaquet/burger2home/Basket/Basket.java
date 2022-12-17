@@ -43,11 +43,11 @@ public class Basket {
         this.lastUpdate = lastUpdate;
     }
 
-    public Integer getUser() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUser(Integer userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

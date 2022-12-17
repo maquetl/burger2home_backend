@@ -17,4 +17,6 @@ public interface PriceService {
     void modifyPrice(Price price);
 
     void deletePrice(Integer priceIdentifier);
+
+    Float getCurrentPriceAfterDiscountByProductId(Integer productId);
 }

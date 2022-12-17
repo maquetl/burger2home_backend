@@ -29,14 +29,22 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductTranslationService productTranslationService;
 
-    @Autowired
     PriceService priceService;
 
-    @Autowired
     PromotionService promotionService;
 
     @Autowired
     StockHistorizationService stockHistorizationService;
+
+    @Autowired
+    public void setPriceService(PriceService priceService){
+        this.priceService = priceService;
+    }
+
+    @Autowired
+    public void setPromotionService(PromotionService promotionService){
+        this.promotionService = promotionService;
+    }
 
     @Override
     public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly) {
@@ -82,6 +90,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void modifyProduct(Product product) {
         productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getProductsByFamily(Integer productFamilyIdentifier) {
+        return productRepository.findByProductFamiliesId(productFamilyIdentifier);
     }
 
     // This method returns an empty optional if the boolean mustBeAvailable is set to true and the product is not available

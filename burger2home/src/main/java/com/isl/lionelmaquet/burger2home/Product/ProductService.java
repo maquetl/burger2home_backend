@@ -15,5 +15,7 @@ public interface ProductService {
     void deleteProduct(Integer productId);
 
     void modifyProduct(Product product);
+
+    List<Product> getProductsByFamily(Integer productFamilyIdentifier);
 }
 

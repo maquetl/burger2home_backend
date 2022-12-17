@@ -16,9 +16,12 @@ import java.util.Optional;
 @RestController
 public class OrderController {
 
+    private OrderService orderService;
 
     @Autowired
-    OrderService orderService;
+    public void setOrderService(OrderService orderService){
+        this.orderService = orderService;
+    }
 
     @GetMapping("/orders")
     List<Order> getAllOrders(){
@@ -35,9 +38,14 @@ public class OrderController {
         return orderService.getOrdersByUser(userIdentifier);
     }
 
-    @PostMapping("/orders")
-    void createSingleOrder(@RequestBody Order order){
-        orderService.createOrder(order);
+    @GetMapping("/create-order")
+    Order createSingleOrder(@RequestParam Integer basketIdentifier) throws StripeException {
+        return orderService.createOrder(basketIdentifier);
+    }
+
+    @GetMapping("/confirm-order")
+    Order confirmOrder(@RequestParam Integer orderIdentifier, @RequestParam String paymentMethodIdentifier) throws StripeException {
+        return orderService.confirmOrder(orderIdentifier, paymentMethodIdentifier);
     }
 
     @PutMapping("/orders")
@@ -54,6 +62,8 @@ public class OrderController {
     void createOrderIntent(@RequestParam(required = true) Integer basketId) {
 
     }
+
+
 
     @GetMapping("/orders/stripe/create-payment-intent")
     String createPaymentIntent() throws StripeException {
