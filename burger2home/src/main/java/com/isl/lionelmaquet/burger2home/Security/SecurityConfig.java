@@ -18,6 +18,8 @@ import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/**").permitAll().and().csrf().disable().cors().disable();
+        http.authorizeRequests().antMatchers("/**").permitAll().and().csrf().disable();
 
 
 //        http.authorizeRequests()
@@ -66,6 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                    }
 //                });
     }
+
+
 
 
 }
