@@ -47,10 +47,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly) {
+    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, Integer productFamilyId) {
 
         List<ProductBO> productBOS = new ArrayList<>();
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productFamilyId == null ? productRepository.findAll() : productRepository.findByProductFamiliesId(productFamilyId);
 
         for(Product product : products){
             getProductBO(product, language, availableProductsOnly).ifPresent(pbo -> productBOS.add(pbo));

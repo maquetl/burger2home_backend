@@ -14,9 +14,10 @@ public class ProductController {
 
     @GetMapping("/products/summaries")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
-                                 @RequestParam(defaultValue = "false") Boolean availableProductsOnly
+                                 @RequestParam(defaultValue = "false") Boolean availableProductsOnly,
+                                 @RequestParam(required = false) Integer productFamilyId
                                  ){
-        return productService.getAllProductBOs(language, availableProductsOnly);
+        return productService.getAllProductBOs(language, availableProductsOnly, productFamilyId);
     }
 
     @GetMapping("/products/summaries/{productIdentifier}")

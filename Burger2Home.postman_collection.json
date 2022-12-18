@@ -1416,13 +1416,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/2",
+							"raw": "{{base-url}}/orders/1",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"orders",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1697,7 +1697,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/summaries?language=EN&availableProductsOnly=false",
+							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=false&productFamilyId=2",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1708,13 +1708,17 @@
 							"query": [
 								{
 									"key": "language",
-									"value": "EN",
+									"value": "FR",
 									"description": "EN / FR"
 								},
 								{
 									"key": "availableProductsOnly",
 									"value": "false",
 									"description": "true / false"
+								},
+								{
+									"key": "productFamilyId",
+									"value": "2"
 								}
 							]
 						}

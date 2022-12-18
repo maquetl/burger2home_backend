@@ -7,7 +7,7 @@ import java.util.Optional;
 
 
 public interface ProductService {
-    List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly);
+    List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, Integer productFamilyId);
     Optional<ProductBO> getSingleProductBO(Integer productId, String language);
     Optional<Product> getSingleProduct(Integer productId);
     List<Product> getAllProducts();
