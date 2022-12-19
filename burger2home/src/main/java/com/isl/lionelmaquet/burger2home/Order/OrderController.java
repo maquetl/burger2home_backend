@@ -32,6 +32,11 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
+    /**
+     * Gets an order based on the id
+     * @param orderIdentifier {@link Integer} the order identifier to use
+     * @return {@link Optional}<{@link Order}>
+     */
     @GetMapping("/orders/{orderIdentifier}")
     Optional<Order> getSingleOrder(@PathVariable Integer orderIdentifier){
         return orderService.getSingleOrder(orderIdentifier);
@@ -41,6 +46,7 @@ public class OrderController {
     List<Order> getOrdersByUser(@PathVariable Integer userIdentifier){
         return orderService.getOrdersByUser(userIdentifier);
     }
+
 
     @GetMapping("/create-order")
     Order createSingleOrder(@RequestParam Integer basketIdentifier) throws StripeException {

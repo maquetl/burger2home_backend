@@ -21,12 +21,14 @@ import com.shippo.model.Parcel;
 import com.shippo.model.Shipment;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Customer;
 import com.stripe.model.PaymentIntent;
-import com.stripe.param.PaymentIntentConfirmParams;
-import com.stripe.param.PaymentIntentCreateParams;
+import com.stripe.model.PaymentMethod;
+import com.stripe.param.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
 import java.util.*;
 
 @Service
@@ -49,6 +51,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     UserService userService;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private PriceService priceService;
 
@@ -74,48 +79,78 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(Integer basketIdentifier) throws StripeException {
-        // Step 1 : Get basket
+
+        // Retrieve the basket
         Basket basket = basketService.getSingleBasket(basketIdentifier).get();
 
-        // Step 2 : Create an order with status waiting for payment
+
+
+        // Create a new order with a status "waiting for payment"
         Order order = new Order();
         order.setUserId(basket.getUserId());
         order.setStatus(Order.Status.waiting_for_payment);
-        order = orderRepository.save(order);
+        orderRepository.save(order);
 
-        // Step 3 : Create order lines based on basket lines. Add them to the order
-        List<OrderLine> orderLines = new ArrayList<OrderLine>();
-        for (BasketLine bl : basket.getBasketLines()){
-            OrderLine ol = new OrderLine();
-            ol.setOrderId(order.getId());
-            ol.setProductId(bl.getProductId());
-            ol.setAmount(bl.getAmount());
-            orderLines.add(orderLineService.createOrderLine(ol));
+        // Create order lines based on basket lines. Adds them to the order
+        order.setOrderLines(new HashSet<>(createOrderLinesFromBasketLines(basket.getBasketLines().stream().toList(), order.getId())));
+
+        // Get or create a stripe customer
+        User user = userService.getSingleUser(basket.getUserId()).get();
+        String currentUserEmail = user.getEmail();
+        Map<String, Object> options = new HashMap<>();
+        options.put("email", currentUserEmail);
+        List<Customer> customers = Customer.list(options).getData();
+
+        Customer customer;
+        if(customers.size() > 0){
+            customer = customers.get(0);
+        } else {
+            CustomerCreateParams params = CustomerCreateParams.builder()
+                    .setEmail(user.getEmail())
+                    .build();
+            customer = Customer.create(params);
         }
 
-        order = orderRepository.findById(order.getId()).get();
+        // Create the payment intent to Stripe
+        Float totalPrice = getTotalPriceAfterDiscount(order.getOrderLines().stream().toList());
+        PaymentIntent paymentIntent = createPaymentIntent(totalPrice, customer.getId());
+        order.setPaymentIntent(paymentIntent.getId());
 
-        // Step 5 : Create a payment intent to stripe
+        // Save and return the order
+        return orderRepository.save(order);
+    }
 
-        Float totalPrice = 0f;
-        for(OrderLine ol : orderLines){
-            totalPrice += priceService.getCurrentPriceAfterDiscountByProductId(ol.getProductId()) * ol.getAmount();
-        }
-
+    private PaymentIntent createPaymentIntent(Float totalPrice, String customerId) throws StripeException {
         Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
-                        .setAmount((long) (totalPrice*100))
+                        .setAmount((long) (totalPrice *100))
+                        .setCustomer(customerId)
                         .setCurrency("eur")
                         .addPaymentMethodType("card")
                         .build();
         PaymentIntent paymentIntent = PaymentIntent.create(params);
+        return paymentIntent;
+    }
 
-        order.setPaymentIntent(paymentIntent.getId());
+    private Float getTotalPriceAfterDiscount(List<OrderLine> orderLines) {
+        Float totalPrice = 0f;
+        for(OrderLine ol : orderLines){
+            totalPrice += priceService.getCurrentPriceAfterDiscountByProductId(ol.getProductId()) * ol.getAmount();
+        }
+        return totalPrice;
+    }
 
-        // Step 7 : Return the order
-        return orderRepository.save(order);
-
+    private List<OrderLine> createOrderLinesFromBasketLines(List<BasketLine> basketlines, Integer orderId) {
+        List<OrderLine> orderLines = new ArrayList<OrderLine>();
+        for (BasketLine bl : basketlines){
+            OrderLine ol = new OrderLine();
+            ol.setOrderId(orderId);
+            ol.setProductId(bl.getProductId());
+            ol.setAmount(bl.getAmount());
+            orderLines.add(orderLineService.createOrderLine(ol));
+        }
+        return orderLines;
     }
 
     @Override
@@ -133,16 +168,22 @@ public class OrderServiceImpl implements OrderService {
         Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
         Order order = orderRepository.findById(orderIdentifier).get();
 
+        // Retrieve the payment intent
         String paymentIntentId = order.getPaymentIntent();
         PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("payment_method", paymentMethodIdentifier);
+        // Attach the customer to the payment method
+        PaymentMethod paymentMethod = PaymentMethod.retrieve(paymentMethodIdentifier);
+        PaymentMethodAttachParams paymentMethodAttachParams = new PaymentMethodAttachParams.Builder().setCustomer(paymentIntent.getCustomer()).build();
+        paymentMethod.attach(paymentMethodAttachParams);
 
-        paymentIntent.confirm(params);
+        // Confirm the payment intent
+        Map<String, Object> paymentIntentConfirmParams = new HashMap<>();
+        paymentIntentConfirmParams.put("payment_method", paymentMethodIdentifier);
+        paymentIntent.confirm(paymentIntentConfirmParams);
+
 
         order.setStatus(Order.Status.confirmed);
-
         return orderRepository.save(order);
     }
 

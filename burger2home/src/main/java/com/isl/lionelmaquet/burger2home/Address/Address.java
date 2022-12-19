@@ -3,7 +3,6 @@ package com.isl.lionelmaquet.burger2home.Address;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 @Table(name = "address")

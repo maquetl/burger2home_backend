@@ -33,7 +33,7 @@ public class Order {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant orderDate;
 
-    @OneToMany(mappedBy = "orderId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orderId")
     private Set<OrderLine> orderLines = new LinkedHashSet<>();
 
     @Column(name = "status")
