@@ -7,6 +7,7 @@ import com.isl.lionelmaquet.burger2home.Basket.Basket;
 import com.isl.lionelmaquet.burger2home.Basket.BasketService;
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLine;
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLineService;
+import com.isl.lionelmaquet.burger2home.Keys.KEYS;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLineService;
 import com.isl.lionelmaquet.burger2home.Price.PriceService;
@@ -53,9 +54,8 @@ public class OrderServiceImpl implements OrderService {
     UserService userService;
 
     static {
-        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
-        System.out.println(System.getenv("STRIPE_SECRET_KEY"));
-        Shippo.apiKey = System.getenv("SHIPPO_SECRET_KEY"); // this is the tesk token
+        Stripe.apiKey = System.getenv(KEYS.STRIPE_SECRET_KEY.name());
+        Shippo.apiKey = System.getenv(KEYS.SHIPPO_SECRET_KEY.name()); // this is the tesk token
     }
 
     @PersistenceContext

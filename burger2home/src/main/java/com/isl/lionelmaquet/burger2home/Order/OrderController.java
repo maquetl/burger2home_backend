@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Order;
 
+import com.isl.lionelmaquet.burger2home.Keys.KEYS;
 import com.shippo.exception.APIConnectionException;
 import com.shippo.exception.APIException;
 import com.shippo.exception.AuthenticationException;
@@ -76,7 +77,7 @@ public class OrderController {
 
     @GetMapping("/orders/stripe/create-payment-method")
     String createPaymentMethod() throws StripeException {
-        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
+        Stripe.apiKey = System.getenv(KEYS.STRIPE_SECRET_KEY.name());
         PaymentMethodCreateParams params = PaymentMethodCreateParams.builder()
                 .setType(PaymentMethodCreateParams.Type.CARD)
                 .setCard(
