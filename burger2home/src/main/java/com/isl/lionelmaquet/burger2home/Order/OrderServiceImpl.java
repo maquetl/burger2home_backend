@@ -1,5 +1,8 @@
 package com.isl.lionelmaquet.burger2home.Order;
 
+
+import com.isl.lionelmaquet.burger2home.Address.Address;
+import com.isl.lionelmaquet.burger2home.Address.AddressService;
 import com.isl.lionelmaquet.burger2home.Basket.Basket;
 import com.isl.lionelmaquet.burger2home.Basket.BasketService;
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLine;
@@ -7,6 +10,13 @@ import com.isl.lionelmaquet.burger2home.BasketLine.BasketLineService;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLineService;
 import com.isl.lionelmaquet.burger2home.Price.PriceService;
+import com.isl.lionelmaquet.burger2home.User.User;
+import com.isl.lionelmaquet.burger2home.User.UserService;
+import com.shippo.Shippo;
+import com.shippo.exception.APIConnectionException;
+import com.shippo.exception.APIException;
+import com.shippo.exception.AuthenticationException;
+import com.shippo.exception.InvalidRequestException;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -30,7 +40,13 @@ public class OrderServiceImpl implements OrderService {
     BasketLineService basketLineService;
 
     @Autowired
+    AddressService addressService;
+
+    @Autowired
     OrderLineService orderLineService;
+
+    @Autowired
+    UserService userService;
 
     private PriceService priceService;
 
@@ -126,5 +142,31 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(Order.Status.confirmed);
 
         return orderRepository.save(order);
+    }
+
+    @Override
+    public Order shipOrder(Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException {
+        Order order = orderRepository.findById(orderIdentifier).get();
+        Address address = addressService.getSingleAddress(order.getAddressId()).get();
+        User user = userService.getSingleUser(order.getUserId()).get();
+
+
+        Shippo.apiKey = "shippo_test_1e979141c9601219f667b3a1e19f58cda1a285b5"; // this is the tesk token
+        Map<String, Object> addressMap = new HashMap<String, Object>();
+
+        addressMap.put("name", user.getFirstname() + " " + user.getLastname());
+        addressMap.put("street1", address.getStreet() + " " + address.getNumber());
+        addressMap.put("city", address.getCity());
+        addressMap.put("zip", address.getZipcode());
+        addressMap.put("country", "BE");
+        addressMap.put("email", user.getEmail());
+
+        com.shippo.model.Address createAddress = com.shippo.model.Address.create(addressMap);
+        System.out.println(createAddress);
+        return order; // TODO : changer le status
+
+
+
+
     }
 }

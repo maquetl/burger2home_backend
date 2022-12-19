@@ -1,5 +1,9 @@
 package com.isl.lionelmaquet.burger2home.Order;
 
+import com.shippo.exception.APIConnectionException;
+import com.shippo.exception.APIException;
+import com.shippo.exception.AuthenticationException;
+import com.shippo.exception.InvalidRequestException;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -46,6 +50,11 @@ public class OrderController {
     @GetMapping("/confirm-order")
     Order confirmOrder(@RequestParam Integer orderIdentifier, @RequestParam String paymentMethodIdentifier) throws StripeException {
         return orderService.confirmOrder(orderIdentifier, paymentMethodIdentifier);
+    }
+
+    @GetMapping("/ship")
+    Order shipOrder(@RequestParam Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException {
+        return orderService.shipOrder(orderIdentifier);
     }
 
     @PutMapping("/orders")

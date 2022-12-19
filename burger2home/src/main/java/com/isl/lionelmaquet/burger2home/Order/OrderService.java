@@ -1,5 +1,9 @@
 package com.isl.lionelmaquet.burger2home.Order;
 
+import com.shippo.exception.APIConnectionException;
+import com.shippo.exception.APIException;
+import com.shippo.exception.AuthenticationException;
+import com.shippo.exception.InvalidRequestException;
 import com.stripe.exception.StripeException;
 
 import java.util.List;
@@ -19,4 +23,6 @@ public interface OrderService {
     void deleteOrder(Integer orderIdentifier);
 
     Order confirmOrder(Integer orderIdentifier, String paymentMethodIdentifier) throws StripeException;
+
+    Order shipOrder(Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException;
 }
