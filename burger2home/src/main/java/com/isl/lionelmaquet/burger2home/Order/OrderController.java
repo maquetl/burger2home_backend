@@ -76,7 +76,7 @@ public class OrderController {
 
     @GetMapping("/orders/stripe/create-payment-method")
     String createPaymentMethod() throws StripeException {
-        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
+        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
         PaymentMethodCreateParams params = PaymentMethodCreateParams.builder()
                 .setType(PaymentMethodCreateParams.Type.CARD)
                 .setCard(

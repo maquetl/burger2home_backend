@@ -53,8 +53,9 @@ public class OrderServiceImpl implements OrderService {
     UserService userService;
 
     static {
-        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
-        Shippo.apiKey = "shippo_test_1e979141c9601219f667b3a1e19f58cda1a285b5"; // this is the tesk token
+        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
+        System.out.println(System.getenv("STRIPE_SECRET_KEY"));
+        Shippo.apiKey = System.getenv("SHIPPO_SECRET_KEY"); // this is the tesk token
     }
 
     @PersistenceContext
