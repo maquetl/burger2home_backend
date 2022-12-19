@@ -20,8 +20,17 @@ public class ProductBO {
     private Boolean isAvailable;
     private List<String> ingredients = new ArrayList<>();
     private List<String> allergens = new ArrayList<>();
+    private List<Integer> productFamilies = new ArrayList<>();
 
     public ProductBO() {
+    }
+
+    public List<Integer> getProductFamilies() {
+        return productFamilies;
+    }
+
+    public void setProductFamilies(List<Integer> productFamilies) {
+        this.productFamilies = productFamilies;
     }
 
     public Integer getId() {

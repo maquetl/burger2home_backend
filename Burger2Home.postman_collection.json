@@ -1773,7 +1773,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=false&productFamilyId=2",
+							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=false&productFamily=2&productFamily=1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1793,8 +1793,12 @@
 									"description": "true / false"
 								},
 								{
-									"key": "productFamilyId",
+									"key": "productFamily",
 									"value": "2"
+								},
+								{
+									"key": "productFamily",
+									"value": "1"
 								}
 							]
 						}
@@ -1839,6 +1843,18 @@
 							],
 							"path": [
 								"products"
+							],
+							"query": [
+								{
+									"key": "productFamily",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "productFamily",
+									"value": "2",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1864,26 +1880,6 @@
 							"path": [
 								"products",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET - Products by family",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/products/families/1/products",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"products",
-								"families",
-								"1",
-								"products"
 							]
 						}
 					},

@@ -4,16 +4,14 @@ import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Allergen.Translation.AllergenTranslation;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Price.Price;
-import com.isl.lionelmaquet.burger2home.Price.PriceRepository;
 import com.isl.lionelmaquet.burger2home.Price.PriceService;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslationService;
-import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslationServiceImpl;
-import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
+import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
+import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamilyService;
 import com.isl.lionelmaquet.burger2home.Promotion.PromotionService;
 import com.isl.lionelmaquet.burger2home.StockHistorization.StockHistorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +26,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductTranslationService productTranslationService;
+
+    @Autowired
+    ProductFamilyService productFamilyService;
 
     PriceService priceService;
 
@@ -47,10 +48,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, Integer productFamilyId) {
+    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers) {
+        List<Product> products = getProductsByFamily(productFamilyIdentifiers);
 
         List<ProductBO> productBOS = new ArrayList<>();
-        List<Product> products = productFamilyId == null ? productRepository.findAll() : productRepository.findByProductFamiliesId(productFamilyId);
 
         for(Product product : products){
             getProductBO(product, language, availableProductsOnly).ifPresent(pbo -> productBOS.add(pbo));
@@ -93,8 +94,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByFamily(Integer productFamilyIdentifier) {
-        return productRepository.findByProductFamiliesId(productFamilyIdentifier);
+    public List<Product> getProductsByFamily(List<Integer> productFamilyIdentifiers) {
+        List<Product> products = productRepository.findAll();
+        if (productFamilyIdentifiers.size() == 0 || productFamilyIdentifiers == null) return products;
+        return products.stream().filter(p -> p.getProductFamilies().stream().anyMatch(pf -> productFamilyIdentifiers.stream().anyMatch(pfi -> pf.getId() == pfi))).toList();
     }
 
     // This method returns an empty optional if the boolean mustBeAvailable is set to true and the product is not available
@@ -151,6 +154,12 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
         }
+
+        // STEP 7 : Map product families to DTO
+        for(ProductFamily pf : p.getProductFamilies()){
+            pbo.getProductFamilies().add(pf.getId());
+        }
+
         return Optional.of(pbo);
     }
 

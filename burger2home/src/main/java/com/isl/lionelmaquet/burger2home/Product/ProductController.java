@@ -15,9 +15,9 @@ public class ProductController {
     @GetMapping("/products/summaries")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
                                  @RequestParam(defaultValue = "false") Boolean availableProductsOnly,
-                                 @RequestParam(required = false) Integer productFamilyId
+                                 @RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers
                                  ){
-        return productService.getAllProductBOs(language, availableProductsOnly, productFamilyId);
+        return productService.getAllProductBOs(language, availableProductsOnly, productFamilyIdentifiers);
     }
 
     @GetMapping("/products/summaries/{productIdentifier}")
@@ -31,14 +31,14 @@ public class ProductController {
         return productService.getSingleProduct(productIdentifier);
     }
 
-    @GetMapping("/products/families/{productFamilyIdentifier}/products")
-    public List<Product> getProductsByFamily(@PathVariable Integer productFamilyIdentifier){
-        return productService.getProductsByFamily(productFamilyIdentifier);
-    }
+//    @GetMapping("/products/families/products")
+//    public List<Product> getProductsByFamily(@RequestParam(name = "productFamily") List<Integer> productFamilyIdentifiers){
+//        return productService.getProductsByFamily(productFamilyIdentifiers);
+//    }
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-        return productService.getAllProducts();
+    public List<Product> getAllProducts(@RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers){
+        return productService.getProductsByFamily(productFamilyIdentifiers);
     }
 
     @PostMapping("/products")
