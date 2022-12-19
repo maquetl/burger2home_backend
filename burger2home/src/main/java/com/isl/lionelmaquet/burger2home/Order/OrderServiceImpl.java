@@ -52,6 +52,11 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     UserService userService;
 
+    static {
+        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
+        Shippo.apiKey = "shippo_test_1e979141c9601219f667b3a1e19f58cda1a285b5"; // this is the tesk token
+    }
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -78,17 +83,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order createOrder(Integer basketIdentifier) throws StripeException {
+    public Order createOrder(Integer basketIdentifier, Integer addressIdentifier) throws StripeException {
 
         // Retrieve the basket
         Basket basket = basketService.getSingleBasket(basketIdentifier).get();
-
 
 
         // Create a new order with a status "waiting for payment"
         Order order = new Order();
         order.setUserId(basket.getUserId());
         order.setStatus(Order.Status.waiting_for_payment);
+        if(basketIdentifier != null) order.setAddressId(addressIdentifier);
         orderRepository.save(order);
 
         // Create order lines based on basket lines. Adds them to the order
@@ -121,7 +126,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private PaymentIntent createPaymentIntent(Float totalPrice, String customerId) throws StripeException {
-        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
                         .setAmount((long) (totalPrice *100))
@@ -165,7 +169,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order confirmOrder(Integer orderIdentifier, String paymentMethodIdentifier) throws StripeException {
-        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
         Order order = orderRepository.findById(orderIdentifier).get();
 
         // Retrieve the payment intent
@@ -194,7 +197,7 @@ public class OrderServiceImpl implements OrderService {
         User user = userService.getSingleUser(order.getUserId()).get();
 
 
-        Shippo.apiKey = "shippo_test_1e979141c9601219f667b3a1e19f58cda1a285b5"; // this is the tesk token
+
         Map<String, Object> addressMap = new HashMap<String, Object>();
 
         addressMap.put("name", user.getFirstname() + " " + user.getLastname());

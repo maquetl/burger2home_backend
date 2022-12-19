@@ -48,17 +48,17 @@ public class OrderController {
     }
 
 
-    @GetMapping("/create-order")
-    Order createSingleOrder(@RequestParam Integer basketIdentifier) throws StripeException {
-        return orderService.createOrder(basketIdentifier);
+    @GetMapping("/orders/create-order")
+    Order createSingleOrder(@RequestParam Integer basketIdentifier, @RequestParam(required = false) Integer addressIdentifier) throws StripeException {
+        return orderService.createOrder(basketIdentifier, addressIdentifier);
     }
 
-    @GetMapping("/confirm-order")
+    @GetMapping("/orders/confirm-order")
     Order confirmOrder(@RequestParam Integer orderIdentifier, @RequestParam String paymentMethodIdentifier) throws StripeException {
         return orderService.confirmOrder(orderIdentifier, paymentMethodIdentifier);
     }
 
-    @GetMapping("/ship")
+    @GetMapping("/orders/confirm-delivery")
     Order shipOrder(@RequestParam Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException {
         return orderService.shipOrder(orderIdentifier);
     }
@@ -73,29 +73,7 @@ public class OrderController {
         orderService.deleteOrder(orderIdentifier);
     }
 
-    @PostMapping("/orders/intents")
-    void createOrderIntent(@RequestParam(required = true) Integer basketId) {
 
-    }
-
-
-
-    @GetMapping("/orders/stripe/create-payment-intent")
-    String createPaymentIntent() throws StripeException {
-        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
-        PaymentIntentCreateParams params =
-                PaymentIntentCreateParams.builder()
-                        .setAmount(1099L)
-                        .setCurrency("eur")
-                        .addPaymentMethodType("card")
-                        .build();
-        PaymentIntent paymentIntent = PaymentIntent.create(params);
-        System.out.println(paymentIntent);
-        return paymentIntent.getId();
-
-
-    }
-    
     @GetMapping("/orders/stripe/create-payment-method")
     String createPaymentMethod() throws StripeException {
         Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
@@ -112,15 +90,6 @@ public class OrderController {
         PaymentMethod paymentMethod = PaymentMethod.create(params);
         System.out.println(paymentMethod);
         return paymentMethod.getId();
-    }
-
-    @GetMapping("/orders/stripe/confirm-payment")
-    String confirmPayment(@RequestParam String paymentIntentId, @RequestParam String paymentMethodId) throws StripeException {
-        Stripe.apiKey = "sk_test_51LkPo2INHgxPirwO5bJTiD8oC9OzRk0nebSXqgOk4BCafMWNDSWGwHZXmzwNuH7Pfp6OQ9wMaUxRv1czFWmdYaOz00d4jFRn4I";
-        PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
-        PaymentIntentConfirmParams paymentIntentConfirmParams = PaymentIntentConfirmParams.builder().setPaymentMethod(paymentMethodId).build();
-        paymentIntent = paymentIntent.confirm(paymentIntentConfirmParams);
-        return paymentIntent.getStatus();
     }
 
 }

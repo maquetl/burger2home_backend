@@ -16,7 +16,7 @@ public interface OrderService {
 
     List<Order> getOrdersByUser(Integer userIdentifier);
 
-    Order createOrder(Integer basketIdentifier) throws StripeException;
+    Order createOrder(Integer basketIdentifier, Integer addressIdentifier) throws StripeException;
 
     void modifyOrder(Order order);
 
