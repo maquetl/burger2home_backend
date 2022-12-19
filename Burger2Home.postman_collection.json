@@ -347,13 +347,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/translations",
+							"raw": "{{base-url}}/allergens/translations?language=FR",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR"
+								}
 							]
 						}
 					},
@@ -392,6 +398,13 @@
 								"allergens",
 								"1",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1017,6 +1030,13 @@
 							"path": [
 								"ingredients",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1028,14 +1048,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1/creditcards",
+							"raw": "{{base-url}}/ingredients/1/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"users",
+								"ingredients",
 								"1",
-								"creditcards"
+								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "EN",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1340,16 +1367,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/create-order?basketIdentifier=1",
+							"raw": "{{base-url}}/orders/create-order?basketIdentifier=1&addressIdentifier=1",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
+								"orders",
 								"create-order"
 							],
 							"query": [
 								{
 									"key": "basketIdentifier",
+									"value": "1"
+								},
+								{
+									"key": "addressIdentifier",
 									"value": "1"
 								}
 							]
@@ -1363,22 +1395,66 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/confirm-order?orderIdentifier=2&paymentMethodIdentifier=pm_1MG10UINHgxPirwOax5y3006",
+							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=23&paymentMethodIdentifier=pm_1MGi5kINHgxPirwOH1OdN2qt",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
+								"orders",
 								"confirm-order"
 							],
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "2"
+									"value": "23"
 								},
 								{
 									"key": "paymentMethodIdentifier",
-									"value": "pm_1MG10UINHgxPirwOax5y3006"
+									"value": "pm_1MGi5kINHgxPirwOH1OdN2qt"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm shipment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders/confirm-delivery?orderIdentifier=3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders",
+								"confirm-delivery"
+							],
+							"query": [
+								{
+									"key": "orderIdentifier",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "STRIPE - Create payment method",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders/stripe/create-payment-method",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders",
+								"stripe",
+								"create-payment-method"
 							]
 						}
 					},
@@ -1902,6 +1978,13 @@
 								"products",
 								"1",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -2133,6 +2216,13 @@
 								"products",
 								"families",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -2144,7 +2234,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/families/translations/5",
+							"raw": "{{base-url}}/products/families/translations/1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -2152,7 +2242,7 @@
 								"products",
 								"families",
 								"translations",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -2173,6 +2263,13 @@
 								"families",
 								"1",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -2382,6 +2479,13 @@
 							"path": [
 								"promotions",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -2420,6 +2524,13 @@
 								"promotions",
 								"1",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "FR",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -2925,73 +3036,6 @@
 				"header": [],
 				"url": {
 					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "STRIPE - Create payment intent",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base-url}}/orders/stripe/create-payment-intent",
-					"host": [
-						"{{base-url}}"
-					],
-					"path": [
-						"orders",
-						"stripe",
-						"create-payment-intent"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "STRIPE - Create payment method",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base-url}}/orders/stripe/create-payment-method",
-					"host": [
-						"{{base-url}}"
-					],
-					"path": [
-						"orders",
-						"stripe",
-						"create-payment-method"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "STRIPE - Confirm payment intent",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base-url}}/orders/stripe/confirm-payment?paymentIntentId=pi_3MEYdMINHgxPirwO1deNE330&paymentMethodId=pm_1MEYdRINHgxPirwOj04DaKLm",
-					"host": [
-						"{{base-url}}"
-					],
-					"path": [
-						"orders",
-						"stripe",
-						"confirm-payment"
-					],
-					"query": [
-						{
-							"key": "paymentIntentId",
-							"value": "pi_3MEYdMINHgxPirwO1deNE330"
-						},
-						{
-							"key": "paymentMethodId",
-							"value": "pm_1MEYdRINHgxPirwOj04DaKLm"
-						}
-					]
 				}
 			},
 			"response": []
