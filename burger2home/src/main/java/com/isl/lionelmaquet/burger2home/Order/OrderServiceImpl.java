@@ -17,6 +17,8 @@ import com.shippo.exception.APIConnectionException;
 import com.shippo.exception.APIException;
 import com.shippo.exception.AuthenticationException;
 import com.shippo.exception.InvalidRequestException;
+import com.shippo.model.Parcel;
+import com.shippo.model.Shipment;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -161,8 +163,37 @@ public class OrderServiceImpl implements OrderService {
         addressMap.put("country", "BE");
         addressMap.put("email", user.getEmail());
 
+        Map<String, Object> fromAddressMap = new HashMap<String, Object>();
+
+        fromAddressMap.put("name", "Lionel Maquet");
+        fromAddressMap.put("street1", "Rue du tige 120");
+        fromAddressMap.put("city", "Juprelle");
+        fromAddressMap.put("zip", "4450");
+        fromAddressMap.put("country", "BE");
+        fromAddressMap.put("email", "lionel.maquet@gmail.com");
+
+        com.shippo.model.Address createFromAddress = com.shippo.model.Address.create(fromAddressMap);
+
+
+
+        Map<String, Object> parcel = new HashMap<String, Object>();
+        parcel.put("length", 10);
+        parcel.put("width", 15);
+        parcel.put("height", 10);
+        parcel.put("distance_unit", "in");
+        parcel.put("weight", 1);
+        parcel.put("mass_unit", "lb");
+        Parcel createParcel = Parcel.create(parcel);
+
         com.shippo.model.Address createAddress = com.shippo.model.Address.create(addressMap);
-        System.out.println(createAddress);
+
+        Map<String, Object> shipment = new HashMap<String, Object>();
+        shipment.put("address_to", createAddress);
+        shipment.put("address_from", createFromAddress);
+        shipment.put("parcels", createParcel);
+
+        Shipment createShipment = Shipment.create(shipment);
+
         return order; // TODO : changer le status
 
 
