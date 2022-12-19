@@ -1,5 +1,7 @@
 package com.isl.lionelmaquet.burger2home.ProductFamily.Translation;
 
+import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
+import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,8 @@ public class ProductFamilyTranslationController {
     ProductFamilyTranslationService productFamilyTranslationService;
 
     @GetMapping("/products/families/translations")
-    List<ProductFamilyTranslation> getAllProductFamilyTranslations(){
-        return productFamilyTranslationService.getAllProductFamilyTranslations();
+    List<ProductFamilyTranslation> getAllProductFamilyTranslations(@RequestParam(required = false) String language){
+        return (List<ProductFamilyTranslation>) TranslationUtils.filterTranslationsByLanguage(productFamilyTranslationService.getAllProductFamilyTranslations(), language);
     }
 
     @GetMapping("/products/families/translations/{productFamilyTranslationIdentifier}")
@@ -23,8 +25,8 @@ public class ProductFamilyTranslationController {
     }
 
     @GetMapping("/products/families/{productFamilyIdentifier}/translations")
-    List<ProductFamilyTranslation> getProductFamilyTranslationsByProductFamily(@PathVariable Integer productFamilyIdentifier){
-        return productFamilyTranslationService.getProductFamilyTranslationsByProductFamily(productFamilyIdentifier);
+    List<ProductFamilyTranslation> getProductFamilyTranslationsByProductFamily(@PathVariable Integer productFamilyIdentifier, @RequestParam(required = false) String language){
+        return (List<ProductFamilyTranslation>) TranslationUtils.filterTranslationsByLanguage(productFamilyTranslationService.getProductFamilyTranslationsByProductFamily(productFamilyIdentifier), language);
     }
 
     @PostMapping("/products/families/translations")

@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isl.lionelmaquet.burger2home.Language.Language;
 import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
+import com.isl.lionelmaquet.burger2home.Translation;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "product_family_translation")
-public class ProductFamilyTranslation {
+public class ProductFamilyTranslation implements Translation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

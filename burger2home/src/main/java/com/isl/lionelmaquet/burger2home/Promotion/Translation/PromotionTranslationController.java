@@ -1,5 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Promotion.Translation;
 
+import com.isl.lionelmaquet.burger2home.ProductFamily.Translation.ProductFamilyTranslation;
+import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,8 @@ public class PromotionTranslationController {
     PromotionTranslationService promotionTranslationService;
 
     @GetMapping("/promotions/translations")
-    List<PromotionTranslation> getAllPromotionTranslations(){
-        return promotionTranslationService.getAllPromotionTranslations();
+    List<PromotionTranslation> getAllPromotionTranslations(@RequestParam(required = false) String language){
+        return (List<PromotionTranslation>) TranslationUtils.filterTranslationsByLanguage(promotionTranslationService.getAllPromotionTranslations(), language);
     }
 
     @GetMapping("/promotions/translations/{promotionTranslationIdentifier}")
@@ -23,8 +25,8 @@ public class PromotionTranslationController {
     }
 
     @GetMapping("/promotions/{promotionIdentifier}/translations")
-    List<PromotionTranslation> getPromotionTranslationsByPromotion(@PathVariable Integer promotionIdentifier){
-        return promotionTranslationService.getPromotionTranslationsByPromotion(promotionIdentifier);
+    List<PromotionTranslation> getPromotionTranslationsByPromotion(@PathVariable Integer promotionIdentifier, @RequestParam(required = false) String language){
+        return (List<PromotionTranslation>) TranslationUtils.filterTranslationsByLanguage(promotionTranslationService.getPromotionTranslationsByPromotion(promotionIdentifier), language);
     }
 
     @PostMapping("/promotions/translations")

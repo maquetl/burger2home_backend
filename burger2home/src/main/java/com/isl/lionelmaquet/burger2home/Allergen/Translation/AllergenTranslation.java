@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Language.Language;
+import com.isl.lionelmaquet.burger2home.Translation;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "allergen_translation")
 @JsonSerialize
-public class AllergenTranslation {
+public class AllergenTranslation implements Translation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -19,6 +20,7 @@ public class AllergenTranslation {
 
     @Column(name = "name", nullable = false, length = 60)
     private String name;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "language_id", nullable = false)

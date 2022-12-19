@@ -1,5 +1,8 @@
 package com.isl.lionelmaquet.burger2home.Allergen.Translation;
 
+import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
+import com.isl.lionelmaquet.burger2home.Translation;
+import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +16,8 @@ public class AllergenTranslationController {
     AllergenTranslationService allergenTranslationService;
 
     @GetMapping("/allergens/translations")
-    List<AllergenTranslation> getAllAllergenTranslations(){
-        return allergenTranslationService.getAllAllergenTranslations();
+    List<AllergenTranslation> getAllAllergenTranslations(@RequestParam(required = false) String language){
+        return (List<AllergenTranslation>) TranslationUtils.filterTranslationsByLanguage(allergenTranslationService.getAllAllergenTranslations(), language);
     }
 
     @GetMapping("/allergens/translations/{allergenTranslationIdentifier}")
@@ -23,8 +26,8 @@ public class AllergenTranslationController {
     }
 
     @GetMapping("/allergens/{allergenIdentifier}/translations")
-    List<AllergenTranslation> getAllergenTranslationsByAllergen(@PathVariable Integer allergenIdentifier){
-        return allergenTranslationService.getAllergenTranslationByAllergen(allergenIdentifier);
+    List<AllergenTranslation> getAllergenTranslationsByAllergen(@PathVariable Integer allergenIdentifier, @RequestParam(required = false) String language){
+        return (List<AllergenTranslation>) TranslationUtils.filterTranslationsByLanguage(allergenTranslationService.getAllergenTranslationByAllergen(allergenIdentifier), language);
     }
 
     @PostMapping("/allergens/translations")

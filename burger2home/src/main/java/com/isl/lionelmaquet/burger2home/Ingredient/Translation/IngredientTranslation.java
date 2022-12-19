@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Language.Language;
+import com.isl.lionelmaquet.burger2home.Translation;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ingredient_translation")
 @JsonSerialize
-public class IngredientTranslation {
+public class IngredientTranslation implements Translation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

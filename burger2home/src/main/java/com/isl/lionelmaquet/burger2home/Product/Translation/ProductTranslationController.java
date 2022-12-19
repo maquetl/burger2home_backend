@@ -1,6 +1,8 @@
 package com.isl.lionelmaquet.burger2home.Product.Translation;
 
+import com.isl.lionelmaquet.burger2home.Ingredient.Translation.IngredientTranslation;
 import com.isl.lionelmaquet.burger2home.Product.Product;
+import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +16,8 @@ public class ProductTranslationController {
     ProductTranslationService productTranslationService;
 
     @GetMapping("/products/{productIdentifier}/translations")
-    public List<ProductTranslation> getProductTranslation(@PathVariable Integer productIdentifier){
-        return productTranslationService.getByProduct(productIdentifier);
+    public List<ProductTranslation> getProductTranslation(@PathVariable Integer productIdentifier, @RequestParam(required = false) String language){
+        return (List<ProductTranslation>) TranslationUtils.filterTranslationsByLanguage(productTranslationService.getByProduct(productIdentifier), language);
     }
 
     @PostMapping("/products/translations")
