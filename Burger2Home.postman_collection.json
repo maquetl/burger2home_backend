@@ -2029,7 +2029,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/summaries?productFamily=2&productFamily=1",
+							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=true&mustBeOnMenu=false&productFamily=2&productFamily=1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -2041,14 +2041,17 @@
 								{
 									"key": "language",
 									"value": "FR",
-									"description": "EN / FR",
-									"disabled": true
+									"description": "EN / FR"
 								},
 								{
 									"key": "availableProductsOnly",
+									"value": "true",
+									"description": "true / false"
+								},
+								{
+									"key": "mustBeOnMenu",
 									"value": "false",
-									"description": "true / false",
-									"disabled": true
+									"description": "true / false"
 								},
 								{
 									"key": "productFamily",
@@ -2101,7 +2104,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products",
+							"raw": "{{base-url}}/products?mustBeOnMenu=false&availableProductsOnly=true",
 							"host": [
 								"{{base-url}}"
 							],
@@ -2109,6 +2112,14 @@
 								"products"
 							],
 							"query": [
+								{
+									"key": "mustBeOnMenu",
+									"value": "false"
+								},
+								{
+									"key": "availableProductsOnly",
+									"value": "true"
+								},
 								{
 									"key": "productFamily",
 									"value": "1",
@@ -2162,7 +2173,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": null,\r\n    \"imageUrl\": \"test nouveau produit\",\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\": null,\r\n    \"imageUrl\": \"test nouveau produit\",\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2188,7 +2199,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"imageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/1200px-Cheeseburger.jpg\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 1,\r\n            \"allergens\": []\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"allergens\": []\r\n        }\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"imageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/1200px-Cheeseburger.jpg\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 1,\r\n            \"allergens\": []\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"allergens\": []\r\n        }\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
