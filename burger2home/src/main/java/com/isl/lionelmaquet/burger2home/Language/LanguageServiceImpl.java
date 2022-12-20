@@ -23,13 +23,13 @@ public class LanguageServiceImpl implements LanguageService {
     }
 
     @Override
-    public void createLanguage(Language language) {
-        languageRepository.save(language);
+    public Language createLanguage(Language language) {
+        return languageRepository.save(language);
     }
 
     @Override
-    public void modifyLanguage(Language language) {
-        languageRepository.save(language);
+    public Language modifyLanguage(Language language) {
+        return languageRepository.save(language);
     }
 
     @Override

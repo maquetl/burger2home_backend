@@ -28,13 +28,13 @@ public class StockHistorizationController {
     }
 
     @PostMapping("/stocks")
-    void createStockHistorization(@RequestBody StockHistorization stockHistorization){
-        serv.createStockHistorization(stockHistorization);
+    StockHistorization createStockHistorization(@RequestBody StockHistorization stockHistorization){
+        return serv.createStockHistorization(stockHistorization);
     }
 
     @PutMapping("/stocks")
-    void modifyStockHistorization(@RequestBody StockHistorization stockHistorization){
-        serv.modifyStockHistorization(stockHistorization);
+    StockHistorization modifyStockHistorization(@RequestBody StockHistorization stockHistorization){
+        return serv.modifyStockHistorization(stockHistorization);
     }
 
     @DeleteMapping("/stocks/{stockHistorizationIdentifier}")

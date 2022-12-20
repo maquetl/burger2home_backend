@@ -29,13 +29,13 @@ public class ProductFamilyController {
     }
 
     @PostMapping("/products/families")
-    void createProductFamily(@RequestBody ProductFamily productFamily){
-        productFamilyService.createProductFamily(productFamily);
+    ProductFamily createProductFamily(@RequestBody ProductFamily productFamily){
+        return productFamilyService.createProductFamily(productFamily);
     }
 
     @PutMapping("/products/families")
-    void modifyProductFamily(@RequestBody ProductFamily productFamily){
-        productFamilyService.modifyProductFamily(productFamily);
+    ProductFamily modifyProductFamily(@RequestBody ProductFamily productFamily){
+        return productFamilyService.modifyProductFamily(productFamily);
     }
 
     @DeleteMapping("/products/families/{productFamilyIdentifier}")

@@ -12,8 +12,6 @@ public interface PriceService {
 
     Optional<Price> getSinglePrice(Integer priceIdentifier);
 
-    void createPrice(Price price);
-
     Float getCurrentPriceAfterDiscountByProductId(Integer productId);
 
     Price setNextPrice(Price price);
@@ -23,6 +21,4 @@ public interface PriceService {
     Optional<Price> getNextPrice(Integer productId);
 
     Price createDefaultCurrentPrice(Integer productId);
-
-
 }

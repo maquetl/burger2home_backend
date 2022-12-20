@@ -10,9 +10,9 @@ public interface ProductFamilyService {
 
     List<ProductFamily> getProductFamiliesByProduct(Integer productIdentifier);
 
-    void createProductFamily(ProductFamily productFamily);
+    ProductFamily createProductFamily(ProductFamily productFamily);
 
-    void modifyProductFamily(ProductFamily productFamily);
+    ProductFamily modifyProductFamily(ProductFamily productFamily);
 
     void deleteProductFamily(Integer productFamilyIdentifier);
 }

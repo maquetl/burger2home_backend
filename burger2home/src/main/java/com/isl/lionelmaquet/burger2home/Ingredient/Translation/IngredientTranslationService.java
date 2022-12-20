@@ -8,9 +8,9 @@ public interface IngredientTranslationService {
 
     Optional<IngredientTranslation> findIngredientTranslation(Integer ingredientTranslationIdentifier);
 
-    void createIngredientTranslation(IngredientTranslation ingredientTranslation);
+    IngredientTranslation createIngredientTranslation(IngredientTranslation ingredientTranslation);
 
-    void modifyIngredientTranslation(IngredientTranslation ingredientTranslation);
+    IngredientTranslation modifyIngredientTranslation(IngredientTranslation ingredientTranslation);
 
     void deleteIngredientTranslation(Integer ingredientTranslationIdentifier);
 

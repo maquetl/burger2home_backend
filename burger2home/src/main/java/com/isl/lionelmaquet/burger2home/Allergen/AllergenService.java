@@ -10,9 +10,9 @@ public interface AllergenService {
 
     Optional<Allergen> getSingleAllergen(Integer allergenIdentifier);
 
-    void createAllergen(Allergen allergen);
+    Allergen createAllergen(Allergen allergen);
 
     void deleteAllergen(Integer allergenIdentifier);
 
-    void modifyAllergen(Allergen allergen);
+    Allergen modifyAllergen(Allergen allergen);
 }

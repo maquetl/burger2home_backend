@@ -10,35 +10,35 @@ import java.util.Optional;
 public class BasketServiceImpl implements BasketService {
 
     @Autowired
-    BasketRepository rep;
+    BasketRepository basketRepository;
 
     @Override
     public List<Basket> getAllBaksets() {
-        return rep.findAll();
+        return basketRepository.findAll();
     }
 
     @Override
     public Optional<Basket> getSingleBasket(Integer basketIdentifier) {
-        return rep.findById(basketIdentifier);
+        return basketRepository.findById(basketIdentifier);
     }
 
     @Override
     public Optional<Basket> getBasketByUser(Integer userIdentifier) {
-        return rep.findByUserId(userIdentifier);
+        return basketRepository.findByUserId(userIdentifier);
     }
 
     @Override
-    public void createBasket(Basket basket) {
-        rep.save(basket);
+    public Basket createBasket(Basket basket) {
+        return basketRepository.save(basket);
     }
 
     @Override
-    public void modifyBasket(Basket basket) {
-        rep.save(basket);
+    public Basket modifyBasket(Basket basket) {
+        return basketRepository.save(basket);
     }
 
     @Override
     public void deleteBasket(Integer basketIdentifier) {
-        rep.deleteById(basketIdentifier);
+        basketRepository.deleteById(basketIdentifier);
     }
 }

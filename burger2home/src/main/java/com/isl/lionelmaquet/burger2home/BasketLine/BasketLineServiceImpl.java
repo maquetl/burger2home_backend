@@ -28,13 +28,13 @@ public class BasketLineServiceImpl implements BasketLineService {
     }
 
     @Override
-    public void createBasketLine(BasketLine basketLine) {
-        rep.save(basketLine);
+    public BasketLine createBasketLine(BasketLine basketLine) {
+        return rep.save(basketLine);
     }
 
     @Override
-    public void modifyBasketLine(BasketLine basketLine) {
-        rep.save(basketLine);
+    public BasketLine modifyBasketLine(BasketLine basketLine) {
+        return rep.save(basketLine);
     }
 
     @Override

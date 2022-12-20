@@ -28,8 +28,8 @@ public class AllergenController {
     }
 
     @PostMapping("/allergens")
-    void createSingleAllergen(@RequestBody Allergen allergen){
-        allergenService.createAllergen(allergen);
+    Allergen createSingleAllergen(@RequestBody Allergen allergen){
+        return allergenService.createAllergen(allergen);
     }
 
     @DeleteMapping("/allergens/{allergenIdentifier}")
@@ -38,7 +38,7 @@ public class AllergenController {
     }
 
     @PutMapping("/allergens")
-    void modifySingleAllergen(@RequestBody Allergen allergen){
-        allergenService.modifyAllergen(allergen);
+    Allergen modifySingleAllergen(@RequestBody Allergen allergen){
+        return allergenService.modifyAllergen(allergen);
     }
 }

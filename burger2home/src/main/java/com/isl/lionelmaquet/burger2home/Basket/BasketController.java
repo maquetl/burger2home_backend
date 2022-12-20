@@ -28,13 +28,13 @@ public class BasketController {
     }
 
     @PostMapping("/baskets")
-    void createBasket(@RequestBody Basket basket){
-        serv.createBasket(basket);
+    Basket createBasket(@RequestBody Basket basket){
+        return serv.createBasket(basket);
     }
 
     @PutMapping("/baskets")
-    void modifyBasket(@RequestBody Basket basket){
-        serv.modifyBasket(basket);
+    Basket modifyBasket(@RequestBody Basket basket){
+        return serv.modifyBasket(basket);
     }
 
     @DeleteMapping("/baskets/{basketIdentifier}")

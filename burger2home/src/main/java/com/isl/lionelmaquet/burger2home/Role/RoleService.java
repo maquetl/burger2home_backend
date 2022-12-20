@@ -8,9 +8,9 @@ public interface RoleService {
 
     Optional<Role> getSingleRole(Integer roleIdentifier);
 
-    void createRole(Role role);
+    Role createRole(Role role);
 
-    void modifyRole(Role role);
+    Role modifyRole(Role role);
 
     void deleteRole(Integer roleIdentifier);
 

@@ -28,13 +28,13 @@ public class RoleController {
     }
 
     @PostMapping("/roles")
-    void createRole(@RequestBody Role role){
-        serv.createRole(role);
+    Role createRole(@RequestBody Role role){
+        return serv.createRole(role);
     }
 
     @PutMapping("/roles")
-    void modifyRole(@RequestBody Role role){
-        serv.modifyRole(role);
+    Role modifyRole(@RequestBody Role role){
+        return serv.modifyRole(role);
     }
 
     @DeleteMapping("/roles/{roleIdentifier}")

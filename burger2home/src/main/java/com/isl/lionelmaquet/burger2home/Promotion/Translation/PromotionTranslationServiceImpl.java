@@ -28,13 +28,13 @@ public class PromotionTranslationServiceImpl implements PromotionTranslationServ
     }
 
     @Override
-    public void createSinglePromotionTranslation(PromotionTranslation promotionTranslation) {
-        promotionTranslationRepository.save(promotionTranslation);
+    public PromotionTranslation createSinglePromotionTranslation(PromotionTranslation promotionTranslation) {
+        return promotionTranslationRepository.save(promotionTranslation);
     }
 
     @Override
-    public void modifySinglePromotionTranslation(PromotionTranslation promotionTranslation) {
-        promotionTranslationRepository.save(promotionTranslation);
+    public PromotionTranslation modifySinglePromotionTranslation(PromotionTranslation promotionTranslation) {
+        return promotionTranslationRepository.save(promotionTranslation);
     }
 
     @Override

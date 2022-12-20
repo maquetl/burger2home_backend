@@ -23,13 +23,13 @@ public class IngredientTranslationServiceImpl implements IngredientTranslationSe
     }
 
     @Override
-    public void createIngredientTranslation(IngredientTranslation ingredientTranslation) {
-        ingredientTranslationRepository.save(ingredientTranslation);
+    public IngredientTranslation createIngredientTranslation(IngredientTranslation ingredientTranslation) {
+        return ingredientTranslationRepository.save(ingredientTranslation);
     }
 
     @Override
-    public void modifyIngredientTranslation(IngredientTranslation ingredientTranslation) {
-        ingredientTranslationRepository.save(ingredientTranslation);
+    public IngredientTranslation modifyIngredientTranslation(IngredientTranslation ingredientTranslation) {
+        return ingredientTranslationRepository.save(ingredientTranslation);
     }
 
     @Override

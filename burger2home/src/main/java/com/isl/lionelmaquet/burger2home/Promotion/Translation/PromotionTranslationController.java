@@ -30,13 +30,13 @@ public class PromotionTranslationController {
     }
 
     @PostMapping("/promotions/translations")
-    void createSinglePromotionTranslation(@RequestBody PromotionTranslation promotionTranslation){
-        promotionTranslationService.createSinglePromotionTranslation(promotionTranslation);
+    PromotionTranslation createSinglePromotionTranslation(@RequestBody PromotionTranslation promotionTranslation){
+        return promotionTranslationService.createSinglePromotionTranslation(promotionTranslation);
     }
 
     @PutMapping("/promotions/translations")
-    void modifySingelPromotionTranslation(@RequestBody PromotionTranslation promotionTranslation){
-        promotionTranslationService.modifySinglePromotionTranslation(promotionTranslation);
+    PromotionTranslation modifySingelPromotionTranslation(@RequestBody PromotionTranslation promotionTranslation){
+        return promotionTranslationService.modifySinglePromotionTranslation(promotionTranslation);
     }
 
     @DeleteMapping("/promotions/translations/{promotionTranslationIdentifier}")

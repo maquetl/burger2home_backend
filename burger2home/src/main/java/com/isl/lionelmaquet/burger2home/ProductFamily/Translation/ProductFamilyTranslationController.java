@@ -30,13 +30,13 @@ public class ProductFamilyTranslationController {
     }
 
     @PostMapping("/products/families/translations")
-    void createProductFamilyTranslation(@RequestBody ProductFamilyTranslation productFamilyTranslation){
-        productFamilyTranslationService.createProductFamilyTranslation(productFamilyTranslation);
+    ProductFamilyTranslation createProductFamilyTranslation(@RequestBody ProductFamilyTranslation productFamilyTranslation){
+        return productFamilyTranslationService.createProductFamilyTranslation(productFamilyTranslation);
     }
 
     @PutMapping("/products/families/translations")
-    void modifyProductFamilyTranslation(@RequestBody ProductFamilyTranslation productFamilyTranslation){
-        productFamilyTranslationService.modifyProductFamilyTranslation(productFamilyTranslation);
+    ProductFamilyTranslation modifyProductFamilyTranslation(@RequestBody ProductFamilyTranslation productFamilyTranslation){
+        return productFamilyTranslationService.modifyProductFamilyTranslation(productFamilyTranslation);
     }
 
     @DeleteMapping("/products/families/translations/{productFamilyTranslationIdentifier}")

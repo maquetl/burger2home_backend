@@ -35,8 +35,8 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public void createAddress(Address address) {
-        addressRepository.save(address);
+    public Address createAddress(Address address) {
+        return addressRepository.save(address);
     }
 
     @Override
@@ -45,8 +45,8 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public void modifyAddress(Address address) {
-        addressRepository.save(address);
+    public Address modifyAddress(Address address) {
+        return addressRepository.save(address);
     }
 
 }

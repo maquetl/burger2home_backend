@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Promotion;
 
 import com.isl.lionelmaquet.burger2home.Product.Product;
+import com.isl.lionelmaquet.burger2home.Promotion.Translation.PromotionTranslation;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,9 @@ public interface PromotionService {
 
     Optional<Promotion> getSinglePromotion(Integer promotionIdentifier);
 
-    void createSinglePromotion(Promotion promotion);
+    Promotion createSinglePromotion(Promotion promotion);
 
-    void modifySinglePromotion(Promotion promotion);
+    Promotion modifySinglePromotion(Promotion promotion);
 
     void deleteSinglePromotion(Integer promotionIdentifier);
 }

@@ -12,7 +12,7 @@ public interface OrderLineService {
 
     OrderLine createOrderLine(OrderLine orderLine);
 
-    void modifyOrderLine(OrderLine orderLine);
+    OrderLine modifyOrderLine(OrderLine orderLine);
 
     void deleteOrderLine(Integer orderLineIdentifier);
 }

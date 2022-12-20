@@ -29,13 +29,13 @@ public class ProductFamilyServiceImpl implements ProductFamilyService {
     }
 
     @Override
-    public void createProductFamily(ProductFamily productFamily) {
-        productFamilyRepository.save(productFamily);
+    public ProductFamily createProductFamily(ProductFamily productFamily) {
+        return productFamilyRepository.save(productFamily);
     }
 
     @Override
-    public void modifyProductFamily(ProductFamily productFamily) {
-        productFamilyRepository.save(productFamily);
+    public ProductFamily modifyProductFamily(ProductFamily productFamily) {
+        return productFamilyRepository.save(productFamily);
     }
 
     @Override

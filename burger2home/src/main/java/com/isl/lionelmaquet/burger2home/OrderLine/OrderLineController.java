@@ -28,13 +28,13 @@ public class OrderLineController {
     }
 
     @PostMapping("/orderLines")
-    void createOrderLine(@RequestBody OrderLine orderLine){
-        orderLineService.createOrderLine(orderLine);
+    OrderLine createOrderLine(@RequestBody OrderLine orderLine){
+        return orderLineService.createOrderLine(orderLine);
     }
 
     @PutMapping("/orderLines")
-    void modifyOrderLine(@RequestBody OrderLine orderLine){
-        orderLineService.modifyOrderLine(orderLine);
+    OrderLine modifyOrderLine(@RequestBody OrderLine orderLine){
+        return orderLineService.modifyOrderLine(orderLine);
     }
 
     @DeleteMapping("/orderLines/{orderLineIdentifier}")

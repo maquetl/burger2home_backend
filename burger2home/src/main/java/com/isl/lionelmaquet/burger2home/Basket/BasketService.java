@@ -10,9 +10,9 @@ public interface BasketService {
 
     Optional<Basket> getBasketByUser(Integer userIdentifier);
 
-    void createBasket(Basket basket);
+    Basket createBasket(Basket basket);
 
-    void modifyBasket(Basket basket);
+    Basket modifyBasket(Basket basket);
 
     void deleteBasket(Integer basketIdentifier);
 }

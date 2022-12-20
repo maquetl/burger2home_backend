@@ -8,9 +8,9 @@ public interface CreditCardService {
 
     List<CreditCard> getCreditCardsByUser(Integer userIdentifier);
 
-    void createCreditCard(CreditCard creditCard);
+    CreditCard createCreditCard(CreditCard creditCard);
 
-    void modifyCreditCard(CreditCard creditCard);
+    CreditCard modifyCreditCard(CreditCard creditCard);
 
     void deleteCreditCard(Integer creditCardIdentifier);
 

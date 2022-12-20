@@ -18,7 +18,7 @@ public interface OrderService {
 
     Order createOrder(Integer basketIdentifier, Integer addressIdentifier) throws StripeException;
 
-    void modifyOrder(Order order);
+    Order modifyOrder(Order order);
 
     void deleteOrder(Integer orderIdentifier);
 

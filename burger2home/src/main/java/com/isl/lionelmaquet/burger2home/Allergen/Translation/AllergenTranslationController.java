@@ -31,13 +31,13 @@ public class AllergenTranslationController {
     }
 
     @PostMapping("/allergens/translations")
-    void createAllergenTranslation(@RequestBody AllergenTranslation allergenTranslation){
-        allergenTranslationService.createAllergenTranslation(allergenTranslation);
+    AllergenTranslation createAllergenTranslation(@RequestBody AllergenTranslation allergenTranslation){
+        return allergenTranslationService.createAllergenTranslation(allergenTranslation);
     }
 
     @PutMapping("/allergens/translations")
-    void modifyAllergenTranslation(@RequestBody AllergenTranslation allergenTranslation){
-        allergenTranslationService.modifyAllergenTranslation(allergenTranslation);
+    AllergenTranslation modifyAllergenTranslation(@RequestBody AllergenTranslation allergenTranslation){
+        return allergenTranslationService.modifyAllergenTranslation(allergenTranslation);
     }
 
     @DeleteMapping("/allergens/translations/{allergenTranslationIdentifier}")

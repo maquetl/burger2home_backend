@@ -12,9 +12,9 @@ public interface IngredientService {
 
     List<Ingredient> getIngredientsByProduct(Integer productIdentifier);
 
-    void createIngredient(Ingredient ingredient);
+    Ingredient createIngredient(Ingredient ingredient);
 
-    void modifyIngredient(Ingredient ingredient);
+    Ingredient modifyIngredient(Ingredient ingredient);
 
     void deleteIngredient(Integer ingredientIdentifier);
 }

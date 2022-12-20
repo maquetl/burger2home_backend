@@ -10,9 +10,9 @@ public interface BasketLineService {
 
     List<BasketLine> getBasketLinesByBasket(Integer basketIdentifier);
 
-    void createBasketLine(BasketLine basketLine);
+    BasketLine createBasketLine(BasketLine basketLine);
 
-    void modifyBasketLine(BasketLine basketLine);
+    BasketLine modifyBasketLine(BasketLine basketLine);
 
     void deleteBasketLine(Integer basketLineIdentifier);
 }

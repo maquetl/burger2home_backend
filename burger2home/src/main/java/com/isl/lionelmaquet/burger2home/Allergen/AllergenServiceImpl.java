@@ -28,8 +28,8 @@ public class AllergenServiceImpl implements AllergenService {
     }
 
     @Override
-    public void createAllergen(Allergen allergen) {
-        allergenRepository.save(allergen);
+    public Allergen createAllergen(Allergen allergen) {
+        return allergenRepository.save(allergen);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class AllergenServiceImpl implements AllergenService {
     }
 
     @Override
-    public void modifyAllergen(Allergen allergen) {
-        allergenRepository.save(allergen);
+    public Allergen modifyAllergen(Allergen allergen) {
+        return allergenRepository.save(allergen);
     }
 }

@@ -28,13 +28,13 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients")
-    void createIngredient(@RequestBody Ingredient ingredient){
-        ingredientService.createIngredient(ingredient);
+    Ingredient createIngredient(@RequestBody Ingredient ingredient){
+        return ingredientService.createIngredient(ingredient);
     }
 
     @PutMapping("/ingredients")
-    void modifyIngredient(@RequestBody Ingredient ingredient){
-        ingredientService.modifyIngredient(ingredient);
+    Ingredient modifyIngredient(@RequestBody Ingredient ingredient){
+        return ingredientService.modifyIngredient(ingredient);
     }
 
     @DeleteMapping("/ingredients/{ingredientIdentifier}")

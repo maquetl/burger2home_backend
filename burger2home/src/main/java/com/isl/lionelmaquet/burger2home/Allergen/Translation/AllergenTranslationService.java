@@ -10,9 +10,9 @@ public interface AllergenTranslationService {
 
     List<AllergenTranslation> getAllergenTranslationByAllergen(Integer allergenIdentifier);
 
-    void createAllergenTranslation(AllergenTranslation allergenTranslation);
+    AllergenTranslation createAllergenTranslation(AllergenTranslation allergenTranslation);
 
-    void modifyAllergenTranslation(AllergenTranslation allergenTranslation);
+    AllergenTranslation modifyAllergenTranslation(AllergenTranslation allergenTranslation);
 
     void deleteAllergenTranslation(Integer allergenTranslationIdentifier);
 }

@@ -23,13 +23,13 @@ public class LanguageController {
     }
 
     @PostMapping("/languages")
-    void createLanguage(@RequestBody Language language){
-        languageService.createLanguage(language);
+    Language createLanguage(@RequestBody Language language){
+        return languageService.createLanguage(language);
     }
 
     @PutMapping("/languages")
-    void modifyLanguage(@RequestBody Language language){
-        languageService.modifyLanguage(language);
+    Language modifyLanguage(@RequestBody Language language){
+        return languageService.modifyLanguage(language);
     }
 
     @DeleteMapping("/languages/{languageIdentifier}")

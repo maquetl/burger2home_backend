@@ -13,9 +13,9 @@ public interface AddressService {
 
     List<Address> getAddressesByUser(Integer userIdentifier);
 
-    void createAddress(Address address);
+    Address createAddress(Address address);
 
     void deleteAddressById(Integer addressIdentifier);
 
-    void modifyAddress(Address address);
+    Address modifyAddress(Address address);
 }

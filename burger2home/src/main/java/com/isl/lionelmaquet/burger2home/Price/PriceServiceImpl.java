@@ -88,11 +88,6 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public void createPrice(Price price) {
-        priceRepository.save(price);
-    }
-
-    @Override
     public Float getCurrentPriceAfterDiscountByProductId(Integer productId) {
         Optional<Price> price = getCurrentPriceByProductId(productId);
         Optional<Promotion> promo = promotionService.getCurrentPromotion(productId);

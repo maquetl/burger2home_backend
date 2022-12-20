@@ -37,8 +37,8 @@ public class ProductTranslationServiceImpl implements ProductTranslationService 
     }
 
     @Override
-    public void createProductTranslation(ProductTranslation productTranslation) {
-        productTranslationRepository.save(productTranslation);
+    public ProductTranslation createProductTranslation(ProductTranslation productTranslation) {
+        return productTranslationRepository.save(productTranslation);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class ProductTranslationServiceImpl implements ProductTranslationService 
     }
 
     @Override
-    public void modifyProductTranslation(ProductTranslation productTranslation) {
-        productTranslationRepository.save(productTranslation);
+    public ProductTranslation modifyProductTranslation(ProductTranslation productTranslation) {
+        return productTranslationRepository.save(productTranslation);
     }
 
 }

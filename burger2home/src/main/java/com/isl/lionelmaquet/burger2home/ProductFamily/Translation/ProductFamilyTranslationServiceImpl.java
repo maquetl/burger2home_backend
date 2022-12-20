@@ -28,13 +28,13 @@ public class ProductFamilyTranslationServiceImpl implements ProductFamilyTransla
     }
 
     @Override
-    public void createProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation) {
-        productFamilyTranslationRepository.save(productFamilyTranslation);
+    public ProductFamilyTranslation createProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation) {
+        return productFamilyTranslationRepository.save(productFamilyTranslation);
     }
 
     @Override
-    public void modifyProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation) {
-        productFamilyTranslationRepository.save(productFamilyTranslation);
+    public ProductFamilyTranslation modifyProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation) {
+        return productFamilyTranslationRepository.save(productFamilyTranslation);
     }
 
     @Override

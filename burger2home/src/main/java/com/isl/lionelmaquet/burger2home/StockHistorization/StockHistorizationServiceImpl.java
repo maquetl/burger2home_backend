@@ -29,13 +29,13 @@ public class StockHistorizationServiceImpl implements StockHistorizationService 
     }
 
     @Override
-    public void createStockHistorization(StockHistorization stockHistorization) {
-        stockHistorizationRepository.save(stockHistorization);
+    public StockHistorization createStockHistorization(StockHistorization stockHistorization) {
+        return stockHistorizationRepository.save(stockHistorization);
     }
 
     @Override
-    public void modifyStockHistorization(StockHistorization stockHistorization) {
-        stockHistorizationRepository.save(stockHistorization);
+    public StockHistorization modifyStockHistorization(StockHistorization stockHistorization) {
+        return stockHistorizationRepository.save(stockHistorization);
     }
 
     @Override

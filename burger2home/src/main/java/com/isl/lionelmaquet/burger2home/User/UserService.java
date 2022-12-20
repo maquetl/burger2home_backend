@@ -8,9 +8,9 @@ public interface UserService {
 
     Optional<User> getSingleUser(Integer userIdentifier);
 
-    void createUser(User user);
+    User createUser(User user);
 
-    void modifyUser(User user);
+    User modifyUser(User user);
 
     void deleteUser(Integer userIdentifier);
 

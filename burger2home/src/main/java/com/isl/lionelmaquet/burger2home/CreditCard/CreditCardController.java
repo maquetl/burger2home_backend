@@ -29,13 +29,13 @@ public class CreditCardController {
     }
 
     @PostMapping("/creditcards")
-    void createCreditCard(@RequestBody CreditCard creditCard){
-        creditCardService.createCreditCard(creditCard);
+    CreditCard createCreditCard(@RequestBody CreditCard creditCard){
+        return creditCardService.createCreditCard(creditCard);
     }
 
     @PutMapping("/creditcards")
-    void modifyCreditCard(@RequestBody CreditCard creditCard){
-        creditCardService.modifyCreditCard(creditCard);
+    CreditCard modifyCreditCard(@RequestBody CreditCard creditCard){
+        return creditCardService.modifyCreditCard(creditCard);
     }
 
     @DeleteMapping("/creditcards/{creditCardIdentifier}")

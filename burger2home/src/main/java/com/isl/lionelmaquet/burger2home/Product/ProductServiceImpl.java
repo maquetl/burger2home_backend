@@ -81,11 +81,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProduct(Product product) {
+    public Product createProduct(Product product) {
 
         productRepository.save(product);
 
         priceService.createDefaultCurrentPrice(product.getId());
+
+        return product;
     }
 
     @Override
@@ -94,8 +96,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void modifyProduct(Product product) {
-        productRepository.save(product);
+    public Product modifyProduct(Product product) {
+        return productRepository.save(product);
     }
 
     @Override

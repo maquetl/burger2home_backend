@@ -42,13 +42,13 @@ public class PromotionServiceImpl implements PromotionService {
     }
 
     @Override
-    public void createSinglePromotion(Promotion promotion) {
-        promotionRepository.save(promotion);
+    public Promotion createSinglePromotion(Promotion promotion) {
+        return promotionRepository.save(promotion);
     }
 
     @Override
-    public void modifySinglePromotion(Promotion promotion) {
-        promotionRepository.save(promotion);
+    public Promotion modifySinglePromotion(Promotion promotion) {
+        return promotionRepository.save(promotion);
     }
 
     @Override

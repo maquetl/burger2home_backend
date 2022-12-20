@@ -10,9 +10,9 @@ public interface ProductFamilyTranslationService {
 
     List<ProductFamilyTranslation> getProductFamilyTranslationsByProductFamily(Integer productFamilyIdentifier);
 
-    void createProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation);
+    ProductFamilyTranslation createProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation);
 
-    void modifyProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation);
+    ProductFamilyTranslation modifyProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation);
 
     void deleteSingleProductFamilyTranslation(Integer productFamilyTranslationIdentifier);
 }

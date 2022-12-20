@@ -28,13 +28,13 @@ public class CreditCardServiceImpl implements CreditCardService {
     }
 
     @Override
-    public void createCreditCard(CreditCard creditCard) {
-        creditCardRepository.save(creditCard);
+    public CreditCard createCreditCard(CreditCard creditCard) {
+        return creditCardRepository.save(creditCard);
     }
 
     @Override
-    public void modifyCreditCard(CreditCard creditCard) {
-        creditCardRepository.save(creditCard);
+    public CreditCard modifyCreditCard(CreditCard creditCard) {
+        return creditCardRepository.save(creditCard);
     }
 
     @Override

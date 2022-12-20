@@ -21,8 +21,8 @@ public class ProductTranslationController {
     }
 
     @PostMapping("/products/translations")
-    public void createProductTranslation(@RequestBody ProductTranslation productTranslation){
-        productTranslationService.createProductTranslation(productTranslation);
+    public ProductTranslation createProductTranslation(@RequestBody ProductTranslation productTranslation){
+        return productTranslationService.createProductTranslation(productTranslation);
     }
 
     @DeleteMapping("/products/translations/{translationId}")
@@ -31,8 +31,8 @@ public class ProductTranslationController {
     }
 
     @PutMapping("/products/translations")
-    public void modifyProductTranslation(@RequestBody ProductTranslation productTranslation){
-        productTranslationService.modifyProductTranslation(productTranslation);
+    public ProductTranslation modifyProductTranslation(@RequestBody ProductTranslation productTranslation){
+        return productTranslationService.modifyProductTranslation(productTranslation);
     }
 
 }

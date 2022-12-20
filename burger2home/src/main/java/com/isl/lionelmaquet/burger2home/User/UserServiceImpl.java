@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(User user) {
-        rep.save(user);
+    public User createUser(User user) {
+        return rep.save(user);
     }
 
     @Override
-    public void modifyUser(User user) {
-        rep.save(user);
+    public User modifyUser(User user) {
+        return rep.save(user);
     }
 
     @Override

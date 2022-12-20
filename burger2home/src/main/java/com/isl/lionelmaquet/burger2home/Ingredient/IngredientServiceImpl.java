@@ -28,13 +28,13 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public void createIngredient(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
+    public Ingredient createIngredient(Ingredient ingredient) {
+        return ingredientRepository.save(ingredient);
     }
 
     @Override
-    public void modifyIngredient(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
+    public Ingredient modifyIngredient(Ingredient ingredient) {
+        return ingredientRepository.save(ingredient);
     }
 
     @Override

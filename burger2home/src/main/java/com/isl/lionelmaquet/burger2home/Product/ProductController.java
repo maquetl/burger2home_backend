@@ -40,8 +40,8 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public void createNewProduct(@RequestBody Product product){
-        if(product.getId() == null) productService.createProduct(product);
+    public Product createNewProduct(@RequestBody Product product){
+        return productService.createProduct(product);
     }
 
     @DeleteMapping("/products/{productIdentifier}")
@@ -50,8 +50,8 @@ public class ProductController {
     }
 
     @PutMapping("/products")
-    public void modifyProduct(@RequestBody Product product){
-        productService.modifyProduct(product);
+    public Product modifyProduct(@RequestBody Product product){
+        return productService.modifyProduct(product);
     }
 
 }

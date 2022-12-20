@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface ProductTranslationService {
     Optional<ProductTranslation> getByProductAndLanguage(Integer productId, String languageAbbr);
     List<ProductTranslation> getByProduct(Integer productId);
-    void createProductTranslation(ProductTranslation productTranslation);
+    ProductTranslation createProductTranslation(ProductTranslation productTranslation);
     void deleteByProductId(Integer productId);
     void deleteById(Integer productTranslationId);
-    void modifyProductTranslation(ProductTranslation productTranslation);
+    ProductTranslation modifyProductTranslation(ProductTranslation productTranslation);
 }

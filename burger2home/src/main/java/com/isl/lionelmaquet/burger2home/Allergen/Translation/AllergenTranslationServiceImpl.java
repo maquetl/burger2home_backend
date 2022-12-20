@@ -29,13 +29,13 @@ public class AllergenTranslationServiceImpl implements AllergenTranslationServic
     }
 
     @Override
-    public void createAllergenTranslation(AllergenTranslation allergenTranslation) {
-        allergenTranslationRepository.save(allergenTranslation);
+    public AllergenTranslation createAllergenTranslation(AllergenTranslation allergenTranslation) {
+        return allergenTranslationRepository.save(allergenTranslation);
     }
 
     @Override
-    public void modifyAllergenTranslation(AllergenTranslation allergenTranslation) {
-        allergenTranslationRepository.save(allergenTranslation);
+    public AllergenTranslation modifyAllergenTranslation(AllergenTranslation allergenTranslation) {
+        return allergenTranslationRepository.save(allergenTranslation);
     }
 
     @Override

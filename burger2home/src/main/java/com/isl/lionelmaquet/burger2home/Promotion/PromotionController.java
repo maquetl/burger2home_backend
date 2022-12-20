@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Promotion;
 
+import com.isl.lionelmaquet.burger2home.Promotion.Translation.PromotionTranslation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +24,13 @@ public class PromotionController {
     }
 
     @PostMapping("/promotions")
-    void createSinglePromotion(@RequestBody Promotion promotion){
-        serv.createSinglePromotion(promotion);
+    Promotion createSinglePromotion(@RequestBody Promotion promotion){
+        return serv.createSinglePromotion(promotion);
     }
 
     @PutMapping("/promotions")
-    void modifySinglePromotion(@RequestBody Promotion promotion){
-        serv.modifySinglePromotion(promotion);
+    Promotion modifySinglePromotion(@RequestBody Promotion promotion){
+        return serv.modifySinglePromotion(promotion);
     }
 
     @DeleteMapping("/promotions/{promotionIdentifier}")

@@ -10,9 +10,9 @@ public interface StockHistorizationService {
 
     Optional<StockHistorization> getSingleStockHistorization(Integer stockHistorizationIdentifier);
 
-    void createStockHistorization(StockHistorization stockHistorization);
+    StockHistorization createStockHistorization(StockHistorization stockHistorization);
 
-    void modifyStockHistorization(StockHistorization stockHistorization);
+    StockHistorization modifyStockHistorization(StockHistorization stockHistorization);
 
     void deleteStockHistorization(Integer stockHistorizationIdentifier);
 

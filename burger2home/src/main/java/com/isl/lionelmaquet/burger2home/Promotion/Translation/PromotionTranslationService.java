@@ -10,9 +10,9 @@ public interface PromotionTranslationService {
 
     List<PromotionTranslation> getPromotionTranslationsByPromotion(Integer promotionIdentifier);
 
-    void createSinglePromotionTranslation(PromotionTranslation promotionTranslation);
+    PromotionTranslation createSinglePromotionTranslation(PromotionTranslation promotionTranslation);
 
-    void modifySinglePromotionTranslation(PromotionTranslation promotionTranslation);
+    PromotionTranslation modifySinglePromotionTranslation(PromotionTranslation promotionTranslation);
 
     void deleteSinglePromotionTranslation(Integer promotionTranslationIdentifier);
 }

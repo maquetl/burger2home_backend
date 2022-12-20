@@ -65,8 +65,8 @@ public class OrderController {
     }
 
     @PutMapping("/orders")
-    void modifySingleOrder(@RequestBody Order order){
-        orderService.modifyOrder(order);
+    Order modifySingleOrder(@RequestBody Order order){
+        return orderService.modifyOrder(order);
     }
 
     @DeleteMapping("/orders/{orderIdentifier}")

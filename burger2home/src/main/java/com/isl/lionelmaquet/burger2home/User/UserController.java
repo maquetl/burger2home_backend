@@ -32,13 +32,13 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    void createUser(@RequestBody User user){
-        serv.createUser(user);
+    User createUser(@RequestBody User user){
+        return serv.createUser(user);
     }
 
     @PutMapping("/users")
-    void modifyUser(@RequestBody User user){
-        serv.modifyUser(user);
+    User modifyUser(@RequestBody User user){
+        return serv.modifyUser(user);
     }
 
     @DeleteMapping("/users/{userIdentifier}")

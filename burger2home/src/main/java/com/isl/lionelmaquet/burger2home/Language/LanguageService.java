@@ -8,9 +8,9 @@ public interface LanguageService {
 
     Optional<Language> getSingleLanguage(Integer languageIdentifier);
 
-    void createLanguage(Language language);
+    Language createLanguage(Language language);
 
-    void modifyLanguage(Language language);
+    Language modifyLanguage(Language language);
 
     void deleteLanguage(Integer languageIdentifier);
 }
