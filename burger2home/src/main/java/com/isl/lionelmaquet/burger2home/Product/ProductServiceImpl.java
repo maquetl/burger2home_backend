@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -49,14 +50,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers) {
-        List<Product> products = getProductsByFamily(productFamilyIdentifiers);
+    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers, boolean onMenu) {
+        List<Product> products = getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly);
 
         List<ProductBO> productBOS = new ArrayList<>();
 
         for(Product product : products){
-            getProductBO(product, language, availableProductsOnly).ifPresent(pbo -> productBOS.add(pbo));
+            ProductBO pbo = getProductBO(product, language);
+            productBOS.add(pbo);
         }
+
         return productBOS;
     }
 
@@ -64,19 +67,17 @@ public class ProductServiceImpl implements ProductService {
     public Optional<ProductBO> getSingleProductBO(Integer productId, String language) {
         Optional<Product> product = productRepository.findById(productId);
         if (product.isPresent()){
-            return getProductBO(product.get(), language, false);
+            product.get().isAvailable = isAvailable(product.get());
+            return Optional.ofNullable(getProductBO(product.get(), language));
         }
         return Optional.empty();
     }
 
     @Override
     public Optional<Product> getSingleProduct(Integer productId) {
-        return productRepository.findById(productId);
-    }
-
-    @Override
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        Optional<Product> product = productRepository.findById(productId);
+        product.get().isAvailable = isAvailable(product.get());
+        return product;
     }
 
     @Override
@@ -98,26 +99,56 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByFamily(List<Integer> productFamilyIdentifiers) {
+    public List<Product> getProducts(List<Integer> productFamilyIdentifiers, boolean onMenu, boolean mustBeAvailable) {
+        Predicate<ProductFamily> isFromOneOfFamilies = new Predicate<ProductFamily>() {
+            @Override
+            public boolean test(ProductFamily productFamily) {
+                return productFamilyIdentifiers.stream().anyMatch(pfi -> productFamily.getId() == pfi);
+            }
+        };
+
+        Predicate<Product> hasOneOfFamilies = new Predicate<Product>() {
+            @Override
+            public boolean test(Product product) {
+                return product.getProductFamilies().stream().anyMatch(isFromOneOfFamilies);
+            }
+        };
+
+        // Set the calculated available property on all products.
         List<Product> products = productRepository.findAll();
-        if (productFamilyIdentifiers.size() == 0 || productFamilyIdentifiers == null) return products;
-        return products.stream().filter(p -> p.getProductFamilies().stream().anyMatch(pf -> productFamilyIdentifiers.stream().anyMatch(pfi -> pf.getId() == pfi))).toList();
+        for (Product p : products){
+            p.isAvailable = isAvailable(p);
+        }
+
+        if (mustBeAvailable){
+            products = products.stream().filter(p -> {
+                return p.isAvailable;
+            }).toList();
+        }
+
+        if (productFamilyIdentifiers !=  null && productFamilyIdentifiers.size() > 0){
+            products = products.stream().filter(hasOneOfFamilies).toList();
+        }
+
+        if (onMenu){
+            products = products.stream().filter(p -> {
+                return p.getOnMenu() == true;
+            }).toList();
+        }
+
+        return products;
     }
 
-    // This method returns an empty optional if the boolean mustBeAvailable is set to true and the product is not available
-    private Optional<ProductBO> getProductBO(Product p, String languageAbbr, Boolean mustBeAvailable){
+
+
+    private ProductBO getProductBO(Product p, String languageAbbr){
         ProductBO pbo = new ProductBO();
 
-        // STEP 1 : Get its status based on the stocks of its ingredients
-        Boolean isAvailable = isAvailable(p);
-        if (!isAvailable && mustBeAvailable) {
-            return Optional.empty();
-        }
-        pbo.setAvailable(isAvailable);
-
-        // STEP 2 : Get basic id and image url
+        // STEP 2 : map attributes
         pbo.setId(p.getId());
         pbo.setImageUrl(p.getImageUrl());
+        pbo.setOnMenu(p.getOnMenu());
+        pbo.setAvailable(p.isAvailable);
 
         // STEP 3 : Get its name and description based on the language
         Optional<ProductTranslation> productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), languageAbbr);
@@ -164,7 +195,7 @@ public class ProductServiceImpl implements ProductService {
             pbo.getProductFamilies().add(pf.getId());
         }
 
-        return Optional.of(pbo);
+        return pbo;
     }
 
 

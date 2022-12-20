@@ -10,6 +10,4 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    @Query("SELECT p FROM Product p WHERE :productFamilies MEMBER OF p.productFamilies")
-    List<Product> findByProductFamilies(List<ProductFamily> productFamilies);
 }

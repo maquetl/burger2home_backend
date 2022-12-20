@@ -15,9 +15,10 @@ public class ProductController {
     @GetMapping("/products/summaries")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
                                  @RequestParam(defaultValue = "false") Boolean availableProductsOnly,
-                                 @RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers
+                                 @RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers,
+                                 @RequestParam(defaultValue = "false", name ="mustBeOnMenu") boolean onMenu
                                  ){
-        return productService.getAllProductBOs(language, availableProductsOnly, productFamilyIdentifiers);
+        return productService.getAllProductBOs(language, availableProductsOnly, productFamilyIdentifiers, onMenu);
     }
 
     @GetMapping("/products/summaries/{productIdentifier}")
@@ -31,14 +32,11 @@ public class ProductController {
         return productService.getSingleProduct(productIdentifier);
     }
 
-//    @GetMapping("/products/families/products")
-//    public List<Product> getProductsByFamily(@RequestParam(name = "productFamily") List<Integer> productFamilyIdentifiers){
-//        return productService.getProductsByFamily(productFamilyIdentifiers);
-//    }
-
     @GetMapping("/products")
-    public List<Product> getAllProducts(@RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers){
-        return productService.getProductsByFamily(productFamilyIdentifiers);
+    public List<Product> getProducts(@RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers,
+                                        @RequestParam(defaultValue = "false", name ="mustBeOnMenu") boolean onMenu,
+                                     @RequestParam(defaultValue = "false") Boolean availableProductsOnly){
+        return productService.getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly);
     }
 
     @PostMapping("/products")
@@ -55,11 +53,5 @@ public class ProductController {
     public void modifyProduct(@RequestBody Product product){
         productService.modifyProduct(product);
     }
-
-
-
-
-
-
 
 }

@@ -18,6 +18,7 @@ public class ProductBO {
     private Float actualPrice;
     private String imageUrl;
     private Boolean isAvailable;
+    private Boolean isOnMenu;
     private List<String> ingredients = new ArrayList<>();
     private List<String> allergens = new ArrayList<>();
     private List<Integer> productFamilies = new ArrayList<>();
@@ -111,5 +112,13 @@ public class ProductBO {
 
     public void setAllergens(List<String> allergens) {
         this.allergens = allergens;
+    }
+
+    public Boolean getOnMenu() {
+        return isOnMenu;
+    }
+
+    public void setOnMenu(Boolean onMenu) {
+        isOnMenu = onMenu;
     }
 }

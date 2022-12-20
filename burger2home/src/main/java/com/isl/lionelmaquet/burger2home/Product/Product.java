@@ -38,6 +38,20 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "product_family_id", referencedColumnName = "id"))
     private Set<ProductFamily> productFamilies = new LinkedHashSet<>();
 
+    @Column(name = "on_menu", nullable = false)
+    private Boolean onMenu = true;
+
+    @Transient
+    public Boolean isAvailable;
+
+    public Boolean getOnMenu() {
+        return onMenu;
+    }
+
+    public void setOnMenu(Boolean onMenu) {
+        this.onMenu = onMenu;
+    }
+
     public Set<ProductFamily> getProductFamilies() {
         return productFamilies;
     }
