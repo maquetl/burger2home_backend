@@ -909,7 +909,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"userId\" : 1\r\n}",
+							"raw": "{\r\n    \"paymentMethodIdentifier\" : \"pm_1MGi5kINHgxPirwOH1OdN2qt\" ,\r\n    \"userId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -935,7 +935,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"holderName\" : \"Jacques Maquet\",\r\n    \"number\" : \"1234123412341234\",\r\n    \"validityDate\" : \"2022-02-02\",\r\n    \"userId\" : 1\r\n}",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"last4\": \"4242\",\r\n        \"expMonth\": \"12\",\r\n        \"expYear\": \"2024\",\r\n        \"brand\": \"visa\",\r\n        \"paymentMethodId\": \"pm_1MGi5kINHgxPirwOH1OdN2qt\",\r\n        \"userId\": 1\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
