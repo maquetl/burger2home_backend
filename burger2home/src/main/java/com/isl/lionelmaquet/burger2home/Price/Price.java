@@ -7,6 +7,7 @@ import com.isl.lionelmaquet.burger2home.Product.Product;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "price")
@@ -19,20 +20,34 @@ public class Price {
     @Column(name = "amount", nullable = false)
     private Float amount;
 
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private Instant creationDate;
-
-    @Column(name = "end_date")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private Instant endDate;
-
-    @Column(name = "start_date")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private Instant startDate;
+    private Instant creationDate = Instant.now();
 
     @Column(name = "product_id")
     private Integer productId;
+
+    @Column(name = "end_date")
+    private LocalDate endDate = LocalDate.of(9999,12,31);
+
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate == null ? LocalDate.of(9999,12,31) : endDate;
+    }
 
     public Integer getId() {
         return id;
@@ -55,24 +70,10 @@ public class Price {
     }
 
     public void setCreationDate(Instant creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate= creationDate == null ? Instant.now() : creationDate;
     }
 
-    public Instant getEndDate() {
-        return endDate;
-    }
 
-    public void setEndDate(Instant endDate) {
-        this.endDate = endDate;
-    }
-
-    public Instant getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Instant startDate) {
-        this.startDate = startDate;
-    }
 
     public Integer getProductId() {
         return productId;

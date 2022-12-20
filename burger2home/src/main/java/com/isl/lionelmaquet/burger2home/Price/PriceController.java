@@ -27,19 +27,25 @@ public class PriceController {
         return priceService.getAllPricesByProduct(productIdentifier);
     }
 
-    @PostMapping("/prices")
-    void createPrice(@RequestBody Price price){
-        priceService.createPrice(price);
+    @GetMapping("/products/{productIdentifier}/prices/current")
+    Price getCurrentPrice(@PathVariable Integer productIdentifier){
+        return priceService.getCurrentPriceByProductId(productIdentifier).get();
     }
 
-    @PutMapping("/prices")
-    void modifyPrice(@RequestBody Price price){
-        priceService.modifyPrice(price);
+    @GetMapping("/products/{productIdentifier}/prices/next")
+    Optional<Price> getNextPrice(@PathVariable Integer productIdentifier){
+        return priceService.getNextPrice(productIdentifier);
     }
 
-    @DeleteMapping("/prices/{priceIdentifier}")
-    void deletePrice(@PathVariable Integer priceIdentifier){
-        priceService.deletePrice(priceIdentifier);
+    @PostMapping("/products/{productIdentifier}/prices/current")
+    Price setCurrentPrice(@PathVariable Integer productIdentifier, @RequestBody Price price){
+        price.setProductId(productIdentifier);
+        return priceService.setCurrentPrice(price);
     }
 
+    @PostMapping("/products/{productIdentifier}/prices/next")
+    Price setNextPrice(@PathVariable Integer productIdentifier, @RequestBody Price price){
+        price.setProductId(productIdentifier);
+        return priceService.setNextPrice(price);
+    }
 }

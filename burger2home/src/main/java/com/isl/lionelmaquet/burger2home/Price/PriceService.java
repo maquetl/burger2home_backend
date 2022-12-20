@@ -14,9 +14,15 @@ public interface PriceService {
 
     void createPrice(Price price);
 
-    void modifyPrice(Price price);
-
-    void deletePrice(Integer priceIdentifier);
-
     Float getCurrentPriceAfterDiscountByProductId(Integer productId);
+
+    Price setNextPrice(Price price);
+
+    Price setCurrentPrice(Price price);
+
+    Optional<Price> getNextPrice(Integer productId);
+
+    Price createDefaultCurrentPrice(Integer productId);
+
+
 }
