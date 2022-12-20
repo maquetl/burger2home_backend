@@ -62,9 +62,9 @@ CREATE TABLE `burger2home`.`product_translation` (
 CREATE TABLE `burger2home`.`price` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `amount` FLOAT NOT NULL,
-  `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_date` DATETIME NOT NULL DEFAULT "9999-12-31 23:59:59",
-  `start_date` DATETIME NOT NULL,
+  `creation_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+  `end_date` DATE DEFAULT "9999-12-31",
+  `start_date` DATE NOT NULL,
   `product_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_price_to_product`

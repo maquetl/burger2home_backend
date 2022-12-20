@@ -106,13 +106,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/addresses/1",
+							"raw": "{{base-url}}/addresses/:addressIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"addresses",
-								"1"
+								":addressIdentifier"
+							],
+							"variable": [
+								{
+									"key": "addressIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -124,14 +130,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1/addresses",
+							"raw": "{{base-url}}/users/:userIdentifier/addresses",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"1",
+								":userIdentifier",
 								"addresses"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -195,13 +207,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/addresses/2",
+							"raw": "{{base-url}}/addresses/:addressIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"addresses",
-								"2"
+								":addressIdentifier"
+							],
+							"variable": [
+								{
+									"key": "addressIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -235,14 +253,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/3/allergens",
+							"raw": "{{base-url}}/ingredients/:ingredientIdentifier/allergens",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
-								"3",
+								":ingredientIdentifier",
 								"allergens"
+							],
+							"variable": [
+								{
+									"key": "ingredientIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -254,13 +278,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/1",
+							"raw": "{{base-url}}/allergens/:allergenIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
-								"1"
+								":allergenIdentifier"
+							],
+							"variable": [
+								{
+									"key": "allergenIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -324,13 +354,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/4",
+							"raw": "{{base-url}}/allergens/:allergenIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
-								"4"
+								":allergenIdentifier"
+							],
+							"variable": [
+								{
+									"key": "allergenIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -371,14 +407,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/translations/1",
+							"raw": "{{base-url}}/allergens/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
 								"translations",
-								"1"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -390,13 +432,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/1/translations",
+							"raw": "{{base-url}}/allergens/:allergenIdentifier/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
-								"1",
+								":allergenIdentifier",
 								"translations"
 							],
 							"query": [
@@ -404,6 +446,12 @@
 									"key": "language",
 									"value": "FR",
 									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "allergenIdentifier",
+									"value": "1"
 								}
 							]
 						}
@@ -470,14 +518,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/allergens/translations/5",
+							"raw": "{{base-url}}/allergens/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"allergens",
 								"translations",
-								"5"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -511,13 +565,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/baskets/1",
+							"raw": "{{base-url}}/baskets/:basketIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"baskets",
-								"1"
+								":basketIdentifier"
+							],
+							"variable": [
+								{
+									"key": "basketIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -529,14 +589,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1/basket",
+							"raw": "{{base-url}}/users/:userIdentifier/basket",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"1",
+								":userIdentifier",
 								"basket"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -600,13 +666,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/baskets/2",
+							"raw": "{{base-url}}/baskets/:basketIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"baskets",
-								"2"
+								":basketIdentifier"
+							],
+							"variable": [
+								{
+									"key": "basketIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -640,13 +712,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/basketLines/1",
+							"raw": "{{base-url}}/basketLines/:basketLineIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"basketLines",
-								"1"
+								":basketLineIdentifier"
+							],
+							"variable": [
+								{
+									"key": "basketLineIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -658,14 +736,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/baskets/1/basketLines",
+							"raw": "{{base-url}}/baskets/:basketIdentifier/basketLines",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"baskets",
-								"1",
+								":basketIdentifier",
 								"basketLines"
+							],
+							"variable": [
+								{
+									"key": "basketIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -729,13 +813,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/basketLines/2",
+							"raw": "{{base-url}}/basketLines/:basketLineIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"basketLines",
-								"2"
+								":basketLineIdentifier"
+							],
+							"variable": [
+								{
+									"key": "basketLineIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -769,13 +859,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/creditcards/1",
+							"raw": "{{base-url}}/creditcards/:creditCardIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"creditcards",
-								"1"
+								":creditCardIdentifier"
+							],
+							"variable": [
+								{
+									"key": "creditCardIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -787,14 +883,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1/creditcards",
+							"raw": "{{base-url}}/users/:userIdentifier/creditcards",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"1",
+								":userIdentifier",
 								"creditcards"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -858,13 +960,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/creditcards/2",
+							"raw": "{{base-url}}/creditcards/:creditCardIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"creditcards",
-								"2"
+								":creditCardIdentifier"
+							],
+							"variable": [
+								{
+									"key": "creditCardIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -911,13 +1019,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/1",
+							"raw": "{{base-url}}/ingredients/:ingredientIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
-								"1"
+								":ingredientIdentifier"
+							],
+							"variable": [
+								{
+									"key": "ingredientIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -929,14 +1043,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/3/ingredients",
+							"raw": "{{base-url}}/products/:productIdentifier/ingredients",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
-								"3",
+								":productIdentifier",
 								"ingredients"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1000,13 +1120,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/4",
+							"raw": "{{base-url}}/ingredients/:ingredientIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
-								"4"
+								":ingredientIdentifier"
+							],
+							"variable": [
+								{
+									"key": "ingredientIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1048,13 +1174,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/1/translations",
+							"raw": "{{base-url}}/ingredients/:ingredientIdentifier/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
-								"1",
+								":ingredientIdentifier",
 								"translations"
 							],
 							"query": [
@@ -1062,6 +1188,12 @@
 									"key": "language",
 									"value": "EN",
 									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "ingredientIdentifier",
+									"value": "1"
 								}
 							]
 						}
@@ -1074,14 +1206,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/translations/1",
+							"raw": "{{base-url}}/ingredients/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
 								"translations",
-								"1"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1147,14 +1285,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/translations/7",
+							"raw": "{{base-url}}/ingredients/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
 								"translations",
-								"7"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1188,13 +1332,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/languages/1",
+							"raw": "{{base-url}}/languages/:languageIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"languages",
-								"1"
+								":languageIdentifier"
+							],
+							"variable": [
+								{
+									"key": "languageIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1258,13 +1408,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/languages/3",
+							"raw": "{{base-url}}/languages/:languageIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"languages",
-								"3"
+								":languageIdentifier"
+							],
+							"variable": [
+								{
+									"key": "languageIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1298,13 +1454,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/1",
+							"raw": "{{base-url}}/orders/:orderIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"orders",
-								"1"
+								":orderIdentifier"
+							],
+							"variable": [
+								{
+									"key": "orderIdentifier",
+									"value": null
+								}
 							]
 						}
 					},
@@ -1316,14 +1478,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1/orders",
+							"raw": "{{base-url}}/users/:userIdentifier/orders",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"1",
+								":userIdentifier",
 								"orders"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1395,7 +1563,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=23&paymentMethodIdentifier=pm_1MGi5kINHgxPirwOH1OdN2qt",
+							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=31&paymentMethodIdentifier=pm_1MGi5kINHgxPirwOH1OdN2qt",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1406,7 +1574,7 @@
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "23"
+									"value": "31"
 								},
 								{
 									"key": "paymentMethodIdentifier",
@@ -1423,7 +1591,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/confirm-delivery?orderIdentifier=3",
+							"raw": "{{base-url}}/orders/confirm-delivery?orderIdentifier=31",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1434,7 +1602,7 @@
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "3"
+									"value": "31"
 								}
 							]
 						}
@@ -1492,13 +1660,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/1",
+							"raw": "{{base-url}}/orders/:orderIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"orders",
-								"1"
+								":orderIdentifier"
+							],
+							"variable": [
+								{
+									"key": "orderIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1532,13 +1706,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orderLines/1",
+							"raw": "{{base-url}}/orderLines/:orderLineIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"orderLines",
-								"1"
+								":orderLineIdentifier"
+							],
+							"variable": [
+								{
+									"key": "orderLineIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1550,14 +1730,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/1/orderLines",
+							"raw": "{{base-url}}/orders/:orderIdentifier/orderLines",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"orders",
-								"1",
+								":orderIdentifier",
 								"orderLines"
+							],
+							"variable": [
+								{
+									"key": "orderIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1621,13 +1807,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orderLines/3",
+							"raw": "{{base-url}}/orderLines/:orderLineIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"orderLines",
-								"3"
+								":orderLineIdentifier"
+							],
+							"variable": [
+								{
+									"key": "orderLineIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1661,13 +1853,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/prices/1",
+							"raw": "{{base-url}}/prices/:priceIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"prices",
-								"1"
+								":priceIdentifier"
+							],
+							"variable": [
+								{
+									"key": "priceIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1679,27 +1877,85 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/1/prices",
+							"raw": "{{base-url}}/products/:productIdentifier/prices",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
-								"1",
+								":productIdentifier",
 								"prices"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "CREATE - Single Price",
+					"name": "Get current Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/:productIdentifier/prices/current",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								":productIdentifier",
+								"prices",
+								"current"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get next Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/:productIdentifier/prices/next",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								":productIdentifier",
+								"prices",
+								"next"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set current Price",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"amount\" : 9.80,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"productId\" : 1\r\n}",
+							"raw": "{\r\n    \"amount\" : 12\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1707,25 +1963,34 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/prices",
+							"raw": "{{base-url}}/products/:productIdentifier/prices/current",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"prices"
+								"products",
+								":productIdentifier",
+								"prices",
+								"current"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "4"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "MODIFY - Single Price",
+					"name": "Set next price",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 5,\r\n    \"amount\" : 10,\r\n    \"creationDate\" : \"2022-05-20 20:00:00\",\r\n    \"endDate\" : \"2022-12-25 01:00:00\",\r\n    \"startDate\" : \"2022-05-20 20:00:00\",\r\n    \"productId\" : 1\r\n}",
+							"raw": "{\r\n    \"amount\" : 15,\r\n    \"startDate\" : \"2024-01-01\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1733,30 +1998,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/prices",
+							"raw": "{{base-url}}/products/:productIdentifier/prices/next",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
-								"prices"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - Single price",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/prices/5",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
+								"products",
+								":productIdentifier",
 								"prices",
-								"5"
+								"next"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1773,7 +2029,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=false&productFamily=2&productFamily=1",
+							"raw": "{{base-url}}/products/summaries?productFamily=2&productFamily=1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1785,12 +2041,14 @@
 								{
 									"key": "language",
 									"value": "FR",
-									"description": "EN / FR"
+									"description": "EN / FR",
+									"disabled": true
 								},
 								{
 									"key": "availableProductsOnly",
 									"value": "false",
-									"description": "true / false"
+									"description": "true / false",
+									"disabled": true
 								},
 								{
 									"key": "productFamily",
@@ -1811,20 +2069,26 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/summaries/1?language=EN",
+							"raw": "{{base-url}}/products/summaries/:productIdentifier?language=EN",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
 								"summaries",
-								"1"
+								":productIdentifier"
 							],
 							"query": [
 								{
 									"key": "language",
 									"value": "EN",
 									"description": "EN / FR"
+								}
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
 								}
 							]
 						}
@@ -1873,13 +2137,19 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base-url}}/products/1",
+							"raw": "{{base-url}}/products/:productIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
-								"1"
+								":productIdentifier"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1943,13 +2213,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/4",
+							"raw": "{{base-url}}/products/:productIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
-								"4"
+								":productIdentifier"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": null
+								}
 							]
 						}
 					},
@@ -1966,13 +2242,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/1/translations",
+							"raw": "{{base-url}}/products/:productIdentifier/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
-								"1",
+								":productIdentifier",
 								"translations"
 							],
 							"query": [
@@ -1980,6 +2256,12 @@
 									"key": "language",
 									"value": "FR",
 									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
 								}
 							]
 						}
@@ -2046,14 +2328,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/translations/7",
+							"raw": "{{base-url}}/products/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
 								"translations",
-								"7"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2088,14 +2376,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/families/1",
+							"raw": "{{base-url}}/products/families/:familyIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
 								"families",
-								"1"
+								":familyIdentifier"
+							],
+							"variable": [
+								{
+									"key": "familyIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2107,14 +2401,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/1/families",
+							"raw": "{{base-url}}/products/:productIdentifier/families",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
-								"1",
+								":productIdentifier",
 								"families"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2180,14 +2480,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/families/3",
+							"raw": "{{base-url}}/products/families/:familyIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
 								"families",
-								"3"
+								":familyIdentifier"
+							],
+							"variable": [
+								{
+									"key": "familyIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2230,7 +2536,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/families/translations/1",
+							"raw": "{{base-url}}/products/families/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
@@ -2238,7 +2544,13 @@
 								"products",
 								"families",
 								"translations",
-								"1"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2250,14 +2562,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/families/1/translations",
+							"raw": "{{base-url}}/products/families/:familyIdentifier/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"products",
 								"families",
-								"1",
+								":familyIdentifier",
 								"translations"
 							],
 							"query": [
@@ -2265,6 +2577,12 @@
 									"key": "language",
 									"value": "FR",
 									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "familyIdentifier",
+									"value": "1"
 								}
 							]
 						}
@@ -2333,7 +2651,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/families/translations/5",
+							"raw": "{{base-url}}/products/families/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
@@ -2341,7 +2659,13 @@
 								"products",
 								"families",
 								"translations",
-								"5"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2375,13 +2699,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/promotions/1",
+							"raw": "{{base-url}}/promotions/:promotionIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"promotions",
-								"1"
+								":promotionIdentifier"
+							],
+							"variable": [
+								{
+									"key": "promotionIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2445,13 +2775,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/promotions/2",
+							"raw": "{{base-url}}/promotions/:promotionIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"promotions",
-								"2"
+								":promotionIdentifier"
+							],
+							"variable": [
+								{
+									"key": "promotionIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2493,14 +2829,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/promotions/translations/1",
+							"raw": "{{base-url}}/promotions/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"promotions",
 								"translations",
-								"1"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2512,13 +2854,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/promotions/1/translations",
+							"raw": "{{base-url}}/promotions/:promotionIdentifier/translations",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"promotions",
-								"1",
+								":promotionIdentifier",
 								"translations"
 							],
 							"query": [
@@ -2526,6 +2868,12 @@
 									"key": "language",
 									"value": "FR",
 									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "promotionIdentifier",
+									"value": "1"
 								}
 							]
 						}
@@ -2592,14 +2940,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/promotions/translations/3",
+							"raw": "{{base-url}}/promotions/translations/:translationIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"promotions",
 								"translations",
-								"3"
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2633,13 +2987,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/roles/1",
+							"raw": "{{base-url}}/roles/:roleIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"roles",
-								"1"
+								":roleIdentifier"
+							],
+							"variable": [
+								{
+									"key": "roleIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2651,14 +3011,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1/role",
+							"raw": "{{base-url}}/users/:userIdentifier/role",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"1",
+								":userIdentifier",
 								"role"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2722,13 +3088,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/roles/4",
+							"raw": "{{base-url}}/roles/:roleIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"roles",
-								"4"
+								":roleIdentifier"
+							],
+							"variable": [
+								{
+									"key": "roleIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2762,13 +3134,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/stocks/1",
+							"raw": "{{base-url}}/stocks/:stockIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"stocks",
-								"1"
+								":stockIdentifier"
+							],
+							"variable": [
+								{
+									"key": "stockIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2780,14 +3158,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/ingredients/1/stocks",
+							"raw": "{{base-url}}/ingredients/:ingredientIdentifier/stocks",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"ingredients",
-								"1",
+								":ingredientIdentifier",
 								"stocks"
+							],
+							"variable": [
+								{
+									"key": "ingredientIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2851,13 +3235,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/stocks/7",
+							"raw": "{{base-url}}/stocks/:stockIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"stocks",
-								"7"
+								":stockIdentifier"
+							],
+							"variable": [
+								{
+									"key": "stockIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2891,13 +3281,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/1",
+							"raw": "{{base-url}}/users/:userIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"1"
+								":userIdentifier"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2961,13 +3357,19 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/2",
+							"raw": "{{base-url}}/users/:userIdentifier",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"users",
-								"2"
+								":userIdentifier"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
 							]
 						}
 					},

@@ -20,8 +20,8 @@ VALUES
 
 INSERT IGNORE INTO `burger2home`.`price` (`id`, `amount`, `creation_date`, `end_date`,`start_date`, `product_id`)
 VALUES
-(1, "5.99", DEFAULT, CURRENT_DATE(), "2021-01-01 20:05:01", 1),
-(2, "6.99", DEFAULT, DEFAULT, CURRENT_DATE(), 1),
+(1, "5.99", DEFAULT, "2022-12-20", "2021-01-01", 1),
+(2, "6.99", DEFAULT, DEFAULT, "2022-12-20", 1),
 (3, "5.99", DEFAULT, DEFAULT, CURRENT_DATE(), 2),
 (4, "2.99", DEFAULT, DEFAULT, CURRENT_DATE(), 3);
     
@@ -135,4 +135,3 @@ INSERT IGNORE INTO `burger2home`.`order_line` (`id`, `order_id`, `product_id`, `
 VALUES
 (1, 1, 1, 1),
 (2, 1, 3, 1);
-
