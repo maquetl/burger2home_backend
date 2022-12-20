@@ -7,12 +7,15 @@ import com.isl.lionelmaquet.burger2home.Basket.Basket;
 import com.isl.lionelmaquet.burger2home.Basket.BasketService;
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLine;
 import com.isl.lionelmaquet.burger2home.BasketLine.BasketLineService;
+import com.isl.lionelmaquet.burger2home.CreditCard.CreditCard;
+import com.isl.lionelmaquet.burger2home.CreditCard.CreditCardService;
 import com.isl.lionelmaquet.burger2home.Keys.KEYS;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLineService;
 import com.isl.lionelmaquet.burger2home.Price.PriceService;
 import com.isl.lionelmaquet.burger2home.User.User;
 import com.isl.lionelmaquet.burger2home.User.UserService;
+import com.isl.lionelmaquet.burger2home.Utils.StripeUtils;
 import com.shippo.Shippo;
 import com.shippo.exception.APIConnectionException;
 import com.shippo.exception.APIException;
@@ -52,6 +55,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CreditCardService creditCardService;
 
     static {
         Stripe.apiKey = System.getenv(KEYS.STRIPE_SECRET_KEY.name());
@@ -101,21 +107,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderLines(new HashSet<>(createOrderLinesFromBasketLines(basket.getBasketLines().stream().toList(), order.getId())));
 
         // Get or create a stripe customer
-        User user = userService.getSingleUser(basket.getUserId()).get();
-        String currentUserEmail = user.getEmail();
-        Map<String, Object> options = new HashMap<>();
-        options.put("email", currentUserEmail);
-        List<Customer> customers = Customer.list(options).getData();
-
-        Customer customer;
-        if(customers.size() > 0){
-            customer = customers.get(0);
-        } else {
-            CustomerCreateParams params = CustomerCreateParams.builder()
-                    .setEmail(user.getEmail())
-                    .build();
-            customer = Customer.create(params);
-        }
+        Customer customer = StripeUtils.getCustomer(basket.getUserId(), userService);
 
         // Create the payment intent to Stripe
         Float totalPrice = getTotalPriceAfterDiscount(order.getOrderLines().stream().toList());
@@ -173,23 +165,23 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(orderIdentifier).get();
 
         // Retrieve the payment intent
-        String paymentIntentId = order.getPaymentIntent();
-        PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
+        PaymentIntent paymentIntent = PaymentIntent.retrieve(order.getPaymentIntent());
 
         // Attach the customer to the payment method
-        PaymentMethod paymentMethod = PaymentMethod.retrieve(paymentMethodIdentifier);
-        PaymentMethodAttachParams paymentMethodAttachParams = new PaymentMethodAttachParams.Builder().setCustomer(paymentIntent.getCustomer()).build();
-        paymentMethod.attach(paymentMethodAttachParams);
+        PaymentMethod paymentMethod = StripeUtils.attachPaymentMethodToCustomer(paymentMethodIdentifier, paymentIntent.getCustomer());
+
+        // Create the payment method in the db
+        creditCardService.CreateCreditCardFromStripeCard(order.getUserId(), paymentMethod);
 
         // Confirm the payment intent
-        Map<String, Object> paymentIntentConfirmParams = new HashMap<>();
-        paymentIntentConfirmParams.put("payment_method", paymentMethodIdentifier);
-        paymentIntent.confirm(paymentIntentConfirmParams);
+        paymentIntent = StripeUtils.confirmPaymentIntent(paymentIntent, paymentMethodIdentifier);
 
-
+        // Change the order status and return it
         order.setStatus(Order.Status.confirmed);
         return orderRepository.save(order);
     }
+
+
 
     @Override
     public Order shipOrder(Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException {

@@ -1,5 +1,8 @@
 package com.isl.lionelmaquet.burger2home.CreditCard;
 
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentMethod;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -8,11 +11,17 @@ public interface CreditCardService {
 
     List<CreditCard> getCreditCardsByUser(Integer userIdentifier);
 
-    CreditCard createCreditCard(CreditCard creditCard);
-
     CreditCard modifyCreditCard(CreditCard creditCard);
 
     void deleteCreditCard(Integer creditCardIdentifier);
 
     List<CreditCard> getAllCreditCards();
+
+    Optional<CreditCard> getCreditCardByPaymentMethod(String paymentMethodId);
+
+    CreditCard createCreditCard(String paymentMethodIdentifier, Integer userId) throws StripeException;
+
+    CreditCard createCreditCard(CreditCard creditCard);
+
+    CreditCard CreateCreditCardFromStripeCard(Integer userId, PaymentMethod paymentMethod);
 }

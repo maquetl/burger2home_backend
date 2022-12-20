@@ -9,22 +9,77 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "credit_card")
 public class CreditCard {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "holder_name", nullable = false, length = 45)
-    private String holderName;
+    @Column(name = "last4", length = 20)
+    private String last4;
 
-    @Column(name = "number", nullable = false, length = 20)
-    private String number;
+    @Column(name = "exp_month", length = 12)
+    private String expMonth;
 
-    @Column(name = "validity_date", nullable = false)
-    private LocalDate validityDate;
+    @Column(name = "exp_year", length = 4)
+    private String expYear;
+
+    @Column(name = "brand", length = 20)
+    private String brand;
+
+    @Column(name = "payment_method_id")
+    private String paymentMethodId;
 
     @Column(name = "user_id")
     private Integer userId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(String paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getExpYear() {
+        return expYear;
+    }
+
+    public void setExpYear(String expYear) {
+        this.expYear = expYear;
+    }
+
+    public String getExpMonth() {
+        return expMonth;
+    }
+
+    public void setExpMonth(String expMonth) {
+        this.expMonth = expMonth;
+    }
+
+    public String getLast4() {
+        return last4;
+    }
+
+    public void setLast4(String last4) {
+        this.last4 = last4;
+    }
 
     public Integer getId() {
         return id;
@@ -34,36 +89,5 @@ public class CreditCard {
         this.id = id;
     }
 
-    public String getHolderName() {
-        return holderName;
-    }
-
-    public void setHolderName(String holderName) {
-        this.holderName = holderName;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public LocalDate getValidityDate() {
-        return validityDate;
-    }
-
-    public void setValidityDate(LocalDate validityDate) {
-        this.validityDate = validityDate;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
 }

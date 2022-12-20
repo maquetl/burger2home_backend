@@ -123,9 +123,10 @@ INSERT IGNORE INTO `burger2home`.`basket_line` (`id`, `basket_id`, `product_id`,
 VALUES
 (1, 1, 1, 1);
 
-INSERT IGNORE INTO `burger2home`.`credit_card` (`id`, `holder_name`, `number`, `validity_date`, `user_id`)
+/*
+INSERT IGNORE INTO `burger2home`.`credit_card` (`id`, `last4`, `exp_month`, `exp_year`, `brand`, `payment_method_id`, `user_id`)
 VALUES
-(1, "Lionel Maquet", "1234123412341234", "2024-06-22", 1);
+(1, "Lionel Maquet", "1234123412341234", "2024-06-22", 1);*/
 
 INSERT IGNORE INTO `burger2home`.`order` (`id`, `user_id`, `credit_card_id`, `address_id`, `order_date`, `status`)
 VALUES

@@ -351,9 +351,11 @@ CREATE TABLE `burger2home`.`basket_line` (
 
 CREATE TABLE `burger2home`.`credit_card` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `holder_name` VARCHAR(45) NOT NULL,
-  `number` VARCHAR(20) NOT NULL,
-  `validity_date` DATE NOT NULL,
+  `last4` VARCHAR(20) NULL,
+  `exp_month` VARCHAR(12) NULL,
+  `exp_year` CHAR(4) NULL,
+  `brand` VARCHAR(20) NULL,
+  `payment_method_id` VARCHAR(255) NULL,
   `user_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_credit_card_to_user_idx` (`user_id` ASC) VISIBLE,
