@@ -20,11 +20,6 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public List<Address> getByUser(Integer userId) {
-        return null;
-    }
-
-    @Override
     public Optional<Address> getSingleAddress(Integer addressIdentifier) {
         return addressRepository.findById(addressIdentifier);
     }

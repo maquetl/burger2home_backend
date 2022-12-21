@@ -9,6 +9,7 @@ import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslationService;
 import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
 import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamilyService;
+import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
 import com.isl.lionelmaquet.burger2home.Promotion.PromotionService;
 import com.isl.lionelmaquet.burger2home.StockHistorization.StockHistorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 @Service
@@ -32,43 +34,32 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductFamilyService productFamilyService;
 
+    @Autowired
     PriceService priceService;
 
+    @Autowired
     PromotionService promotionService;
 
     @Autowired
     StockHistorizationService stockHistorizationService;
 
-    @Autowired
-    public void setPriceService(PriceService priceService){
-        this.priceService = priceService;
-    }
-
-    @Autowired
-    public void setPromotionService(PromotionService promotionService){
-        this.promotionService = promotionService;
-    }
-
     @Override
-    public List<ProductBO> getAllProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers, boolean onMenu) {
+    public List<ProductBO> getProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers, boolean onMenu) {
+        // Get a list of products matching the criterias
         List<Product> products = getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly);
 
-        List<ProductBO> productBOS = new ArrayList<>();
-
-        for(Product product : products){
-            ProductBO pbo = getProductBO(product, language);
-            productBOS.add(pbo);
-        }
-
-        return productBOS;
+        // for each of them, build a productBO
+        return products.stream().map(product -> buildProductBOFromProduct(product, language)).toList();
     }
 
     @Override
     public Optional<ProductBO> getSingleProductBO(Integer productId, String language) {
-        Optional<Product> product = productRepository.findById(productId);
+        // Get a single product
+        Optional<Product> product = getSingleProduct(productId);
+
+        // Build a product BO
         if (product.isPresent()){
-            product.get().isAvailable = isAvailable(product.get());
-            return Optional.ofNullable(getProductBO(product.get(), language));
+            return Optional.ofNullable(buildProductBOFromProduct(product.get(), language));
         }
         return Optional.empty();
     }
@@ -80,28 +71,11 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    @Override
-    public Product createProduct(Product product) {
-
-        productRepository.save(product);
-
-        priceService.createDefaultCurrentPrice(product.getId());
-
-        return product;
-    }
-
-    @Override
-    public void deleteProduct(Integer productId) {
-        productRepository.deleteById(productId);
-    }
-
-    @Override
-    public Product modifyProduct(Product product) {
-        return productRepository.save(product);
-    }
 
     @Override
     public List<Product> getProducts(List<Integer> productFamilyIdentifiers, boolean onMenu, boolean mustBeAvailable) {
+
+        // predicate to test that a family is contained in a list of families
         Predicate<ProductFamily> isFromOneOfFamilies = new Predicate<ProductFamily>() {
             @Override
             public boolean test(ProductFamily productFamily) {
@@ -109,6 +83,7 @@ public class ProductServiceImpl implements ProductService {
             }
         };
 
+        // predicate to test that a product has any family that match the predicate "isFromOneOfFamilies"
         Predicate<Product> hasOneOfFamilies = new Predicate<Product>() {
             @Override
             public boolean test(Product product) {
@@ -116,68 +91,58 @@ public class ProductServiceImpl implements ProductService {
             }
         };
 
-        // Set the calculated available property on all products.
+        // Get all products
         List<Product> products = productRepository.findAll();
-        for (Product p : products){
-            p.isAvailable = isAvailable(p);
-        }
 
-        if (mustBeAvailable){
-            products = products.stream().filter(p -> {
-                return p.isAvailable;
-            }).toList();
-        }
+        // Set the calculated available property on all products.
+        for (Product p : products) p.isAvailable = isAvailable(p);
 
+        // Filter products on the available criteria if required
+        if (mustBeAvailable) products = products.stream().filter(p -> p.isAvailable).toList();
+
+        // Filter products based on the productFamily condition
         if (productFamilyIdentifiers !=  null && productFamilyIdentifiers.size() > 0){
             products = products.stream().filter(hasOneOfFamilies).toList();
         }
 
-        if (onMenu){
-            products = products.stream().filter(p -> {
-                return p.getOnMenu() == true;
-            }).toList();
-        }
+        // Filter products based on the onMenu criteria
+        if (onMenu) products = products.stream().filter(p -> p.getOnMenu()).toList();
 
+        // Return the filtered list
         return products;
     }
 
-
-
-    private ProductBO getProductBO(Product p, String languageAbbr){
+    private ProductBO buildProductBOFromProduct(Product p, String languageAbbr){
         ProductBO pbo = new ProductBO();
 
-        // STEP 2 : map attributes
-        pbo.setId(p.getId());
-        pbo.setImageUrl(p.getImageUrl());
-        pbo.setOnMenu(p.getOnMenu());
-        pbo.setAvailable(p.isAvailable);
+        // map product attributes to pbo
+        mapProductAttributesToProductBO(p, pbo);
 
-        // STEP 3 : Get its name and description based on the language
-        Optional<ProductTranslation> productTranslation = productTranslationService.getByProductAndLanguage(p.getId(), languageAbbr);
-        productTranslation.ifPresent(pt -> {
-            pbo.setName(pt.getName());
-            pbo.setDescription(pt.getDescription());
-        });
+        // Set its name and description based on the language
+        productTranslationService.getByProductAndLanguage(p.getId(), languageAbbr).ifPresent(pt -> mapProductTranslationAttributesToProductBO(pt, pbo));
 
+        // Set its current price.
+        pbo.setCurrentPrice(getCurrentPrice(p.getId()));
 
-        // STEP 4 : Get its current price
-        Optional<Price> currentPrice = priceService.getCurrentPriceByProductId(p.getId());
-        Float currentPriceAmount = currentPrice.isPresent() ? currentPrice.get().getAmount() : null;
-        pbo.setCurrentPrice(currentPriceAmount);
+        // Set its current discount (if present)
+        Optional<Promotion> currentPromo = promotionService.getCurrentPromotion(p.getId());
+        if (currentPromo.isPresent()) pbo.setCurrentDiscount(currentPromo.get().getAmount());
 
-        // STEP 5 : Get its current discount (if present)
-        promotionService.getCurrentPromotion(p).ifPresentOrElse((promo) -> {
-            Float promoAmount = promo.getAmount();
-            pbo.setCurrentDiscount(promoAmount);
-            pbo.setActualPrice(currentPriceAmount - (currentPriceAmount * promoAmount / 100));
-        }, () -> {
-            pbo.setCurrentDiscount(0f);
-            pbo.setActualPrice(currentPriceAmount);
-        });
+        // Set its actual price
+        pbo.setActualPrice(getActualPrice(pbo));
+
+        // Set ingredients and allergens to PBO considering the required language
+        mapIngredientAndAllergensTranslationsToProductBO(p.getIngredients(), languageAbbr, pbo);
+
+        // Map product families to DTO
+        for (ProductFamily pf : p.getProductFamilies()) pbo.getProductFamilies().add(pf.getId());
 
 
-        // STEP 6 : Map ingredients & allergens to DTO (already present in entity)
-        for (Ingredient i : p.getIngredients()){
+        return pbo;
+    }
+
+    private void mapIngredientAndAllergensTranslationsToProductBO(Set<Ingredient> ingredients, String languageAbbr, ProductBO pbo) {
+        for (Ingredient i : ingredients){
             String ingredientName = i.getIngredientTranslations().stream().filter((it) -> it.getLanguage().getAbbreviation().equals(languageAbbr)).toList().get(0).getName();
             if(!pbo.getIngredients().contains(ingredientName)) {
                 pbo.getIngredients().add(ingredientName);
@@ -191,15 +156,31 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
         }
-
-        // STEP 7 : Map product families to DTO
-        for(ProductFamily pf : p.getProductFamilies()){
-            pbo.getProductFamilies().add(pf.getId());
-        }
-
-        return pbo;
     }
 
+    private Float getActualPrice(ProductBO pbo) {
+        if (pbo.getCurrentPrice() == null) return null;
+        if (pbo.getCurrentDiscount() == null) pbo.setActualPrice(pbo.getCurrentPrice());
+        return pbo.getCurrentPrice() - (pbo.getCurrentPrice() * pbo.getCurrentDiscount() / 100);
+    }
+
+    private Float getCurrentPrice(Integer productId){
+        Optional<Price> currentPrice = priceService.getCurrentPriceByProductId(productId);
+        Float currentPriceAmount = currentPrice.isPresent() ? currentPrice.get().getAmount() : null;
+        return currentPriceAmount;
+    }
+
+    private void mapProductTranslationAttributesToProductBO(ProductTranslation productTranslation, ProductBO pbo){
+        pbo.setName(productTranslation.getName());
+        pbo.setDescription(productTranslation.getDescription());
+    }
+
+    private void mapProductAttributesToProductBO(Product p, ProductBO pbo) {
+        pbo.setId(p.getId());
+        pbo.setImageUrl(p.getImageUrl());
+        pbo.setOnMenu(p.getOnMenu());
+        pbo.setAvailable(p.isAvailable);
+    }
 
     private Boolean isAvailable(Product product){
         for (Ingredient i : product.getIngredients()){
@@ -209,5 +190,22 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return true;
+    }
+
+    @Override
+    public Product modifyProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public void deleteProduct(Integer productId) {
+        productRepository.deleteById(productId);
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        productRepository.save(product);
+        priceService.createDefaultCurrentPrice(product.getId());
+        return product;
     }
 }

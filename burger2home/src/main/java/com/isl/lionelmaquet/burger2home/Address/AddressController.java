@@ -30,8 +30,9 @@ public class AddressController {
     }
 
     @GetMapping("/addresses/{addressIdentifier}")
-    Optional<Address> getSingleAddress(@PathVariable Integer addressIdentifier){
-        return addressService.getSingleAddress(addressIdentifier);
+    Address getSingleAddress(@PathVariable Integer addressIdentifier){
+        Optional<Address> address = addressService.getSingleAddress(addressIdentifier);
+        return address.isPresent() ? address.get() : null;
     }
 
     @GetMapping("/users/{userIdentifier}/addresses")

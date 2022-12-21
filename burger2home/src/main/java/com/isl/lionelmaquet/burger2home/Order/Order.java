@@ -109,7 +109,7 @@ public class Order {
 
 
     public enum Status {
-        waiting_for_payment, confirmed, delivered
+        waiting_for_payment, payment_confirmed, shipment_confirmed, shipment_in_progress, delivered
     }
 
 }

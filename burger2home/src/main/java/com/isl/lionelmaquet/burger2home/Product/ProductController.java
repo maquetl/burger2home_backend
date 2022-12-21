@@ -18,7 +18,7 @@ public class ProductController {
                                  @RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers,
                                  @RequestParam(defaultValue = "false", name ="mustBeOnMenu") boolean onMenu
                                  ){
-        return productService.getAllProductBOs(language, availableProductsOnly, productFamilyIdentifiers, onMenu);
+        return productService.getProductBOs(language, availableProductsOnly, productFamilyIdentifiers, onMenu);
     }
 
     @GetMapping("/products/summaries/{productIdentifier}")

@@ -374,7 +374,7 @@ CREATE TABLE `burger2home`.`order` (
   `credit_card_id` INT NULL,
   `address_id` INT NULL,
   `order_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` ENUM('waiting_for_payment', 'confirmed', 'delivered') NOT NULL,
+  `status` ENUM('waiting_for_payment', 'payment_confirmed', 'shipment_confirmed', 'shipment_in_progress', 'delivered') NOT NULL,
   `payment_intent` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_order_to_user_idx` (`user_id` ASC) VISIBLE,

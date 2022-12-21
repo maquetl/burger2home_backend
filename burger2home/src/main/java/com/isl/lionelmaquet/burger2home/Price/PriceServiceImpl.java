@@ -39,6 +39,19 @@ public class PriceServiceImpl implements PriceService {
         return priceRepository.findById(priceIdentifier);
     }
 
+    @Override
+    public Float getCurrentPriceAfterDiscountByProductId(Integer productId) {
+        Optional<Price> price = getCurrentPriceByProductId(productId);
+        Optional<Promotion> promo = promotionService.getCurrentPromotion(productId);
+
+        if (promo.isPresent()){
+            return price.get().getAmount() - (price.get().getAmount() * (promo.get().getAmount() / 100));
+        }
+
+        return price.get().getAmount();
+
+    }
+
     public Price setCurrentPrice(Price price){
         Price newOldPrice = priceRepository.findCurrentPriceByProductId(price.getProductId());
 
@@ -87,16 +100,4 @@ public class PriceServiceImpl implements PriceService {
         return priceRepository.findNextPrice(productId);
     }
 
-    @Override
-    public Float getCurrentPriceAfterDiscountByProductId(Integer productId) {
-        Optional<Price> price = getCurrentPriceByProductId(productId);
-        Optional<Promotion> promo = promotionService.getCurrentPromotion(productId);
-
-        if (promo.isPresent()){
-            return price.get().getAmount() - (price.get().getAmount() * (promo.get().getAmount() / 100));
-        }
-
-        return price.get().getAmount();
-
-    }
 }

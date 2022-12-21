@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public interface AddressService {
     List<Address> getAll();
-    List<Address> getByUser(Integer userId);
 
     Optional<Address> getSingleAddress(Integer addressIdentifier);
 

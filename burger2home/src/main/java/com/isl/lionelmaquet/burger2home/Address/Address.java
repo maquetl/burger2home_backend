@@ -34,24 +34,6 @@ public class Address {
     @Column(name = "user_id")
     private Integer userId;
 
-//    @Transient
-//    private Map<String,String> links;
-//
-//    @PostLoad
-//    private void fillLinks(){
-//        links = new HashMap<>(){{
-//            put("user", "users/" + getUserId());
-//        }};
-//    }
-//
-//    public Map<String, String> getLinks() {
-//        return links;
-//    }
-//
-//    public void setLinks(Map<String, String> links) {
-//        this.links = links;
-//    }
-
     public Integer getId() {
         return id;
     }

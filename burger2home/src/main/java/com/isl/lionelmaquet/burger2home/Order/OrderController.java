@@ -21,23 +21,14 @@ import java.util.Optional;
 @RestController
 public class OrderController {
 
-    private OrderService orderService;
-
     @Autowired
-    public void setOrderService(OrderService orderService){
-        this.orderService = orderService;
-    }
+    private OrderService orderService;
 
     @GetMapping("/orders")
     List<Order> getAllOrders(){
         return orderService.getAllOrders();
     }
 
-    /**
-     * Gets an order based on the id
-     * @param orderIdentifier {@link Integer} the order identifier to use
-     * @return {@link Optional}<{@link Order}>
-     */
     @GetMapping("/orders/{orderIdentifier}")
     Optional<Order> getSingleOrder(@PathVariable Integer orderIdentifier){
         return orderService.getSingleOrder(orderIdentifier);
@@ -47,7 +38,6 @@ public class OrderController {
     List<Order> getOrdersByUser(@PathVariable Integer userIdentifier){
         return orderService.getOrdersByUser(userIdentifier);
     }
-
 
     @GetMapping("/orders/create-order")
     Order createSingleOrder(@RequestParam Integer basketIdentifier, @RequestParam(required = false) Integer addressIdentifier) throws StripeException {
@@ -74,7 +64,7 @@ public class OrderController {
         orderService.deleteOrder(orderIdentifier);
     }
 
-
+    // Test method for dev purposes
     @GetMapping("/orders/stripe/create-payment-method")
     String createPaymentMethod() throws StripeException {
         Stripe.apiKey = System.getenv(KEYS.STRIPE_SECRET_KEY.name());
