@@ -1,8 +1,21 @@
 package com.isl.lionelmaquet.burger2home.Product;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +24,8 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    String pathToImageFolder = "/burger2home/uploads/";
 
     @GetMapping("/products/summaries")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
@@ -52,6 +67,52 @@ public class ProductController {
     @PutMapping("/products")
     public Product modifyProduct(@RequestBody Product product){
         return productService.modifyProduct(product);
+    }
+
+    @PostMapping("/products/{productIdentifier}/image")
+    public Product uploadImage(@PathVariable Integer productIdentifier, @RequestParam("image")MultipartFile image) throws IOException {
+        byte[] bytes = image.getBytes();
+        Files.createDirectories(Paths.get(pathToImageFolder));
+        String extension = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf(".") + 1);
+        String generatedImageName = RandomStringUtils.randomAlphanumeric(20) + "." + extension;
+
+        // Check that file with generated name doesn't already exist
+        while(new File(pathToImageFolder + generatedImageName).exists()){
+            generatedImageName = RandomStringUtils.randomAlphanumeric(20) + "." + extension;
+        }
+
+        Path path = Paths.get(pathToImageFolder + generatedImageName);
+        Files.write(path, bytes);
+
+        Product product = productService.getSingleProduct(productIdentifier).get();
+        product.setImageUrl(generatedImageName);
+        productService.modifyProduct(product);
+
+        return product;
+    }
+
+    @GetMapping("/products/{productIdentifier}/image")
+    public ResponseEntity<byte[]> getImage(@PathVariable Integer productIdentifier) throws IOException {
+
+        Product product = productService.getSingleProduct(productIdentifier).get();
+        Path path = Paths.get(pathToImageFolder + product.getImageUrl());
+        byte[] bytes = Files.readAllBytes(path);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        String extension = product.getImageUrl().substring(product.getImageUrl().lastIndexOf(".") + 1);
+        switch (extension){
+            case "png" :
+                headers.setContentType(MediaType.IMAGE_PNG);
+                break;
+            case "gif":
+                headers.setContentType(MediaType.IMAGE_GIF);
+                break;
+            default:
+                headers.setContentType(MediaType.IMAGE_JPEG);
+                break;
+        }
+        return ResponseEntity.ok().headers(headers).body(bytes);
     }
 
 }
