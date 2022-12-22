@@ -38,7 +38,7 @@ CREATE TABLE `burger2home`.`language` (
 
 CREATE TABLE `burger2home`.`product` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `image_url` VARCHAR(255) NULL,
+  `image_name` VARCHAR(255) NULL,
   `on_menu` BOOLEAN NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`id`));
   

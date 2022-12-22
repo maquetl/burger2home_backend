@@ -85,7 +85,7 @@ public class ProductController {
         Files.write(path, bytes);
 
         Product product = productService.getSingleProduct(productIdentifier).get();
-        product.setImageUrl(generatedImageName);
+        product.setImageName(generatedImageName);
         productService.modifyProduct(product);
 
         return product;
@@ -95,12 +95,18 @@ public class ProductController {
     public ResponseEntity<byte[]> getImage(@PathVariable Integer productIdentifier) throws IOException {
 
         Product product = productService.getSingleProduct(productIdentifier).get();
-        Path path = Paths.get(pathToImageFolder + product.getImageUrl());
+        if (product.getImageName() == null) return null;
+
+        Path path = Paths.get(pathToImageFolder + product.getImageName());
+
+        File file = new File(path.toString());
+        if(!file.exists()) return null;
+
         byte[] bytes = Files.readAllBytes(path);
 
         HttpHeaders headers = new HttpHeaders();
 
-        String extension = product.getImageUrl().substring(product.getImageUrl().lastIndexOf(".") + 1);
+        String extension = product.getImageName().substring(product.getImageName().lastIndexOf(".") + 1);
         switch (extension){
             case "png" :
                 headers.setContentType(MediaType.IMAGE_PNG);

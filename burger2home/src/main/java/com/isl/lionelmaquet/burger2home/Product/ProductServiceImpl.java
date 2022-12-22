@@ -160,7 +160,7 @@ public class ProductServiceImpl implements ProductService {
 
     private Float getActualPrice(ProductBO pbo) {
         if (pbo.getCurrentPrice() == null) return null;
-        if (pbo.getCurrentDiscount() == null) pbo.setActualPrice(pbo.getCurrentPrice());
+        if (pbo.getCurrentDiscount() == null) return pbo.getCurrentPrice();
         return pbo.getCurrentPrice() - (pbo.getCurrentPrice() * pbo.getCurrentDiscount() / 100);
     }
 
@@ -177,7 +177,7 @@ public class ProductServiceImpl implements ProductService {
 
     private void mapProductAttributesToProductBO(Product p, ProductBO pbo) {
         pbo.setId(p.getId());
-        pbo.setImageUrl(p.getImageUrl());
+        pbo.setImageUrl(p.getImageName());
         pbo.setOnMenu(p.getOnMenu());
         pbo.setAvailable(p.isAvailable);
     }
