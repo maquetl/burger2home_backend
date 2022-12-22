@@ -909,7 +909,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"paymentMethodIdentifier\" : \"pm_1MGi5kINHgxPirwOH1OdN2qt\" ,\r\n    \"userId\" : 1\r\n}",
+							"raw": "{\r\n    \"paymentMethodIdentifier\" : \"pm_1MHOzpINHgxPirwOm4xxJsUL\" ,\r\n    \"userId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1465,7 +1465,7 @@
 							"variable": [
 								{
 									"key": "orderIdentifier",
-									"value": null
+									"value": "2"
 								}
 							]
 						}
@@ -1535,7 +1535,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/orders/create-order?basketIdentifier=1&addressIdentifier=1",
+							"raw": "{{base-url}}/orders/create-order?basketIdentifier=1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1550,7 +1550,8 @@
 								},
 								{
 									"key": "addressIdentifier",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -1563,7 +1564,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=31&paymentMethodIdentifier=pm_1MGi5kINHgxPirwOH1OdN2qt",
+							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=2&paymentMethodIdentifier=pm_1MGi5kINHgxPirwOH1OdN2qt",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1574,7 +1575,7 @@
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "31"
+									"value": "2"
 								},
 								{
 									"key": "paymentMethodIdentifier",
@@ -1591,7 +1592,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/confirm-delivery?orderIdentifier=31",
+							"raw": "{{base-url}}/orders/confirm-delivery?orderIdentifier=2",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1602,7 +1603,7 @@
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "31"
+									"value": "2"
 								}
 							]
 						}
@@ -1635,7 +1636,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"userId\" : 1,\r\n    \"creditCardId\" : 1,\r\n    \"addressId\" : 1,\r\n    \"orderDate\" : \"2022-12-04 20:05:22\",\r\n    \"status\" : \"delivered\",\r\n    \"orderLines\" : [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"userId\": 1,\r\n    \"creditCardId\": null,\r\n    \"addressId\": 1,\r\n    \"orderDate\": null,\r\n    \"orderLines\": [\r\n        {\r\n            \"id\": 1,\r\n            \"orderId\": 2,\r\n            \"productId\": 1,\r\n            \"amount\": 1\r\n        }\r\n    ],\r\n    \"status\": \"waiting_for_payment\",\r\n    \"paymentIntent\": \"pi_3MHPM9INHgxPirwO11tkICtF\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2167,13 +2168,38 @@
 					"response": []
 				},
 				{
+					"name": "Get image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/products/:productIdentifier/image",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								":productIdentifier",
+								"image"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "CREATE - Single product",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": null,\r\n    \"imageUrl\": \"test nouveau produit\",\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
+							"raw": "{\r\n    \"id\": null,\r\n    \"imageName\": null,\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2193,13 +2219,49 @@
 					"response": []
 				},
 				{
+					"name": "Upload image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"description": "Une image à uploader à aller chercher dans votre filesystem.",
+									"type": "file",
+									"src": "/C:/Users/lione/Desktop/png-transparent-spider-man-heroes-download-with-transparent-background-free-thumbnail.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/products/:productIdentifier/image",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"products",
+								":productIdentifier",
+								"image"
+							],
+							"variable": [
+								{
+									"key": "productIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "MODIFY - Single product",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"imageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/1200px-Cheeseburger.jpg\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 1,\r\n            \"allergens\": []\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"allergens\": []\r\n        }\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"imageName\": \"test.jpg\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 1,\r\n            \"allergens\": []\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"allergens\": []\r\n        }\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
