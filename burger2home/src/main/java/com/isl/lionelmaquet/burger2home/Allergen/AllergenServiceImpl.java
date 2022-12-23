@@ -1,5 +1,9 @@
 package com.isl.lionelmaquet.burger2home.Allergen;
 
+import com.isl.lionelmaquet.burger2home.Allergen.Translation.AllergenTranslation;
+import com.isl.lionelmaquet.burger2home.Allergen.Translation.AllergenTranslationService;
+import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
+import com.isl.lionelmaquet.burger2home.Ingredient.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +15,12 @@ public class AllergenServiceImpl implements AllergenService {
 
     @Autowired
     AllergenRepository allergenRepository;
+
+    @Autowired
+    AllergenTranslationService allergenTranslationService;
+
+    @Autowired
+    IngredientService ingredientService;
 
     @Override
     public List<Allergen> getAllAllergens() {
@@ -34,6 +44,13 @@ public class AllergenServiceImpl implements AllergenService {
 
     @Override
     public void deleteAllergen(Integer allergenIdentifier) {
+        Allergen allergen = allergenRepository.findById(allergenIdentifier).get();
+        for (AllergenTranslation at : allergen.getAllergenTranslations()){
+            allergenTranslationService.deleteAllergenTranslation(at.getId());
+        }
+        for (Ingredient ingredient : allergen.getIngredients()){
+            ingredient.getAllergens().remove(allergen);
+        }
         allergenRepository.deleteById(allergenIdentifier);
     }
 
