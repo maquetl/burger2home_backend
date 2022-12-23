@@ -1,5 +1,6 @@
 package com.isl.lionelmaquet.burger2home.Product;
 
+import com.isl.lionelmaquet.burger2home.Utils.PathUtil;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,8 +25,6 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
-
-    String pathToImageFolder = "/burger2home/uploads/";
 
     @GetMapping("/products/summaries")
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
@@ -72,16 +71,16 @@ public class ProductController {
     @PostMapping("/products/{productIdentifier}/image")
     public Product uploadImage(@PathVariable Integer productIdentifier, @RequestParam("image")MultipartFile image) throws IOException {
         byte[] bytes = image.getBytes();
-        Files.createDirectories(Paths.get(pathToImageFolder));
+        Files.createDirectories(Paths.get(PathUtil.getImagesPath()));
         String extension = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf(".") + 1);
         String generatedImageName = RandomStringUtils.randomAlphanumeric(20) + "." + extension;
 
         // Check that file with generated name doesn't already exist
-        while(new File(pathToImageFolder + generatedImageName).exists()){
+        while(new File(PathUtil.getImagesPath() + generatedImageName).exists()){
             generatedImageName = RandomStringUtils.randomAlphanumeric(20) + "." + extension;
         }
 
-        Path path = Paths.get(pathToImageFolder + generatedImageName);
+        Path path = Paths.get(PathUtil.getImagesPath() + generatedImageName);
         Files.write(path, bytes);
 
         Product product = productService.getSingleProduct(productIdentifier).get();
@@ -97,7 +96,7 @@ public class ProductController {
         Product product = productService.getSingleProduct(productIdentifier).get();
         if (product.getImageName() == null) return null;
 
-        Path path = Paths.get(pathToImageFolder + product.getImageName());
+        Path path = Paths.get(PathUtil.getImagesPath() + product.getImageName());
 
         File file = new File(path.toString());
         if(!file.exists()) return null;
