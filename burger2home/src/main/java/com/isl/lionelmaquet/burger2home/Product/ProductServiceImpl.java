@@ -3,6 +3,7 @@ package com.isl.lionelmaquet.burger2home.Product;
 import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Allergen.Translation.AllergenTranslation;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
+import com.isl.lionelmaquet.burger2home.Ingredient.Translation.IngredientTranslation;
 import com.isl.lionelmaquet.burger2home.Price.Price;
 import com.isl.lionelmaquet.burger2home.Price.PriceService;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
@@ -143,8 +144,11 @@ public class ProductServiceImpl implements ProductService {
 
     private void mapIngredientAndAllergensTranslationsToProductBO(Set<Ingredient> ingredients, String languageAbbr, ProductBO pbo) {
         for (Ingredient i : ingredients){
-            String ingredientName = i.getIngredientTranslations().stream().filter((it) -> it.getLanguage().getAbbreviation().equals(languageAbbr)).toList().get(0).getName();
-            if(!pbo.getIngredients().contains(ingredientName)) {
+            String ingredientName = "";
+            List<IngredientTranslation> its = i.getIngredientTranslations().stream().filter((it) -> it.getLanguage().getAbbreviation().equals(languageAbbr)).toList();
+            if (its.size() > 0) ingredientName = its.get(0).getName();
+
+            if(!ingredientName.equals("") && !pbo.getIngredients().contains(ingredientName)) {
                 pbo.getIngredients().add(ingredientName);
             }
 
