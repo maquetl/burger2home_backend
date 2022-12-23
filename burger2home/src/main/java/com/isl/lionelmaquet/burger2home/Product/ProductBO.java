@@ -16,7 +16,7 @@ public class ProductBO {
     private Float currentPrice;
     private Float currentDiscount;
     private Float actualPrice;
-    private String imageUrl;
+    private String imageName;
     private Boolean isAvailable;
     private Boolean isOnMenu;
     private List<String> ingredients = new ArrayList<>();
@@ -42,12 +42,12 @@ public class ProductBO {
         this.id = id;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public String getDescription() {

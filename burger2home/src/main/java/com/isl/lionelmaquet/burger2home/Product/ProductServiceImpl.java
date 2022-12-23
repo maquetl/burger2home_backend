@@ -177,7 +177,7 @@ public class ProductServiceImpl implements ProductService {
 
     private void mapProductAttributesToProductBO(Product p, ProductBO pbo) {
         pbo.setId(p.getId());
-        pbo.setImageUrl(p.getImageName());
+        pbo.setImageName(p.getImageName());
         pbo.setOnMenu(p.getOnMenu());
         pbo.setAvailable(p.isAvailable);
     }
