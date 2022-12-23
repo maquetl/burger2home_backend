@@ -34,6 +34,17 @@ public class Address {
     @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "active", nullable = false)
+    private Boolean active = false;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Integer getId() {
         return id;
     }

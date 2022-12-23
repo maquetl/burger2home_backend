@@ -25,8 +25,8 @@ public class AddressController {
     AddressService addressService;
 
     @GetMapping("/addresses")
-    List<Address> getAllAddresses(){
-        return addressService.getAll();
+    List<Address> getAllAddresses(@RequestParam(required = false, defaultValue = "true") Boolean mustBeActive){
+        return addressService.getAll(mustBeActive);
     }
 
     @GetMapping("/addresses/{addressIdentifier}")
@@ -36,18 +36,13 @@ public class AddressController {
     }
 
     @GetMapping("/users/{userIdentifier}/addresses")
-    List<Address> getAddressesByUser(@PathVariable Integer userIdentifier){
-        return addressService.getAddressesByUser(userIdentifier);
+    List<Address> getAddressesByUser(@PathVariable Integer userIdentifier, @RequestParam(required = false, defaultValue = "true") Boolean mustBeActive){
+        return addressService.getAddressesByUser(userIdentifier, mustBeActive);
     }
 
     @PostMapping("/addresses")
     Address createAddress(@RequestBody Address address){
         return addressService.createAddress(address);
-    }
-
-    @DeleteMapping("/addresses/{addressIdentifier}")
-    void deleteSingleAddress(@PathVariable Integer addressIdentifier){
-        addressService.deleteAddressById(addressIdentifier);
     }
 
     @PutMapping("/addresses")

@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AddressService {
-    List<Address> getAll();
+    List<Address> getAll(Boolean mustBeActive);
 
     Optional<Address> getSingleAddress(Integer addressIdentifier);
 
-    List<Address> getAddressesByUser(Integer userIdentifier);
+    List<Address> getAddressesByUser(Integer userIdentifier, Boolean mustBeActive);
 
     Address createAddress(Address address);
 

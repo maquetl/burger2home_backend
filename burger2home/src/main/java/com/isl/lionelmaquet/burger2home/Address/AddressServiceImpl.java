@@ -15,8 +15,8 @@ public class AddressServiceImpl implements AddressService{
 
 
     @Override
-    public List<Address> getAll() {
-        return addressRepository.findAll();
+    public List<Address> getAll(Boolean mustBeActive) {
+        return mustBeActive ? addressRepository.findAll().stream().filter(a ->a.getActive()).toList() : addressRepository.findAll();
     }
 
     @Override
@@ -25,8 +25,8 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public List<Address> getAddressesByUser(Integer userIdentifier) {
-        return addressRepository.findByUserId(userIdentifier);
+    public List<Address> getAddressesByUser(Integer userIdentifier, Boolean mustBeActive) {
+        return mustBeActive ? addressRepository.findByUserId(userIdentifier).stream().filter(a ->a.getActive()).toList() : addressRepository.findByUserId(userIdentifier);
     }
 
     @Override
