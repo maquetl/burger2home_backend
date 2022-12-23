@@ -12,7 +12,10 @@ import com.isl.lionelmaquet.burger2home.CreditCard.CreditCardService;
 import com.isl.lionelmaquet.burger2home.Keys.KEYS;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLine;
 import com.isl.lionelmaquet.burger2home.OrderLine.OrderLineService;
+import com.isl.lionelmaquet.burger2home.Price.Price;
 import com.isl.lionelmaquet.burger2home.Price.PriceService;
+import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
+import com.isl.lionelmaquet.burger2home.Promotion.PromotionService;
 import com.isl.lionelmaquet.burger2home.User.User;
 import com.isl.lionelmaquet.burger2home.User.UserService;
 import com.isl.lionelmaquet.burger2home.Utils.StripeUtils;
@@ -63,14 +66,36 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private PriceService priceService;
 
+    @Autowired
+    private PromotionService promotionService;
+
+    /**
+     * PRINCIPE DE FONCTIONNEMENT DES COMMANDES
+     *
+     * On crée une commande sur basket d'un panier.
+     * On donne donc un panier à la requête et sur base des basketLines, un order et des orderLines vont être créés.
+     * Au moment de la création, chaque orderLine aura également une référence vers le prix et la promotion qui lui sont assignées.
+     * Cela est uniquement fait par facilité et par soucis de tracabilité dans l'historization des commandes.
+     *
+     * Au moment de la confirmation de la commande, il y a une vérification qui est effectuée sur les prix et les promotions référénces dans les order lines.
+     * En effet, si une promotion a prix fin, ou commencé, ou encore qu'un prix a changé depuis la création de la commande, il est important de mettre à jour le
+     * paymentIntent dans Stripe, et d'informer l'utilisateur du nouveau prix.
+     *
+     */
+
+
     static {
         Stripe.apiKey = System.getenv(KEYS.STRIPE_SECRET_KEY.name());
         Shippo.apiKey = System.getenv(KEYS.SHIPPO_SECRET_KEY.name()); // this is the tesk token
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public List<Order> getAllOrders() throws StripeException {
+        List<Order> orders = orderRepository.findAll();
+        for(Order o : orders){
+            updateOrderPricesAndPaymentIntent(o);
+        }
+        return orders;
     }
 
     @Override
@@ -99,12 +124,27 @@ public class OrderServiceImpl implements OrderService {
         Customer customer = StripeUtils.getCustomer(basket.getUserId(), userService);
 
         // Create the payment intent to Stripe
-        Float totalPrice = getTotalPriceAfterDiscount(order.getOrderLines().stream().toList());
+        Float totalPrice = getOrderTotalPrice(order);
         PaymentIntent paymentIntent = createPaymentIntent(totalPrice, customer.getId());
         order.setPaymentIntent(paymentIntent.getId());
 
         // Save and return the order
         return orderRepository.save(order);
+    }
+
+    private Float getOrderTotalPrice(Order order) {
+
+        Float totalPrice = 0f;
+
+        // For each orderLine, calculate the price based on the price and the promotion.
+        for(OrderLine ol : order.getOrderLines()){
+            Float priceAmount = priceService.getSinglePrice(ol.getPriceId()).get().getAmount();
+            Float promotionAmount = 0f;
+            if (ol.getPromotionId() != null) promotionAmount = promotionService.getSinglePromotion(ol.getPromotionId()).get().getAmount();
+
+            totalPrice += (priceAmount - (priceAmount * promotionAmount / 100)) * ol.getAmount();
+        }
+        return totalPrice;
     }
 
     @Override
@@ -121,6 +161,13 @@ public class OrderServiceImpl implements OrderService {
     public Order confirmOrder(Integer orderIdentifier, String paymentMethodIdentifier) throws StripeException {
         Order order = orderRepository.findById(orderIdentifier).get();
 
+        // A check is made here
+        // If the promotion or price has changed since the order was created, we don't continue in the payment process
+        // Instead, we now have an up-to-date order and Stripe payment intent, so we return the order to the client that can now confirm it.
+        if(updateOrderPricesAndPaymentIntent(order)){
+            return order;
+        }
+
         // Retrieve the payment intent
         PaymentIntent paymentIntent = PaymentIntent.retrieve(order.getPaymentIntent());
 
@@ -135,8 +182,9 @@ public class OrderServiceImpl implements OrderService {
         // Confirm the payment intent
         paymentIntent = StripeUtils.confirmPaymentIntent(paymentIntent, paymentMethodIdentifier);
 
-        // Change the order status and return it
+        // Change the order status and the date and return it
         order.setStatus(Order.Status.payment_confirmed);
+        order.setOrderDate(Instant.now());
         return orderRepository.save(order);
     }
 
@@ -185,14 +233,6 @@ public class OrderServiceImpl implements OrderService {
         return paymentIntent;
     }
 
-    private Float getTotalPriceAfterDiscount(List<OrderLine> orderLines) {
-        Float totalPrice = 0f;
-        for(OrderLine ol : orderLines){
-            totalPrice += priceService.getCurrentPriceAfterDiscountByProductId(ol.getProductId()) * ol.getAmount();
-        }
-        return totalPrice;
-    }
-
     private List<OrderLine> createOrderLinesFromBasketLines(List<BasketLine> basketlines, Integer orderId) {
         List<OrderLine> orderLines = new ArrayList<OrderLine>();
         for (BasketLine bl : basketlines){
@@ -200,6 +240,9 @@ public class OrderServiceImpl implements OrderService {
             ol.setOrderId(orderId);
             ol.setProductId(bl.getProductId());
             ol.setAmount(bl.getAmount());
+            ol.setPriceId(priceService.getCurrentPriceByProductId(bl.getProductId()).get().getId());
+            Optional<Promotion> promo = promotionService.getCurrentPromotion(bl.getProductId());
+            promo.ifPresent(p -> ol.setPromotionId(p.getId()));
             orderLines.add(orderLineService.createOrderLine(ol));
         }
         return orderLines;
@@ -223,6 +266,93 @@ public class OrderServiceImpl implements OrderService {
         parcel.put("mass_unit", "lb");
         Parcel createParcel = Parcel.create(parcel);
         return createParcel;
+    }
+
+
+    // This method checks that the price and the promotion assigned to the orderlines at the moment of the order creation
+    // are the same than the current prices and promotions.
+    // If something has changed (a promotion has ended or started, a price has changed)
+    // the updates are made to the order lines and to the payment intent.
+    // It returns true if modifications were made to prices or promotions.
+    private Boolean updateOrderPricesAndPaymentIntent(Order order) throws StripeException {
+
+        // If an order was already paid, therefore, if the status is anything else that "waiting for payment", there is no need to check for new prices or updates.
+        if(order.getStatus() != Order.Status.waiting_for_payment) return false;
+
+        boolean priceHasChanged = false;
+        boolean promoHasChanged = false;
+
+        Float newTotalAmount = 0f;
+
+
+        for(OrderLine ol : order.getOrderLines()){
+
+            // We retrieve the CURRENT price and promotion
+            Price currentPrice = priceService.getCurrentPriceByProductId(ol.getProductId()).get();
+            Optional<Promotion> currentPromotion = promotionService.getCurrentPromotion(ol.getProductId());
+
+            // We check that there is a promotion set to the orderline OR that a promotion is currently available
+            // If it's not the case, we know that no updates should be made for the subject of promotions.
+            if(currentPromotion.isPresent() || ol.getPromotionId() != null){
+                if (currentPromotion.isPresent()){
+                    // If the id set to the order (which could be null) is not the same that the current promotion id,
+                    // we set the current promo to the order line and change the boolean variable to true
+                    if (ol.getPromotionId() != currentPromotion.get().getId()){
+                        ol.setPromotionId(currentPromotion.get().getId());
+                        promoHasChanged = true;
+                    }
+                }
+
+                // If there is no current promotion, we know that the order had a promotion set that is now finished.
+                // therefore, we set it to null and update our boolean variable
+                else {
+                    ol.setPromotionId(null);
+                    promoHasChanged = true;
+                }
+            }
+
+            // If the id of the current price doesn't match the id of the price made at the moment of the order creation,
+            // we update it and update our boolean variable
+            if(currentPrice.getId() != ol.getPriceId()){
+                ol.setPriceId(currentPrice.getId());
+                priceHasChanged = true;
+            }
+
+            // We add to the new total amount the calculated current price of the order line
+            newTotalAmount += currentPromotion.isPresent() ?
+                    (currentPrice.getAmount() - (currentPrice.getAmount() * currentPromotion.get().getAmount() / 100) ) * ol.getAmount() :
+                    currentPrice.getAmount() * ol.getAmount();
+        }
+
+        boolean paymentTotalHasChanged = false;
+
+        // Here, if any of the prices or promo has changed, we know that we must update the payment intent
+        if (priceHasChanged || promoHasChanged) {
+
+            // We retrieve the payment intent
+            PaymentIntent paymentIntent = PaymentIntent.retrieve(order.getPaymentIntent());
+
+            // We update it only if the amount is different.
+            // There is a case where the prices and promotions have changed but the total amount is still the same.
+            // In that case, we don't have to update the payment intent
+            // Example :
+            //          Price of product 1 went from 10 to 12 (amount of 1)
+            //          Price of product 2 went from 15 to 13 (amount of 1)
+            //          old price == new price == 25
+            if (paymentIntent.getAmount() != (newTotalAmount.longValue() * 100)){
+                paymentTotalHasChanged = true;
+                PaymentIntentUpdateParams paymentIntentUpdateParams = new PaymentIntentUpdateParams.Builder()
+                        .setAmount(newTotalAmount.longValue() * 100)
+                        .build();
+                paymentIntent.update(paymentIntentUpdateParams);
+            }
+        }
+
+        // We return the boolean indicating if the payment intent was changed.
+        // If the total amount hasn't changed but that modifications were made to the prices and promo id
+        // we can still continue in the payment process.
+        // It only matters if the client has to pay a NEW price.
+        return paymentTotalHasChanged;
     }
 
     private com.shippo.model.Address createFROMAddress() throws AuthenticationException, InvalidRequestException, APIConnectionException, APIException {

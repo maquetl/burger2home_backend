@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderService {
-    List<Order> getAllOrders();
+    List<Order> getAllOrders() throws StripeException;
 
-    Optional<Order> getSingleOrder(Integer orderIdentifier);
+    Optional<Order> getSingleOrder(Integer orderIdentifier) ;
 
-    List<Order> getOrdersByUser(Integer userIdentifier);
+    List<Order> getOrdersByUser(Integer userIdentifier) ;
 
     Order createOrder(Integer basketIdentifier, Integer addressIdentifier) throws StripeException;
 

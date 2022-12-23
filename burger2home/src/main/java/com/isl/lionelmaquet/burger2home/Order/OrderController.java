@@ -25,17 +25,17 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/orders")
-    List<Order> getAllOrders(){
+    List<Order> getAllOrders() throws StripeException {
         return orderService.getAllOrders();
     }
 
     @GetMapping("/orders/{orderIdentifier}")
-    Optional<Order> getSingleOrder(@PathVariable Integer orderIdentifier){
+    Optional<Order> getSingleOrder(@PathVariable Integer orderIdentifier) {
         return orderService.getSingleOrder(orderIdentifier);
     }
 
     @GetMapping("/users/{userIdentifier}/orders")
-    List<Order> getOrdersByUser(@PathVariable Integer userIdentifier){
+    List<Order> getOrdersByUser(@PathVariable Integer userIdentifier) {
         return orderService.getOrdersByUser(userIdentifier);
     }
 
