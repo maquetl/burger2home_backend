@@ -1,7 +1,9 @@
 package com.isl.lionelmaquet.burger2home.OrderLine;
 
 import com.isl.lionelmaquet.burger2home.Order.Order;
+import com.isl.lionelmaquet.burger2home.Price.Price;
 import com.isl.lionelmaquet.burger2home.Product.Product;
+import com.isl.lionelmaquet.burger2home.Promotion.Promotion;
 
 import javax.persistence.*;
 
@@ -21,6 +23,28 @@ public class OrderLine {
 
     @Column(name = "amount", columnDefinition = "INT UNSIGNED not null")
     private Integer amount;
+
+    @Column(name = "price_id")
+    private Integer priceId;
+
+    @Column(name = "promotion_id")
+    private Integer promotionId;
+
+    public Integer getPromotionId() {
+        return promotionId;
+    }
+
+    public void setPromotionId(Integer promotionId) {
+        this.promotionId = promotionId;
+    }
+
+    public Integer getPriceId() {
+        return priceId;
+    }
+
+    public void setPriceId(Integer priceId) {
+        this.priceId = priceId;
+    }
 
     public Integer getId() {
         return id;

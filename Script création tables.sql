@@ -402,9 +402,13 @@ CREATE TABLE `burger2home`.`order_line` (
   `order_id` INT NULL,
   `product_id` INT NOT NULL,
   `amount` INT UNSIGNED NOT NULL,
+  `price_id` INT NOT NULL,
+  `promotion_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_order_line_to_order_idx` (`order_id` ASC) VISIBLE,
   INDEX `fk_order_line_to_product_idx` (`product_id` ASC) VISIBLE,
+  INDEX `fk_order_line_to_price_idx` (`price_id` ASC) VISIBLE,
+  INDEX `fk_order_line_to_promotion_idx` (`promotion_id` ASC) VISIBLE,
   CONSTRAINT `fk_order_line_to_order`
     FOREIGN KEY (`order_id`)
     REFERENCES `burger2home`.`order` (`id`)
@@ -414,4 +418,15 @@ CREATE TABLE `burger2home`.`order_line` (
     FOREIGN KEY (`product_id`)
     REFERENCES `burger2home`.`product` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION,
+CONSTRAINT `fk_order_line_to_price`
+    FOREIGN KEY (`price_id`)
+    REFERENCES `burger2home`.`price` (`id`)
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION,
+CONSTRAINT `fk_order_line_to_promotion`
+    FOREIGN KEY (`promotion_id`)
+    REFERENCES `burger2home`.`promotion` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    );
