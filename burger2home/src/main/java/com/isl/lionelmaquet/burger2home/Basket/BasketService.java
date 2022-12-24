@@ -13,6 +13,4 @@ public interface BasketService {
     Basket createBasket(Basket basket);
 
     Basket modifyBasket(Basket basket);
-
-    void deleteBasket(Integer basketIdentifier);
 }

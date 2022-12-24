@@ -36,9 +36,4 @@ public class OrderLineController {
     OrderLine modifyOrderLine(@RequestBody OrderLine orderLine){
         return orderLineService.modifyOrderLine(orderLine);
     }
-
-    @DeleteMapping("/orderLines/{orderLineIdentifier}")
-    void deleteOrderLine(@PathVariable Integer orderLineIdentifier){
-        orderLineService.deleteOrderLine(orderLineIdentifier);
-    }
 }

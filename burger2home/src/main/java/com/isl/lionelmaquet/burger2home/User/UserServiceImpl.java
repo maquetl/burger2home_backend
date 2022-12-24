@@ -32,11 +32,6 @@ public class UserServiceImpl implements UserService {
         return rep.save(user);
     }
 
-    @Override
-    public void deleteUser(Integer userIdentifier) {
-        rep.deleteById(userIdentifier);
-    }
-
     public void processOAuthPostLogin(String username) {
         Optional<User> existUser = rep.findByUsername(username);
 

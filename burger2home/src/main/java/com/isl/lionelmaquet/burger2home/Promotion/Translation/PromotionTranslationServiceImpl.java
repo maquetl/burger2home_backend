@@ -18,6 +18,11 @@ public class PromotionTranslationServiceImpl implements PromotionTranslationServ
     }
 
     @Override
+    public List<PromotionTranslation> getByLanguage(Integer languageId) {
+        return promotionTranslationRepository.findByLanguageId(languageId);
+    }
+
+    @Override
     public Optional<PromotionTranslation> getSinglePromotionTranslation(Integer promotionTranslationIdentifier) {
         return promotionTranslationRepository.findById(promotionTranslationIdentifier);
     }

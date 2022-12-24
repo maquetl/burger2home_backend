@@ -15,8 +15,9 @@ public class CreditCardController {
     CreditCardService creditCardService;
 
     @GetMapping("/creditcards")
-    List<CreditCard> getAllCreditCards(){
-        return creditCardService.getAllCreditCards();
+    List<CreditCard> getAllCreditCards(@RequestParam(required = false, defaultValue = "false") Boolean mustBeActive){
+        return mustBeActive ? creditCardService.getAllCreditCards().stream().filter(cc -> cc.getActive()).toList()
+                : creditCardService.getAllCreditCards();
     }
 
     @GetMapping("/creditcards/{creditCardIdentifier}")
@@ -25,8 +26,9 @@ public class CreditCardController {
     }
 
     @GetMapping("/users/{userIdentifier}/creditcards")
-    List<CreditCard> getCreditCardsByUser(@PathVariable Integer userIdentifier){
-        return creditCardService.getCreditCardsByUser(userIdentifier);
+    List<CreditCard> getCreditCardsByUser(@PathVariable Integer userIdentifier, @RequestParam(required = false, defaultValue = "false") Boolean mustBeActive){
+        return mustBeActive ? creditCardService.getCreditCardsByUser(userIdentifier).stream().filter(cc -> cc.getActive()).toList()
+                : creditCardService.getCreditCardsByUser(userIdentifier);
     }
 
     @PostMapping("/creditcards")
@@ -37,11 +39,6 @@ public class CreditCardController {
     @PutMapping("/creditcards")
     CreditCard modifyCreditCard(@RequestBody CreditCard creditCard){
         return creditCardService.modifyCreditCard(creditCard);
-    }
-
-    @DeleteMapping("/creditcards/{creditCardIdentifier}")
-    void deleteCreditCard(@PathVariable Integer creditCardIdentifier){
-        creditCardService.deleteCreditCard(creditCardIdentifier);
     }
 
     private static class CreditCardRequest {

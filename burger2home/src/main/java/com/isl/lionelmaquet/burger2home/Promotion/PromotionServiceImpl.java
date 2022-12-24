@@ -50,9 +50,4 @@ public class PromotionServiceImpl implements PromotionService {
     public Promotion modifySinglePromotion(Promotion promotion) {
         return promotionRepository.save(promotion);
     }
-
-    @Override
-    public void deleteSinglePromotion(Integer promotionIdentifier) {
-        promotionRepository.deleteById(promotionIdentifier);
-    }
 }

@@ -32,9 +32,4 @@ public class PromotionController {
     Promotion modifySinglePromotion(@RequestBody Promotion promotion){
         return serv.modifySinglePromotion(promotion);
     }
-
-    @DeleteMapping("/promotions/{promotionIdentifier}")
-    void deleteSinglePromotion(@PathVariable Integer promotionIdentifier){
-        serv.deleteSinglePromotion(promotionIdentifier);
-    }
 }

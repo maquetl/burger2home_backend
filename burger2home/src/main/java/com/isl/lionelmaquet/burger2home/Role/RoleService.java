@@ -12,7 +12,5 @@ public interface RoleService {
 
     Role modifyRole(Role role);
 
-    void deleteRole(Integer roleIdentifier);
-
     Optional<Role> getRoleByUser(Integer userIdentifier);
 }

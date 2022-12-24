@@ -6,6 +6,8 @@ import java.util.Optional;
 public interface AllergenTranslationService {
     List<AllergenTranslation> getAllAllergenTranslations();
 
+    List<AllergenTranslation> getByLanguage(Integer languageId);
+
     Optional<AllergenTranslation> getSingleAllergenTranslation(Integer allergenTranslationIdentifier);
 
     List<AllergenTranslation> getAllergenTranslationByAllergen(Integer allergenIdentifier);

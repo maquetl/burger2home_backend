@@ -12,4 +12,6 @@ public interface ProductFamilyTranslationRepository extends JpaRepository<Produc
 
     @Query("SELECT pft FROM ProductFamilyTranslation pft WHERE pft.productFamilyId = ?1")
     List<ProductFamilyTranslation> findByProductFamilyId(Integer productFamilyIdentifier);
+
+    List<ProductFamilyTranslation> findByLanguageId(Integer languageId);
 }

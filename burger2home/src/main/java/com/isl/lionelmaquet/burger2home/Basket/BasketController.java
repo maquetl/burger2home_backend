@@ -36,9 +36,4 @@ public class BasketController {
     Basket modifyBasket(@RequestBody Basket basket){
         return serv.modifyBasket(basket);
     }
-
-    @DeleteMapping("/baskets/{basketIdentifier}")
-    void deleteBasket(@PathVariable Integer basketIdentifier){
-        serv.deleteBasket(basketIdentifier);
-    }
 }

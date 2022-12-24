@@ -19,6 +19,11 @@ public class AllergenTranslationServiceImpl implements AllergenTranslationServic
     }
 
     @Override
+    public List<AllergenTranslation> getByLanguage(Integer languageId) {
+        return allergenTranslationRepository.findByLanguageId(languageId);
+    }
+
+    @Override
     public Optional<AllergenTranslation> getSingleAllergenTranslation(Integer allergenTranslationIdentifier) {
         return allergenTranslationRepository.findById(allergenTranslationIdentifier);
     }

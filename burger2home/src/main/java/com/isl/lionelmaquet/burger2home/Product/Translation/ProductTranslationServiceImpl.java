@@ -32,6 +32,11 @@ public class ProductTranslationServiceImpl implements ProductTranslationService 
     }
 
     @Override
+    public List<ProductTranslation> findByLanguage(Integer languageId) {
+        return productTranslationRepository.findByLanguageId(languageId);
+    }
+
+    @Override
     public List<ProductTranslation> getByProduct(Integer productId) {
         return productTranslationRepository.findByProductId(productId);
     }

@@ -20,8 +20,6 @@ public interface OrderService {
 
     Order modifyOrder(Order order);
 
-    void deleteOrder(Integer orderIdentifier);
-
     Order confirmOrder(Integer orderIdentifier, String paymentMethodIdentifier) throws StripeException;
 
     Order shipOrder(Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException;

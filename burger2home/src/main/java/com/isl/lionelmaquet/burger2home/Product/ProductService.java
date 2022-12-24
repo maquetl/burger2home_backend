@@ -9,7 +9,6 @@ public interface ProductService {
     Optional<ProductBO> getSingleProductBO(Integer productId, String language);
     Optional<Product> getSingleProduct(Integer productId);
     Product createProduct(Product product);
-    void deleteProduct(Integer productId);
 
     Product modifyProduct(Product product);
 

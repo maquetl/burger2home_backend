@@ -95,10 +95,4 @@ public class CreditCardServiceImpl implements CreditCardService {
         return creditCardRepository.save(creditCard);
     }
 
-    @Override
-    public void deleteCreditCard(Integer creditCardIdentifier) {
-        creditCardRepository.deleteById(creditCardIdentifier);
-    }
-
-
 }

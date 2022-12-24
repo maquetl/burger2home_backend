@@ -59,11 +59,6 @@ public class OrderController {
         return orderService.modifyOrder(order);
     }
 
-    @DeleteMapping("/orders/{orderIdentifier}")
-    void deleteSingleOrder(@PathVariable Integer orderIdentifier){
-        orderService.deleteOrder(orderIdentifier);
-    }
-
     // Test method for dev purposes
     @GetMapping("/orders/stripe/create-payment-method")
     String createPaymentMethod() throws StripeException {

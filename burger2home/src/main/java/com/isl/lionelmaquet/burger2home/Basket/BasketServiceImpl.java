@@ -36,9 +36,4 @@ public class BasketServiceImpl implements BasketService {
     public Basket modifyBasket(Basket basket) {
         return basketRepository.save(basket);
     }
-
-    @Override
-    public void deleteBasket(Integer basketIdentifier) {
-        basketRepository.deleteById(basketIdentifier);
-    }
 }

@@ -202,11 +202,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(Integer productId) {
-        productRepository.deleteById(productId);
-    }
-
-    @Override
     public Product createProduct(Product product) {
         productRepository.save(product);
         priceService.createDefaultCurrentPrice(product.getId());

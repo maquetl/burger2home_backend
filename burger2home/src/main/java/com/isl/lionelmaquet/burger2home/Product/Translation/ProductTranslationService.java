@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface ProductTranslationService {
     Optional<ProductTranslation> getByProductAndLanguage(Integer productId, String languageAbbr);
+    List<ProductTranslation> findByLanguage(Integer languageId);
     List<ProductTranslation> getByProduct(Integer productId);
     ProductTranslation createProductTranslation(ProductTranslation productTranslation);
     void deleteByProductId(Integer productId);

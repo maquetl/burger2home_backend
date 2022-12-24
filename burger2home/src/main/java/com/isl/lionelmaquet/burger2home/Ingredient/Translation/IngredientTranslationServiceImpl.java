@@ -18,6 +18,11 @@ public class IngredientTranslationServiceImpl implements IngredientTranslationSe
     }
 
     @Override
+    public List<IngredientTranslation> findByLanguage(Integer languageIdentifier) {
+        return ingredientTranslationRepository.findByLanguageId(languageIdentifier);
+    }
+
+    @Override
     public Optional<IngredientTranslation> findIngredientTranslation(Integer ingredientTranslationIdentifier) {
         return ingredientTranslationRepository.findById(ingredientTranslationIdentifier);
     }

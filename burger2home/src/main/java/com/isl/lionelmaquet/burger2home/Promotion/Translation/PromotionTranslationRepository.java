@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PromotionTranslationRepository extends JpaRepository<PromotionTranslation, Integer> {
     List<PromotionTranslation> findByPromotionId(Integer promotionId);
+
+    List<PromotionTranslation> findByLanguageId(Integer languageId);
 }

@@ -14,7 +14,7 @@ public interface StockHistorizationService {
 
     StockHistorization modifyStockHistorization(StockHistorization stockHistorization);
 
-    void deleteStockHistorization(Integer stockHistorizationIdentifier);
-
     List<StockHistorization> getStockHistorizationsByIngredient(Integer ingredientIdentifier);
+
+    void deleteStockHistorization(Integer stockHistorizationIdentifier);
 }

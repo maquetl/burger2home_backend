@@ -39,12 +39,12 @@ public class StockHistorizationServiceImpl implements StockHistorizationService 
     }
 
     @Override
-    public void deleteStockHistorization(Integer stockHistorizationIdentifier) {
-        stockHistorizationRepository.deleteById(stockHistorizationIdentifier);
+    public List<StockHistorization> getStockHistorizationsByIngredient(Integer ingredientIdentifier) {
+        return stockHistorizationRepository.findByIngredientId(ingredientIdentifier);
     }
 
     @Override
-    public List<StockHistorization> getStockHistorizationsByIngredient(Integer ingredientIdentifier) {
-        return stockHistorizationRepository.findByIngredientId(ingredientIdentifier);
+    public void deleteStockHistorization(Integer stockHistorizationIdentifier) {
+        stockHistorizationRepository.deleteById(stockHistorizationIdentifier);
     }
 }

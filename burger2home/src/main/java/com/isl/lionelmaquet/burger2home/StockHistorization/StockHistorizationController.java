@@ -36,9 +36,4 @@ public class StockHistorizationController {
     StockHistorization modifyStockHistorization(@RequestBody StockHistorization stockHistorization){
         return serv.modifyStockHistorization(stockHistorization);
     }
-
-    @DeleteMapping("/stocks/{stockHistorizationIdentifier}")
-    void deleteStockHistorization(@PathVariable Integer stockHistorizationIdentifier){
-        serv.deleteStockHistorization(stockHistorizationIdentifier);
-    }
 }

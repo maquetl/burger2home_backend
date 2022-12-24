@@ -23,6 +23,11 @@ public class ProductFamilyTranslationServiceImpl implements ProductFamilyTransla
     }
 
     @Override
+    public List<ProductFamilyTranslation> findByLanguage(Integer languageId) {
+        return productFamilyTranslationRepository.findByLanguageId(languageId);
+    }
+
+    @Override
     public List<ProductFamilyTranslation> getProductFamilyTranslationsByProductFamily(Integer productFamilyIdentifier) {
         return productFamilyTranslationRepository.findByProductFamilyId(productFamilyIdentifier);
     }

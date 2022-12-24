@@ -35,7 +35,7 @@ public class Address {
     private Integer userId;
 
     @Column(name = "active", nullable = false)
-    private Boolean active = false;
+    private Boolean active = true;
 
     public Boolean getActive() {
         return active;

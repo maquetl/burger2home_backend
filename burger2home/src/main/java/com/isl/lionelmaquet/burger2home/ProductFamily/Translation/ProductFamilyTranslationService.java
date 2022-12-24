@@ -8,6 +8,8 @@ public interface ProductFamilyTranslationService {
 
     Optional<ProductFamilyTranslation> getSingleProductFamilyTranslation(Integer productFamilyTranslationIdentifier);
 
+    List<ProductFamilyTranslation> findByLanguage(Integer languageId);
+
     List<ProductFamilyTranslation> getProductFamilyTranslationsByProductFamily(Integer productFamilyIdentifier);
 
     ProductFamilyTranslation createProductFamilyTranslation(ProductFamilyTranslation productFamilyTranslation);

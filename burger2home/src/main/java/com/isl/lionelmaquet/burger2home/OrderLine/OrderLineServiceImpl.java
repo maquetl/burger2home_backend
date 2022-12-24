@@ -36,9 +36,4 @@ public class OrderLineServiceImpl implements OrderLineService {
     public OrderLine modifyOrderLine(OrderLine orderLine) {
         return orderLineRepository.save(orderLine);
     }
-
-    @Override
-    public void deleteOrderLine(Integer orderLineIdentifier) {
-        orderLineRepository.deleteById(orderLineIdentifier);
-    }
 }

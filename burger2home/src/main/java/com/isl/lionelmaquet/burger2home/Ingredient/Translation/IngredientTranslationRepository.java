@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface IngredientTranslationRepository extends JpaRepository<IngredientTranslation, Integer> {
     List<IngredientTranslation> findByIngredientId(Integer ingredientIdentifier);
+
+    List<IngredientTranslation> findByLanguageId(Integer languageIdentifier);
 }

@@ -40,9 +40,4 @@ public class UserController {
     User modifyUser(@RequestBody User user){
         return serv.modifyUser(user);
     }
-
-    @DeleteMapping("/users/{userIdentifier}")
-    void deleteUser(@PathVariable Integer userIdentifier){
-        serv.deleteUser(userIdentifier);
-    }
 }

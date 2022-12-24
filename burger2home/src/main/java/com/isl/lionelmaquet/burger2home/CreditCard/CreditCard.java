@@ -33,6 +33,18 @@ public class CreditCard {
     @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "active", nullable = false)
+    private Boolean active = true;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+
     public Integer getUserId() {
         return userId;
     }

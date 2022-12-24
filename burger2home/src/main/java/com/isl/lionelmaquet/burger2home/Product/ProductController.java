@@ -58,11 +58,6 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-    @DeleteMapping("/products/{productIdentifier}")
-    public void deleteProdut(@PathVariable Integer productIdentifier){
-        productService.deleteProduct(productIdentifier);
-    }
-
     @PutMapping("/products")
     public Product modifyProduct(@RequestBody Product product){
         return productService.modifyProduct(product);

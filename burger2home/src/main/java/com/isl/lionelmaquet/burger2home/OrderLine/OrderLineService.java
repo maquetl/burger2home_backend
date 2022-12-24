@@ -13,6 +13,4 @@ public interface OrderLineService {
     OrderLine createOrderLine(OrderLine orderLine);
 
     OrderLine modifyOrderLine(OrderLine orderLine);
-
-    void deleteOrderLine(Integer orderLineIdentifier);
 }

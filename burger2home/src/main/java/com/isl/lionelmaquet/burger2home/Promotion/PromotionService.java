@@ -18,6 +18,4 @@ public interface PromotionService {
     Promotion createSinglePromotion(Promotion promotion);
 
     Promotion modifySinglePromotion(Promotion promotion);
-
-    void deleteSinglePromotion(Integer promotionIdentifier);
 }

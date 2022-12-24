@@ -36,9 +36,4 @@ public class RoleController {
     Role modifyRole(@RequestBody Role role){
         return serv.modifyRole(role);
     }
-
-    @DeleteMapping("/roles/{roleIdentifier}")
-    void deleteRole(@PathVariable Integer roleIdentifier){
-        serv.deleteRole(roleIdentifier);
-    }
 }

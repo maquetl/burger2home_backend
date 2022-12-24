@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface AllergenTranslationRepository extends JpaRepository<AllergenTranslation, Integer> {
     List<AllergenTranslation> findByAllergenId(Integer allergenIdentifier);
+
+    List<AllergenTranslation> findByLanguageId(Integer languageId);
 }

@@ -15,4 +15,5 @@ public interface ProductTranslationRepository extends JpaRepository<ProductTrans
 
     List<ProductTranslation> findByProductId(Integer productId);
 
+    List<ProductTranslation> findByLanguageId(Integer languageId);
 }

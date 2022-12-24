@@ -358,6 +358,7 @@ CREATE TABLE `burger2home`.`credit_card` (
   `brand` VARCHAR(20) NULL,
   `payment_method_id` VARCHAR(255) NULL,
   `user_id` INT NULL,
+  `active` BOOLEAN NOT NULL DEFAULT true,
   PRIMARY KEY (`id`),
   INDEX `fk_credit_card_to_user_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_credit_card_to_user`

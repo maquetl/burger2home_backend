@@ -6,6 +6,8 @@ import java.util.Optional;
 public interface PromotionTranslationService {
     List<PromotionTranslation> getAllPromotionTranslations();
 
+    List<PromotionTranslation> getByLanguage(Integer languageId);
+
     Optional<PromotionTranslation> getSinglePromotionTranslation(Integer promotionTranslationIdentifier);
 
     List<PromotionTranslation> getPromotionTranslationsByPromotion(Integer promotionIdentifier);

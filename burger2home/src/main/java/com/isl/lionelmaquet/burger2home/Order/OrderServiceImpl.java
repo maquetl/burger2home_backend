@@ -153,11 +153,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(Integer orderIdentifier) {
-        orderRepository.deleteById(orderIdentifier);
-    }
-
-    @Override
     public Order confirmOrder(Integer orderIdentifier, String paymentMethodIdentifier) throws StripeException {
         Order order = orderRepository.findById(orderIdentifier).get();
 

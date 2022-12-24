@@ -33,11 +33,6 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void deleteRole(Integer roleIdentifier) {
-        rep.deleteById(roleIdentifier);
-    }
-
-    @Override
     public Optional<Role> getRoleByUser(Integer userIdentifier) {
         return rep.findByUserId(userIdentifier);
     }
