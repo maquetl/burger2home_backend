@@ -15,12 +15,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/addresses",
+							"raw": "{{base-url}}/addresses?mustBeActive=false",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"addresses"
+							],
+							"query": [
+								{
+									"key": "mustBeActive",
+									"value": "false"
+								}
 							]
 						}
 					},
@@ -130,7 +136,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/:userIdentifier/addresses",
+							"raw": "{{base-url}}/users/:userIdentifier/addresses?mustBeActive=false",
 							"host": [
 								"{{base-url}}"
 							],
@@ -138,6 +144,12 @@
 								"users",
 								":userIdentifier",
 								"addresses"
+							],
+							"query": [
+								{
+									"key": "mustBeActive",
+									"value": "false"
+								}
 							],
 							"variable": [
 								{
@@ -156,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1,\r\n    \"active\" : true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -182,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue du bidule\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1\r\n}",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"city\": \"Juprelle\",\r\n        \"zipcode\": 4450,\r\n        \"street\": \"Rue du Tige\",\r\n        \"number\": 120,\r\n        \"extension\": null,\r\n        \"note\": null,\r\n        \"userId\": 1,\r\n        \"active\": false\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -196,30 +208,6 @@
 							],
 							"path": [
 								"addresses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - Single address",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/addresses/:addressIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"addresses",
-								":addressIdentifier"
-							],
-							"variable": [
-								{
-									"key": "addressIdentifier",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -842,12 +830,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/creditcards",
+							"raw": "{{base-url}}/creditcards?mustBeActive=false",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
 								"creditcards"
+							],
+							"query": [
+								{
+									"key": "mustBeActive",
+									"value": "false"
+								}
 							]
 						}
 					},
@@ -883,7 +877,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/users/:userIdentifier/creditcards",
+							"raw": "{{base-url}}/users/:userIdentifier/creditcards?mustBeActive=false",
 							"host": [
 								"{{base-url}}"
 							],
@@ -891,6 +885,12 @@
 								"users",
 								":userIdentifier",
 								"creditcards"
+							],
+							"query": [
+								{
+									"key": "mustBeActive",
+									"value": "false"
+								}
 							],
 							"variable": [
 								{
@@ -935,7 +935,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 1,\r\n        \"last4\": \"4242\",\r\n        \"expMonth\": \"12\",\r\n        \"expYear\": \"2024\",\r\n        \"brand\": \"visa\",\r\n        \"paymentMethodId\": \"pm_1MGi5kINHgxPirwOH1OdN2qt\",\r\n        \"userId\": 1\r\n    }",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"last4\": \"4242\",\r\n    \"expMonth\": \"12\",\r\n    \"expYear\": \"2024\",\r\n    \"brand\": \"visa\",\r\n    \"paymentMethodId\": \"pm_1MHOzpINHgxPirwOm4xxJsUL\",\r\n    \"userId\": 1,\r\n    \"active\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -949,30 +949,6 @@
 							],
 							"path": [
 								"creditcards"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - Single Credit Card",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/creditcards/:creditCardIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"creditcards",
-								":creditCardIdentifier"
-							],
-							"variable": [
-								{
-									"key": "creditCardIdentifier",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -1654,30 +1630,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "DELETE - Single order",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/orders/:orderIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"orders",
-								":orderIdentifier"
-							],
-							"variable": [
-								{
-									"key": "orderIdentifier",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1797,30 +1749,6 @@
 							],
 							"path": [
 								"orderLines"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - SIngle orde rline",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/orderLines/:orderLineIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"orderLines",
-								":orderLineIdentifier"
-							],
-							"variable": [
-								{
-									"key": "orderLineIdentifier",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -2230,7 +2158,7 @@
 									"key": "image",
 									"description": "Une image à uploader à aller chercher dans votre filesystem.",
 									"type": "file",
-									"src": "/C:/Users/lione/Desktop/Hamburger.jpg"
+									"src": "/C:/Users/lione/Desktop/burger2homeimages/qOz9Rx5a7kz3dJ1U5Ogu.jpg"
 								}
 							]
 						},
@@ -2275,30 +2203,6 @@
 							],
 							"path": [
 								"products"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - Single Product",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/products/:productIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"products",
-								":productIdentifier"
-							],
-							"variable": [
-								{
-									"key": "productIdentifier",
-									"value": null
-								}
 							]
 						}
 					},
@@ -2823,7 +2727,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"amount\" : 50,\r\n    \"creationDate\" : \"2022-02-05 18:51:23\",\r\n    \"startDate\" : \"2022-02-06 18:00:00\",\r\n    \"endDate\" : \"2022-02-25 18:00:00\",\r\n    \"products\" : [{\"id\" : 2}]\r\n}",
+							"raw": "{\r\n    \"id\" : 2,\r\n    \"amount\" : 50,\r\n    \"creationDate\" : \"2022-02-05 18:51:23\",\r\n    \"startDate\" : \"2022-02-06 18:00:00\",\r\n    \"endDate\" : \"2022-12-24 10:39:00\",\r\n    \"products\" : [{\"id\" : 2}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3301,30 +3205,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "DELETE - Stock",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/stocks/:stockIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"stocks",
-								":stockIdentifier"
-							],
-							"variable": [
-								{
-									"key": "stockIdentifier",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -3419,30 +3299,6 @@
 							],
 							"path": [
 								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - User",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/users/:userIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"users",
-								":userIdentifier"
-							],
-							"variable": [
-								{
-									"key": "userIdentifier",
-									"value": "1"
-								}
 							]
 						}
 					},
