@@ -453,7 +453,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"oeufs\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergenId\" : 1\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"oeufs\",\r\n    \"language\" : {\r\n        \"id\" : 2\r\n    },\r\n    \"allergenId\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -643,30 +643,6 @@
 							],
 							"path": [
 								"baskets"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - Single basket",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/baskets/:basketIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"baskets",
-								":basketIdentifier"
-							],
-							"variable": [
-								{
-									"key": "basketIdentifier",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -2745,30 +2721,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "DELETE - Single promotion",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/promotions/:promotionIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"promotions",
-								":promotionIdentifier"
-							],
-							"variable": [
-								{
-									"key": "promotionIdentifier",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -3054,30 +3006,6 @@
 							],
 							"path": [
 								"roles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE - Role",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/roles/:roleIdentifier",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"roles",
-								":roleIdentifier"
-							],
-							"variable": [
-								{
-									"key": "roleIdentifier",
-									"value": "1"
-								}
 							]
 						}
 					},
