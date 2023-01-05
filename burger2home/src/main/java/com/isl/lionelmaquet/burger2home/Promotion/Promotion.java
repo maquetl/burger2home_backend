@@ -38,7 +38,6 @@ public class Promotion {
     @JoinTable(name = "promotion_product",
             joinColumns = @JoinColumn(name = "promotion_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Product> products = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "promotionId")
