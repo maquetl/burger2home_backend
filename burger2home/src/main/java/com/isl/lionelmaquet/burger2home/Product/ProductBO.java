@@ -19,9 +19,18 @@ public class ProductBO {
     private String imageName;
     private Boolean isAvailable;
     private Boolean isOnMenu;
+    private Integer type;
     private List<String> ingredients = new ArrayList<>();
     private List<String> allergens = new ArrayList<>();
     private List<Integer> productFamilies = new ArrayList<>();
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     public ProductBO() {
     }

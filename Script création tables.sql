@@ -23,7 +23,9 @@ DROP TABLE IF EXISTS
 `promotion_translation`,
 `role`,
 `stock_historization`,
-`user`;
+`user`,
+`type`,
+`type_translation`;
 
 /* GENERAL */
 
@@ -33,6 +35,11 @@ CREATE TABLE `burger2home`.`language` (
   `name` VARCHAR(60) NOT NULL,
   `abbreviation` VARCHAR(5) NULL,
   PRIMARY KEY (`id`));
+  
+   CREATE TABLE `burger2home`.`type` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`id`)
+  );
 
 /* PRODUCT */
 
@@ -40,7 +47,16 @@ CREATE TABLE `burger2home`.`product` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_name` VARCHAR(255) NULL,
   `on_menu` BOOLEAN NOT NULL DEFAULT TRUE,
-  PRIMARY KEY (`id`));
+  `type_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_product_to_type`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `burger2home`.`type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  );
+
+
   
 CREATE TABLE `burger2home`.`product_translation` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -59,6 +75,26 @@ CREATE TABLE `burger2home`.`product_translation` (
     REFERENCES `burger2home`.`language` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+ 
+  
+  CREATE TABLE `burger2home`.`type_translation` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(100) NOT NULL,
+    `language_id` INT NOT NULL,
+	`type_id` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `fk_type_translation_to_type`
+		FOREIGN KEY (`type_id`) 
+		REFERENCES `burger2home`.`type` (`id`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	CONSTRAINT `fk_type_translation_to_language`
+    FOREIGN KEY (`language_id`)
+    REFERENCES `burger2home`.`language` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+  
 
 CREATE TABLE `burger2home`.`price` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -117,6 +153,7 @@ CREATE TABLE `burger2home`.`stock_historization` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ingredient_id` INT NOT NULL,
   `amount` INT NOT NULL,
+  
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `fk_stock_historization_to_ingredient_idx` (`ingredient_id` ASC) VISIBLE,

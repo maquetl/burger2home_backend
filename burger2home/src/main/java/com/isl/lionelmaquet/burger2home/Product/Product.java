@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isl.lionelmaquet.burger2home.Ingredient.Ingredient;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
 import com.isl.lionelmaquet.burger2home.ProductFamily.ProductFamily;
+import com.isl.lionelmaquet.burger2home.Type.Type;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -44,7 +45,16 @@ public class Product {
     @Transient
     public Boolean isAvailable;
 
+    @Column(name = "type_id")
+    private Integer typeId;
 
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
 
     public String getImageName() {
         return imageName;

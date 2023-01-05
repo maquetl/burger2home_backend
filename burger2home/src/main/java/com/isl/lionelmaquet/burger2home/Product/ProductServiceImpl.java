@@ -16,8 +16,6 @@ import com.isl.lionelmaquet.burger2home.StockHistorization.StockHistorizationSer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -45,9 +43,9 @@ public class ProductServiceImpl implements ProductService {
     StockHistorizationService stockHistorizationService;
 
     @Override
-    public List<ProductBO> getProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers, boolean onMenu) {
+    public List<ProductBO> getProductBOs(String language, Boolean availableProductsOnly, List<Integer> productFamilyIdentifiers, boolean onMenu, Integer type) {
         // Get a list of products matching the criterias
-        List<Product> products = getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly);
+        List<Product> products = getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly, type);
 
         // for each of them, build a productBO
         return products.stream().map(product -> buildProductBOFromProduct(product, language)).toList();
@@ -74,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<Product> getProducts(List<Integer> productFamilyIdentifiers, boolean onMenu, boolean mustBeAvailable) {
+    public List<Product> getProducts(List<Integer> productFamilyIdentifiers, boolean onMenu, boolean mustBeAvailable, Integer type) {
 
         // predicate to test that a family is contained in a list of families
         Predicate<ProductFamily> isFromOneOfFamilies = new Predicate<ProductFamily>() {
@@ -104,6 +102,11 @@ public class ProductServiceImpl implements ProductService {
         // Filter products based on the productFamily condition
         if (productFamilyIdentifiers !=  null && productFamilyIdentifiers.size() > 0){
             products = products.stream().filter(hasOneOfFamilies).toList();
+        }
+
+        // Filter product based on the type condition
+        if (type != null){
+            products = products.stream().filter(p -> p.getTypeId() == type).toList();
         }
 
         // Filter products based on the onMenu criteria
@@ -184,6 +187,7 @@ public class ProductServiceImpl implements ProductService {
         pbo.setImageName(p.getImageName());
         pbo.setOnMenu(p.getOnMenu());
         pbo.setAvailable(p.isAvailable);
+        pbo.setType(p.getTypeId());
     }
 
     private Boolean isAvailable(Product product){

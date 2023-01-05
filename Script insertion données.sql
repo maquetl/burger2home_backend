@@ -3,11 +3,26 @@ VALUES
 (1, CURRENT_TIMESTAMP() ,"ENGLISH", "EN"),
 (2, CURRENT_TIMESTAMP(), "FRENCH", "FR");
 
-INSERT IGNORE INTO `burger2home`.`product` (`id`) 
+
+
+INSERT IGNORE INTO `burger2home`.`type` (`id`)
 VALUES 
 (1),
 (2),
 (3);
+
+INSERT IGNORE INTO `burger2home`.`type_translation` (`id`,`name`, `language_id`, `type_id`)
+VALUES
+(1, "burgers", 1, 1),
+(2, "burgers", 2, 1),
+(3, "drinks", 1, 2),
+(4, "boissons", 2, 2);
+
+INSERT IGNORE INTO `burger2home`.`product` (`id`, `type_id`) 
+VALUES 
+(1, 1),
+(2, 1),
+(3, 1);
 
 INSERT IGNORE INTO `burger2home`.`product_translation` (`id`, `description`, `name`, `product_id`, `language_id`)
 VALUES

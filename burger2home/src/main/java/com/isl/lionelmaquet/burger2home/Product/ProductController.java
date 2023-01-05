@@ -30,9 +30,10 @@ public class ProductController {
     public List<ProductBO> Index(@RequestParam(defaultValue = "EN") String language,
                                  @RequestParam(defaultValue = "false") Boolean availableProductsOnly,
                                  @RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers,
-                                 @RequestParam(defaultValue = "false", name ="mustBeOnMenu") boolean onMenu
+                                 @RequestParam(defaultValue = "false", name ="mustBeOnMenu") boolean onMenu,
+                                 @RequestParam(required = false) Integer type
                                  ){
-        return productService.getProductBOs(language, availableProductsOnly, productFamilyIdentifiers, onMenu);
+        return productService.getProductBOs(language, availableProductsOnly, productFamilyIdentifiers, onMenu, type);
     }
 
     @GetMapping("/products/summaries/{productIdentifier}")
@@ -49,8 +50,9 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getProducts(@RequestParam(required = false, name = "productFamily") List<Integer> productFamilyIdentifiers,
                                         @RequestParam(defaultValue = "false", name ="mustBeOnMenu") boolean onMenu,
-                                     @RequestParam(defaultValue = "false") Boolean availableProductsOnly){
-        return productService.getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly);
+                                     @RequestParam(defaultValue = "false") Boolean availableProductsOnly,
+                                     @RequestParam(required = false) Integer type){
+        return productService.getProducts(productFamilyIdentifiers, onMenu, availableProductsOnly, type);
     }
 
     @PostMapping("/products")
