@@ -1959,7 +1959,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=true&mustBeOnMenu=false&productFamily=2&productFamily=1",
+							"raw": "{{base-url}}/products/summaries?language=FR&availableProductsOnly=true&mustBeOnMenu=false&productFamily=2&productFamily=1&type=1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1989,6 +1989,10 @@
 								},
 								{
 									"key": "productFamily",
+									"value": "1"
+								},
+								{
+									"key": "type",
 									"value": "1"
 								}
 							]
@@ -2058,6 +2062,11 @@
 								{
 									"key": "productFamily",
 									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "1",
 									"disabled": true
 								}
 							]
