@@ -564,7 +564,7 @@
 							"variable": [
 								{
 									"key": "basketIdentifier",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -726,7 +726,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"basketId\" : 1,\r\n    \"productId\" : 1,\r\n    \"amount\" : 2\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"basketId\" : 2,\r\n    \"productId\" : 1,\r\n    \"amount\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -788,7 +788,7 @@
 							"variable": [
 								{
 									"key": "basketLineIdentifier",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -1417,7 +1417,7 @@
 							"variable": [
 								{
 									"key": "orderIdentifier",
-									"value": "3"
+									"value": "2"
 								}
 							]
 						}
@@ -1487,7 +1487,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/orders/create-order?basketIdentifier=1",
+							"raw": "{{base-url}}/orders/create-order?basketIdentifier=2",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1498,7 +1498,7 @@
 							"query": [
 								{
 									"key": "basketIdentifier",
-									"value": "1"
+									"value": "2"
 								},
 								{
 									"key": "addressIdentifier",
@@ -1516,7 +1516,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=1&paymentMethodIdentifier=pm_1MGi5kINHgxPirwOH1OdN2qt",
+							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=2&paymentMethodIdentifier=pm_1MKInqINHgxPirwOmMLcqaMp",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1527,11 +1527,11 @@
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "1"
+									"value": "2"
 								},
 								{
 									"key": "paymentMethodIdentifier",
-									"value": "pm_1MGi5kINHgxPirwOH1OdN2qt"
+									"value": "pm_1MKInqINHgxPirwOmMLcqaMp"
 								}
 							]
 						}
@@ -1588,7 +1588,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 3,\r\n    \"userId\": 1,\r\n    \"creditCardId\": null,\r\n    \"addressId\": null,\r\n    \"orderDate\": \"2022-12-23 14:26:52\",\r\n    \"orderLines\": [\r\n        {\r\n            \"id\": 1,\r\n            \"orderId\": 3,\r\n            \"productId\": 2,\r\n            \"amount\": 5,\r\n            \"priceId\": 5,\r\n            \"promotionId\": 1\r\n        }\r\n    ],\r\n    \"status\": \"waiting_for_payment\",\r\n    \"paymentIntent\": \"pi_3MICD3INHgxPirwO1b7huDti\"\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"userId\": 1,\r\n    \"creditCardId\": null,\r\n    \"addressId\": 1,\r\n    \"orderDate\": \"2022-12-29 09:48:34\",\r\n    \"orderLines\": [\r\n        {\r\n            \"id\": 1,\r\n            \"orderId\": 2,\r\n            \"productId\": 1,\r\n            \"amount\": 2,\r\n            \"priceId\": 2,\r\n            \"promotionId\": 1\r\n        }\r\n    ],\r\n    \"status\": \"waiting_for_payment\",\r\n    \"paymentIntent\": \"pi_3MKIj0INHgxPirwO1rJfpGti\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1602,6 +1602,31 @@
 							],
 							"path": [
 								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Client secret",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/orders/:orderIdentifier/secret",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"orders",
+								":orderIdentifier",
+								"secret"
+							],
+							"variable": [
+								{
+									"key": "orderIdentifier",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -1860,7 +1885,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\" : 10\r\n}",
+							"raw": "{\r\n    \"amount\" : 20\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

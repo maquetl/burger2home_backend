@@ -78,4 +78,9 @@ public class OrderController {
         return paymentMethod.getId();
     }
 
+    @GetMapping("/orders/{orderIdentifier}/secret")
+    String getClientSecret(@PathVariable Integer orderIdentifier){
+        return orderService.getClientSecret(orderIdentifier);
+    }
+
 }

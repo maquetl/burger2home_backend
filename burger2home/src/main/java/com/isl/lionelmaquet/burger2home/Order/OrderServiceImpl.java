@@ -243,6 +243,17 @@ public class OrderServiceImpl implements OrderService {
         return orderLines;
     }
 
+    public String getClientSecret(Integer orderIdentifier){
+        Order order = orderRepository.findById(orderIdentifier).get();
+        try {
+            PaymentIntent paymentIntent = PaymentIntent.retrieve(order.getPaymentIntent());
+            return paymentIntent.getClientSecret();
+        } catch (Exception e){
+
+        }
+        return "";
+    }
+
     private void createShipment(com.shippo.model.Address fromAddress, com.shippo.model.Address toAddress, Parcel parcel) throws AuthenticationException, InvalidRequestException, APIConnectionException, APIException {
         Map<String, Object> shipment = new HashMap<String, Object>();
         shipment.put("address_to", toAddress);

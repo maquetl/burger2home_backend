@@ -23,4 +23,6 @@ public interface OrderService {
     Order confirmOrder(Integer orderIdentifier, String paymentMethodIdentifier) throws StripeException;
 
     Order shipOrder(Integer orderIdentifier) throws APIConnectionException, APIException, AuthenticationException, InvalidRequestException;
+
+    String getClientSecret(Integer orderIdentifier);
 }
