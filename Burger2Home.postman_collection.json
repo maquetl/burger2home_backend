@@ -3292,6 +3292,230 @@
 			]
 		},
 		{
+			"name": "Types",
+			"item": [
+				{
+					"name": "GET - All types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/types/:typeIdentifier",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								":typeIdentifier"
+							],
+							"variable": [
+								{
+									"key": "typeIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TypeTranslations",
+			"item": [
+				{
+					"name": "GET - All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/types/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - All translations by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/types/:typeIdentifier/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								":typeIdentifier",
+								"translations"
+							],
+							"variable": [
+								{
+									"key": "typeIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single type translation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/types/translations/:translationIdentifier",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								"translations",
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE - Type translation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"name\" : \"testnameEN\",\r\n    \"typeId\" : 1,\r\n    \"language\" : {\"id\" : 1}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/types/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODIFY - Type translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"burgeeers\",\r\n    \"typeId\" : 1,\r\n    \"language\" : {\"id\" : 1}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/types/translations",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Type translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/types/translations/:translationIdentifier",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"types",
+								"translations",
+								":translationIdentifier"
+							],
+							"variable": [
+								{
+									"key": "translationIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Oauth2 Google",
 			"request": {
 				"auth": {
