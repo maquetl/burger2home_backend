@@ -377,6 +377,7 @@ public class OrderServiceImpl implements OrderService {
         Map<String, Object> addressMap = new HashMap<String, Object>();
         addressMap.put("name", user.getFirstname() + " " + user.getLastname());
         addressMap.put("street1", address.getStreet() + " " + address.getNumber());
+        if(address.getExtension() != null) addressMap.put("street2", address.getExtension());
         addressMap.put("city", address.getCity());
         addressMap.put("zip", address.getZipcode());
         addressMap.put("country", "BE");
