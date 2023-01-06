@@ -168,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1,\r\n    \"active\" : true\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -194,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 1,\r\n        \"city\": \"Juprelle\",\r\n        \"zipcode\": 4450,\r\n        \"street\": \"Rue du Tige\",\r\n        \"number\": 120,\r\n        \"extension\": null,\r\n        \"note\": null,\r\n        \"userId\": 1,\r\n        \"active\": false\r\n    }",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"city\": \"Juprelle\",\r\n    \"zipcode\": 4450,\r\n    \"street\": \"Rue du Tige\",\r\n    \"number\": 120,\r\n    \"extension\": null,\r\n    \"note\": null,\r\n    \"userId\": 1,\r\n    \"active\": true,\r\n    \"label\": \"Ancienne maison\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

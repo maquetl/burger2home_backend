@@ -126,9 +126,9 @@ INSERT IGNORE INTO `burger2home`.`user` (`id`, `email`, `firstname`, `lastname`,
 VALUES
 (1, "lione.maquet@gmail.com", "Lionel", "Maquet", NULL, "lionel", "Validated", "Lio", 1);
 
-INSERT IGNORE INTO `burger2home`.`address` (`id`, `city`, `zipcode`, `street`, `number`, `extension`, `note`, `user_id`)
+INSERT IGNORE INTO `burger2home`.`address` (`id`, `city`, `zipcode`, `street`, `number`, `extension`, `note`, `user_id`, `label`)
 VALUES
-(1, "Juprelle", 4450, "Rue du Tige", 120, NULL, NULL, 1);
+(1, "Juprelle", 4450, "Rue du Tige", 120, NULL, NULL, 1, "Maison");
 
 INSERT IGNORE INTO `burger2home`.`basket` (`id`, `last_update`, `user_id`)
 VALUES

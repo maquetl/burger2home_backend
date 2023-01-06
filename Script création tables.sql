@@ -342,6 +342,7 @@ CREATE TABLE `burger2home`.`address` (
   `note` VARCHAR(255) NULL,
   `user_id` INT NULL,
   `active` BOOL NOT NULL DEFAULT true,
+  `label` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_address_to_user_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_address_to_user`

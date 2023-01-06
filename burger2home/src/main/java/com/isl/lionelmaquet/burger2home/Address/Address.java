@@ -37,6 +37,17 @@ public class Address {
     @Column(name = "active", nullable = false)
     private Boolean active = true;
 
+    @Column(name = "label", length = 100)
+    private String label;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     public Boolean getActive() {
         return active;
     }
