@@ -2137,7 +2137,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": null,\r\n    \"imageName\": null,\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
+							"raw": "{\r\n    \"id\": null,\r\n    \"imageName\": null,\r\n    \"ingredients\": [\r\n        {\"id\": 1}, {\"id\" : 2}\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false,\r\n    \"isAvailable\": true,\r\n    \"typeId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
