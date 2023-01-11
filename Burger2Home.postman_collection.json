@@ -3390,7 +3390,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/types/:typeIdentifier/translations",
+							"raw": "{{base-url}}/types/:typeIdentifier/translations?language=EN",
 							"host": [
 								"{{base-url}}"
 							],
@@ -3398,6 +3398,12 @@
 								"types",
 								":typeIdentifier",
 								"translations"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "EN"
+								}
 							],
 							"variable": [
 								{
