@@ -25,17 +25,30 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public List<Ingredient> getAllIngredients() {
-        return ingredientRepository.findAll();
+        return ingredientRepository.findAll().stream().map(i -> {
+            Integer currentStock = stockHistorizationService.getCurrentStock(i.getId()).getAmount();
+            i.setCurrentStock(currentStock);
+            return i;
+        }).toList();
     }
 
     @Override
     public Optional<Ingredient> getSingleIngredient(Integer ingredientIdentifier) {
-        return ingredientRepository.findById(ingredientIdentifier);
+        Optional<Ingredient> i = ingredientRepository.findById(ingredientIdentifier);
+        if (i.isPresent()){
+            Integer currentStock = stockHistorizationService.getCurrentStock(i.get().getId()).getAmount();
+            i.get().setCurrentStock(currentStock);
+        }
+        return i;
     }
 
     @Override
     public List<Ingredient> getIngredientsByProduct(Integer productIdentifier) {
-        return ingredientRepository.findByProductsId(productIdentifier);
+        return ingredientRepository.findByProductsId(productIdentifier).stream().map(i -> {
+            Integer currentStock = stockHistorizationService.getCurrentStock(i.getId()).getAmount();
+            i.setCurrentStock(currentStock);
+            return i;
+        }).toList();
     }
 
     @Override

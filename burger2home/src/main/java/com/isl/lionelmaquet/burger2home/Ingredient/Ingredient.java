@@ -33,6 +33,17 @@ public class Ingredient {
     @JsonIgnore
     private Set<Product> products = new LinkedHashSet<>();
 
+    @Transient
+    public Integer currentStock;
+
+    public Integer getCurrentStock() {
+        return currentStock;
+    }
+
+    public void setCurrentStock(Integer currentStock) {
+        this.currentStock = currentStock;
+    }
+
     public Set<Product> getProducts() {
         return products;
     }
