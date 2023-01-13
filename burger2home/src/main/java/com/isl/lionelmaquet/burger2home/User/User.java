@@ -3,6 +3,7 @@ package com.isl.lionelmaquet.burger2home.User;
 import com.isl.lionelmaquet.burger2home.Role.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
@@ -27,15 +28,36 @@ public class User {
     @Column(name = "password", length = 50)
     private String password;
 
-    @Column(name = "status", length = 20)
-    private String status;
-
     @Column(name = "username", nullable = false, length = 60)
     private String username;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @Size(max = 255)
+    @Column(name = "verification_code")
+    private String verificationCode;
+
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
 
     public Integer getId() {
         return id;
@@ -85,13 +107,7 @@ public class User {
         this.password = password;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getUsername() {
         return username;

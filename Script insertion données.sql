@@ -118,13 +118,14 @@ VALUES
 
 INSERT IGNORE INTO `burger2home`.`role` (`id`, `name`)
 VALUES
-(1, "admin"),
-(2, "marketing"),
-(3, "user");
+(1, "ROLE_ADMIN"),
+(2, "ROLE_MARKETING"),
+(3, "ROLE_STOCK"),
+(4, "ROLE_USER");
 
-INSERT IGNORE INTO `burger2home`.`user` (`id`, `email`, `firstname`, `lastname`, `image_url`, `password`, `status`, `username`, `role_id`)
+INSERT IGNORE INTO `burger2home`.`user` (`id`, `email`, `firstname`, `lastname`, `image_url`, `password`, `enabled`, `username`, `role_id`)
 VALUES
-(1, "lione.maquet@gmail.com", "Lionel", "Maquet", NULL, "lionel", "Validated", "Lio", 1);
+(1, "lione.maquet@gmail.com", "Lionel", "Maquet", NULL, "$2a$10$ueGmsBeBcGLXsabfrRHik.2SjvG4UMpLPlJmplD7HVPrvBrfec3eO", false, "Lione", 1);
 
 INSERT IGNORE INTO `burger2home`.`address` (`id`, `city`, `zipcode`, `street`, `number`, `extension`, `note`, `user_id`, `label`)
 VALUES
@@ -138,7 +139,7 @@ INSERT IGNORE INTO `burger2home`.`basket_line` (`id`, `basket_id`, `product_id`,
 VALUES
 (1, 1, 1, 1);
 
-/*
+/*valo
 INSERT IGNORE INTO `burger2home`.`credit_card` (`id`, `last4`, `exp_month`, `exp_year`, `brand`, `payment_method_id`, `user_id`)
 VALUES
 (1, "Lionel Maquet", "1234123412341234", "2024-06-22", 1);*/

@@ -13,4 +13,7 @@ public interface UserService {
     User modifyUser(User user);
 
     void processOAuthPostLogin(String username);
+
+    boolean verify(String verificationCode);
+
 }

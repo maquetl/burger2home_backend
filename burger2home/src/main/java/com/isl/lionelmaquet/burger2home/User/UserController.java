@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("")
 public class UserController {
     @Autowired
     UserService serv;

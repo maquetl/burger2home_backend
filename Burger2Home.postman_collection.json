@@ -12,6 +12,16 @@
 				{
 					"name": "GET - All addresses",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3MzYyMDY1OCwiZXhwIjoxNjczNzA3MDU4fQ.PRP_XVt5TUGLdYjTCbXHUm38g7ggD8Hfd2P10CchRmMnTQGzTBKLOQso8rGjKHgGzM2wdbxSQnQI7baA7Q8Ogg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -50,61 +60,11 @@
 					},
 					"request": {
 						"auth": {
-							"type": "oauth2",
-							"oauth2": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "accessToken",
-									"value": "ya29.a0AeTM1if-knoqxGVoQgQ5Wx6dcNxkkFkPc2Ck9Wy5u1YE3_xOA2BI2tnZ8TKss2NGfGzmagNvOQ68QD1vizVqp3QUOjLpA4nsNDVRTuiJli10WRXQe7t-CtpQM6UF8tg7VuaC3015JK7d0bjHqZHl9xZvD_-1bAaCgYKAfcSARESFQHWtWOmyWtG3jw8i9PgSNdVtd5LTg0165",
-									"type": "string"
-								},
-								{
-									"key": "useBrowser",
-									"value": false,
-									"type": "boolean"
-								},
-								{
-									"key": "scope",
-									"value": "openid profile email",
-									"type": "string"
-								},
-								{
-									"key": "clientSecret",
-									"value": "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",
-									"type": "string"
-								},
-								{
-									"key": "clientId",
-									"value": "180844364346-g2datq62u23urm7582blajsges0lp1gg.apps.googleusercontent.com",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "https://oauth2.googleapis.com/token",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "https://accounts.google.com/o/oauth2/auth",
-									"type": "string"
-								},
-								{
-									"key": "redirect_uri",
-									"value": "https://www.getpostman.com/oauth2/callback",
-									"type": "string"
-								},
-								{
-									"key": "tokenName",
-									"value": "Google OAuth Postman",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMiIsImlhdCI6MTY3MzYyMTM0MywiZXhwIjoxNjczNzA3NzQzfQ.4U-_-JXJkub8WLiuAlkjDEqvYNY5ks3rYTL2wPx_9lM-Nf_j7q9Sbg81qdNGFhd6n_UTHiU9dgr78PI8HAnnsA",
 									"type": "string"
 								}
 							]
@@ -123,7 +83,7 @@
 							"variable": [
 								{
 									"key": "addressIdentifier",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -168,7 +128,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 1,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 2,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3221,7 +3181,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"email\" : \"test@gmail.com\",\r\n    \"firstname\" : \"prenom\",\r\n    \"lastname\" : \"nom de famille\",\r\n    \"imageURL\" : \"ceci est une url\",\r\n    \"password\" : \"ceci est chiffré\",\r\n    \"status\" : \"confirmé\",\r\n    \"username\" : \"ceci est un pseudo\",\r\n    \"role\" : {\"id\" : 1}\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"firstname\" : \"admin\",\r\n    \"lastname\" : \"admin\",\r\n    \"imageURL\" : \"\",\r\n    \"password\" : \"admin\",\r\n    \"status\" : \"confirmé\",\r\n    \"username\" : \"admin\",\r\n    \"role\" : {\"id\" : 1}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3229,11 +3189,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/users",
+							"raw": "{{base-url}}/api/auth/users",
 							"host": [
 								"{{base-url}}"
 							],
 							"path": [
+								"api",
+								"auth",
 								"users"
 							]
 						}
@@ -3247,7 +3209,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"email\" : \"test@gmail.com\",\r\n    \"firstname\" : \"prenom\",\r\n    \"lastname\" : \"nom de famille\",\r\n    \"imageURL\" : \"ceci est une url\",\r\n    \"password\" : \"ceci est chiffré\",\r\n    \"status\" : \"confirmé\",\r\n    \"username\" : \"ceci est un autre pseudo\",\r\n    \"role\" : {\"id\" : 1}\r\n}",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"email\": \"lione.maquet@gmail.com\",\r\n        \"firstname\": \"Lionel\",\r\n        \"lastname\": \"Maquet\",\r\n        \"imageUrl\": null,\r\n        \"password\": \"$2a$10$ueGmsBeBcGLXsabfrRHik.2SjvG4UMpLPlJmplD7HVPrvBrfec3eO\",\r\n        \"username\": \"Lione\",\r\n        \"role\": {\r\n            \"id\": 1,\r\n            \"name\": \"ROLE_ADMIN\"\r\n        },\r\n        \"verificationCode\": null,\r\n        \"enabled\": false\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3522,65 +3484,87 @@
 			]
 		},
 		{
-			"name": "Oauth2 Google",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "useBrowser",
-							"value": false,
-							"type": "boolean"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"lio\",\r\n    \"password\" : \"user2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "scope",
-							"value": "openid profile email",
-							"type": "string"
-						},
-						{
-							"key": "clientSecret",
-							"value": "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",
-							"type": "string"
-						},
-						{
-							"key": "clientId",
-							"value": "180844364346-g2datq62u23urm7582blajsges0lp1gg.apps.googleusercontent.com",
-							"type": "string"
-						},
-						{
-							"key": "accessTokenUrl",
-							"value": "https://oauth2.googleapis.com/token",
-							"type": "string"
-						},
-						{
-							"key": "authUrl",
-							"value": "https://accounts.google.com/o/oauth2/auth",
-							"type": "string"
-						},
-						{
-							"key": "redirect_uri",
-							"value": "https://www.getpostman.com/oauth2/callback",
-							"type": "string"
-						},
-						{
-							"key": "tokenName",
-							"value": "Google OAuth Postman",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
+						"url": {
+							"raw": "{{base-url}}/auth/signin",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"Lio\",\r\n    \"email\" : \"lionel.maquet@gmail.com\",\r\n    \"firstname\" : \"user2\",\r\n    \"lastname\" : \"user2\",\r\n    \"password\" : \"user2\",\r\n    \"verificationUrl\" : \"http://localhost:8080/signup/signup/verify\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/signup",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/auth/verify?code=6Yo3ouV8KEtDIEhg02j1wIALmVZl8AB7ELmJcd8eaf98iM8s8w1J4T1DRC4aQNUf",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"verify"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "6Yo3ouV8KEtDIEhg02j1wIALmVZl8AB7ELmJcd8eaf98iM8s8w1J4T1DRC4aQNUf"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [

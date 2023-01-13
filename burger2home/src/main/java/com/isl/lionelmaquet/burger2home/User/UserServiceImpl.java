@@ -45,4 +45,18 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    @Override
+    public boolean verify(String verificationCode) {
+        User user = rep.findByVerificationCode(verificationCode);
+
+        if (user == null || user.getEnabled()){
+            return false;
+        }
+        user.setVerificationCode(null);
+        user.setEnabled(true);
+        rep.save(user);
+
+        return true;
+    }
 }

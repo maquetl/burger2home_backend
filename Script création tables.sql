@@ -316,10 +316,11 @@ CREATE TABLE `burger2home`.`user` (
   `firstname` VARCHAR(60) NULL,
   `lastname` VARCHAR(60) NULL,
   `image_url` VARCHAR(255) NULL,
-  `password` VARCHAR(50) NULL,
-  `status` VARCHAR(20) NULL,
+  `password` VARCHAR(255) NULL,
+  `enabled` BOOLEAN NULL,
   `username` VARCHAR(60) NOT NULL,
   `role_id` INT NULL,
+  `verification_code` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_to_role_idx` (`role_id` ASC) VISIBLE,
   CONSTRAINT `fk_user_to_role`
