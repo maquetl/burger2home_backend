@@ -11,6 +11,8 @@ import com.isl.lionelmaquet.burger2home.ProductFamily.Translation.ProductFamilyT
 import com.isl.lionelmaquet.burger2home.Promotion.PromotionService;
 import com.isl.lionelmaquet.burger2home.Promotion.Translation.PromotionTranslation;
 import com.isl.lionelmaquet.burger2home.Promotion.Translation.PromotionTranslationService;
+import com.isl.lionelmaquet.burger2home.Type.Translation.TypeTranslation;
+import com.isl.lionelmaquet.burger2home.Type.Translation.TypeTranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,9 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Autowired
     IngredientTranslationService ingredientTranslationService;
+
+    @Autowired
+    TypeTranslationService typeTranslationService;
 
     @Autowired
     ProductTranslationService productTranslationService;
@@ -75,6 +80,11 @@ public class LanguageServiceImpl implements LanguageService {
         for (PromotionTranslation pt : promotionTranslationService.getByLanguage(languageIdentifier)){
             promotionTranslationService.deleteSinglePromotionTranslation(pt.getId());
         }
+
+        for (TypeTranslation tt : typeTranslationService.getByLanguage(languageIdentifier)){
+            typeTranslationService.deleteById(tt.getId());
+        }
+
         languageRepository.deleteById(languageIdentifier);
     }
 }

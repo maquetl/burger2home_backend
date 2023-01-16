@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Price;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,17 +34,20 @@ public class PriceController {
     }
 
     @GetMapping("/products/{productIdentifier}/prices/next")
+    @PreAuthorize("hasRole('ADMIN')")
     Optional<Price> getNextPrice(@PathVariable Integer productIdentifier){
         return priceService.getNextPrice(productIdentifier);
     }
 
     @PostMapping("/products/{productIdentifier}/prices/current")
+    @PreAuthorize("hasRole('ADMIN')")
     Price setCurrentPrice(@PathVariable Integer productIdentifier, @RequestBody Price price){
         price.setProductId(productIdentifier);
         return priceService.setCurrentPrice(price);
     }
 
     @PostMapping("/products/{productIdentifier}/prices/next")
+    @PreAuthorize("hasRole('ADMIN')")
     Price setNextPrice(@PathVariable Integer productIdentifier, @RequestBody Price price){
         price.setProductId(productIdentifier);
         return priceService.setNextPrice(price);

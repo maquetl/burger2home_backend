@@ -307,6 +307,13 @@ CREATE TABLE `burger2home`.`role` (
   `name` VARCHAR(20) NULL,
   PRIMARY KEY (`id`));
   
+INSERT IGNORE INTO `burger2home`.`role` (`id`, `name`)
+VALUES
+(1, "ROLE_ADMIN"),
+(2, "ROLE_MARKETING"),
+(3, "ROLE_STOCK"),
+(4, "ROLE_USER");
+  
 
 /* USER */
 
@@ -329,6 +336,12 @@ CREATE TABLE `burger2home`.`user` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
+INSERT IGNORE INTO `burger2home`.`user` (`id`, `email`, `firstname`, `lastname`, `image_url`, `password`, `enabled`, `username`, `role_id`)
+VALUES
+(1, "user@gmail.com", "user", "user", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "user", 4),
+(2, "admin@gmail.com", "admin", "admin", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "admin", 1),
+(3, "stock@gmail.com", "stock", "stock", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "stock", 3),
+(4, "marketing@gmail.com", "marketing", "marketing", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "marketing", 2);
 
 
 /* ADDRESS */

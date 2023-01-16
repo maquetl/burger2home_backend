@@ -14,4 +14,6 @@ public interface TypeTranslationService {
     List<TypeTranslation> getAll();
 
     TypeTranslation getSingle(Integer typeTranslationIdentifier);
+
+    List<TypeTranslation> getByLanguage(Integer languageId);
 }

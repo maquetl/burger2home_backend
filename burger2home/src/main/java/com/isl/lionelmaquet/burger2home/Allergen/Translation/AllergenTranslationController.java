@@ -4,10 +4,13 @@ import com.isl.lionelmaquet.burger2home.Allergen.Allergen;
 import com.isl.lionelmaquet.burger2home.Translation;
 import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.isl.lionelmaquet.burger2home.Utils.AuthUtils.preauth_admin;
 
 @RestController
 public class AllergenTranslationController {
@@ -21,8 +24,9 @@ public class AllergenTranslationController {
     }
 
     @GetMapping("/allergens/translations/{allergenTranslationIdentifier}")
-    Optional<AllergenTranslation> getSingleAllergenTranslation(@PathVariable Integer allergenTranslationIdentifier){
-        return allergenTranslationService.getSingleAllergenTranslation(allergenTranslationIdentifier);
+    AllergenTranslation getSingleAllergenTranslation(@PathVariable Integer allergenTranslationIdentifier){
+        Optional<AllergenTranslation> allergenTranslation = allergenTranslationService.getSingleAllergenTranslation(allergenTranslationIdentifier);
+        return allergenTranslation.orElse(null);
     }
 
     @GetMapping("/allergens/{allergenIdentifier}/translations")
@@ -31,16 +35,19 @@ public class AllergenTranslationController {
     }
 
     @PostMapping("/allergens/translations")
+    @PreAuthorize(preauth_admin)
     AllergenTranslation createAllergenTranslation(@RequestBody AllergenTranslation allergenTranslation){
         return allergenTranslationService.createAllergenTranslation(allergenTranslation);
     }
 
     @PutMapping("/allergens/translations")
+    @PreAuthorize(preauth_admin)
     AllergenTranslation modifyAllergenTranslation(@RequestBody AllergenTranslation allergenTranslation){
         return allergenTranslationService.modifyAllergenTranslation(allergenTranslation);
     }
 
     @DeleteMapping("/allergens/translations/{allergenTranslationIdentifier}")
+    @PreAuthorize(preauth_admin)
     void deleteAllergenTranslation(@PathVariable Integer allergenTranslationIdentifier){
         allergenTranslationService.deleteAllergenTranslation(allergenTranslationIdentifier);
     }

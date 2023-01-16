@@ -4,6 +4,7 @@ import com.isl.lionelmaquet.burger2home.Allergen.Translation.AllergenTranslation
 import com.isl.lionelmaquet.burger2home.Ingredient.IngredientService;
 import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,16 +32,19 @@ public class IngredientTranslationController {
     }
 
     @PostMapping("/ingredients/translations")
+    @PreAuthorize("hasRole('ADMIN')")
     IngredientTranslation createIngredientTranslation(@RequestBody IngredientTranslation ingredientTranslation){
         return ingredientTranslationService.createIngredientTranslation(ingredientTranslation);
     }
 
     @PutMapping("/ingredients/translations")
+    @PreAuthorize("hasRole('ADMIN')")
     IngredientTranslation modifyIngredientTranslation(@RequestBody IngredientTranslation ingredientTranslation){
         return ingredientTranslationService.modifyIngredientTranslation(ingredientTranslation);
     }
 
     @DeleteMapping("/ingredients/translations/{ingredientTranslationIdentifier}")
+    @PreAuthorize("hasRole('ADMIN')")
     void deleteIngredientTranslation(@PathVariable Integer ingredientTranslationIdentifier){
         ingredientTranslationService.deleteIngredientTranslation(ingredientTranslationIdentifier);
     }

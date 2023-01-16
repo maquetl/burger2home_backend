@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,16 +57,19 @@ public class ProductController {
     }
 
     @PostMapping("/products")
+    @PreAuthorize("hasRole('ADMIN')")
     public Product createNewProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
 
     @PutMapping("/products")
+    @PreAuthorize("hasRole('ADMIN')")
     public Product modifyProduct(@RequestBody Product product){
         return productService.modifyProduct(product);
     }
 
     @PostMapping("/products/{productIdentifier}/image")
+    @PreAuthorize("hasRole('ADMIN')")
     public Product uploadImage(@PathVariable Integer productIdentifier, @RequestParam("image")MultipartFile image) throws IOException {
         byte[] bytes = image.getBytes();
         Files.createDirectories(Paths.get(PathUtil.getImagesPath()));

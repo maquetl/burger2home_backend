@@ -8,6 +8,7 @@ import com.isl.lionelmaquet.burger2home.StockHistorization.StockHistorizationSer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +54,16 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient createIngredient(Ingredient ingredient) {
-        return ingredientRepository.save(ingredient);
+        Ingredient i = ingredientRepository.save(ingredient);
+
+        StockHistorization newStock = new StockHistorization();
+        newStock.setIngredientId(i.getId());
+        newStock.setAmount(0);
+        newStock.setCreationDate(Instant.now());
+        stockHistorizationService.createStockHistorization(newStock);
+
+
+        return i;
     }
 
     @Override

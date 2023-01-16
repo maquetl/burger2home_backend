@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface TypeTranslationRepository extends JpaRepository<TypeTranslation, Integer> {
     List<TypeTranslation> findByTypeId(Integer typeIdentifier);
+
+    List<TypeTranslation> findByLanguageId(Integer languageId);
 }

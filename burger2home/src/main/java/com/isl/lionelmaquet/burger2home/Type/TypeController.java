@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Type;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class TypeController {
     }
 
     @PostMapping("/types")
+    @PreAuthorize("hasRole('ADMIN')")
     Type create(@RequestBody Type type){
         return typeService.create(type);
     }

@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.StockHistorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +29,13 @@ public class StockHistorizationController {
     }
 
     @PostMapping("/stocks")
+    @PreAuthorize("hasRole('STOCK') or hasRole('ADMIN')")
     StockHistorization createStockHistorization(@RequestBody StockHistorization stockHistorization){
         return serv.createStockHistorization(stockHistorization);
     }
 
     @PutMapping("/stocks")
+    @PreAuthorize("hasRole('STOCK') or hasRole('ADMIN')")
     StockHistorization modifyStockHistorization(@RequestBody StockHistorization stockHistorization){
         return serv.modifyStockHistorization(stockHistorization);
     }

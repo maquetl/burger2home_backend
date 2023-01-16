@@ -3,6 +3,7 @@ package com.isl.lionelmaquet.burger2home.Promotion.Translation;
 import com.isl.lionelmaquet.burger2home.ProductFamily.Translation.ProductFamilyTranslation;
 import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,16 +31,19 @@ public class PromotionTranslationController {
     }
 
     @PostMapping("/promotions/translations")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MARKETING')")
     PromotionTranslation createSinglePromotionTranslation(@RequestBody PromotionTranslation promotionTranslation){
         return promotionTranslationService.createSinglePromotionTranslation(promotionTranslation);
     }
 
     @PutMapping("/promotions/translations")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MARKETING')")
     PromotionTranslation modifySingelPromotionTranslation(@RequestBody PromotionTranslation promotionTranslation){
         return promotionTranslationService.modifySinglePromotionTranslation(promotionTranslation);
     }
 
     @DeleteMapping("/promotions/translations/{promotionTranslationIdentifier}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MARKETING')")
     void deleteSinglePromotionTranslation(@PathVariable Integer promotionTranslationIdentifier){
         promotionTranslationService.deleteSinglePromotionTranslation(promotionTranslationIdentifier);
     }

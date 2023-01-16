@@ -12,16 +12,6 @@
 				{
 					"name": "GET - All addresses",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3MzYyMDY1OCwiZXhwIjoxNjczNzA3MDU4fQ.PRP_XVt5TUGLdYjTCbXHUm38g7ggD8Hfd2P10CchRmMnTQGzTBKLOQso8rGjKHgGzM2wdbxSQnQI7baA7Q8Ogg",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -59,16 +49,6 @@
 						"disableCookies": false
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMiIsImlhdCI6MTY3MzYyMTM0MywiZXhwIjoxNjczNzA3NzQzfQ.4U-_-JXJkub8WLiuAlkjDEqvYNY5ks3rYTL2wPx_9lM-Nf_j7q9Sbg81qdNGFhd6n_UTHiU9dgr78PI8HAnnsA",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -83,7 +63,7 @@
 							"variable": [
 								{
 									"key": "addressIdentifier",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -128,7 +108,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" : 2,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" :1,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,7 +420,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 5,\r\n    \"name\" : \"oeufsssss\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergenId\" : 1\r\n}",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"oeufsssss\",\r\n    \"language\" : {\r\n        \"id\" : 1\r\n    },\r\n    \"allergenId\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -491,6 +471,57 @@
 			"name": "Baskets",
 			"item": [
 				{
+					"name": "CREATE - Single basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"lastUpdate\" : \"2022-12-01 20:00:00\",\r\n    \"userId\" : 1,\r\n    \"basketLines\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/baskets",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"baskets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Single basket by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/users/:userIdentifier/basket",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								":userIdentifier",
+								"basket"
+							],
+							"variable": [
+								{
+									"key": "userIdentifier",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET - All baskets",
 					"request": {
 						"method": "GET",
@@ -524,59 +555,8 @@
 							"variable": [
 								{
 									"key": "basketIdentifier",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET - Single basket by user",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base-url}}/users/:userIdentifier/basket",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"users",
-								":userIdentifier",
-								"basket"
-							],
-							"variable": [
-								{
-									"key": "userIdentifier",
 									"value": "1"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CREATE - Single basket",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"lastUpdate\" : \"2022-12-01 20:00:00\",\r\n    \"userId\" : 1,\r\n    \"basketLines\" : null\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base-url}}/baskets",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"baskets"
 							]
 						}
 					},
@@ -589,7 +569,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 2,\r\n    \"lastUpdate\" : \"2022-12-01 23:00:00\",\r\n    \"user\" : 1,\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"lastUpdate\" : \"2022-12-01 23:00:00\",\r\n    \"userId\" :1,\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -613,6 +593,32 @@
 		{
 			"name": "BasketLines",
 			"item": [
+				{
+					"name": "CREATE - Single basket line",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"basketId\" : 1,\r\n    \"productId\" : 1,\r\n    \"amount\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/basketLines",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"basketLines"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "GET - All basket lines",
 					"request": {
@@ -680,32 +686,6 @@
 					"response": []
 				},
 				{
-					"name": "CREATE - Single basket line",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"basketId\" : 2,\r\n    \"productId\" : 1,\r\n    \"amount\" : 2\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base-url}}/basketLines",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"basketLines"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "MODIFY - Single basket line",
 					"request": {
 						"method": "PUT",
@@ -748,7 +728,7 @@
 							"variable": [
 								{
 									"key": "basketLineIdentifier",
-									"value": "2"
+									"value": "5"
 								}
 							]
 						}
@@ -760,6 +740,32 @@
 		{
 			"name": "CreditCards",
 			"item": [
+				{
+					"name": "CREATE - Single Credit Card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentMethodIdentifier\" : \"pm_1MHOzpINHgxPirwOm4xxJsUL\" ,\r\n    \"userId\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/creditcards",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"creditcards"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "GET - All Credit Cards",
 					"request": {
@@ -839,32 +845,6 @@
 					"response": []
 				},
 				{
-					"name": "CREATE - Single Credit Card",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"paymentMethodIdentifier\" : \"pm_1MHOzpINHgxPirwOm4xxJsUL\" ,\r\n    \"userId\" : 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base-url}}/creditcards",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"creditcards"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "MODIFY - Single Credit Card",
 					"request": {
 						"method": "PUT",
@@ -895,6 +875,32 @@
 		{
 			"name": "Ingredients",
 			"item": [
+				{
+					"name": "CREATE - Single ingredient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"allergens\" : [\r\n        {\"id\" : 1}, \r\n        {\"id\" : 2}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/ingredients",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "GET - All ingredients",
 					"event": [
@@ -969,32 +975,6 @@
 									"key": "productIdentifier",
 									"value": "1"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CREATE - Single ingredient",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"allergens\" : [\r\n        {\"id\" : 1}, \r\n        {\"id\" : 2}\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base-url}}/ingredients",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"ingredients"
 							]
 						}
 					},
@@ -1447,7 +1427,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base-url}}/orders/create-order?basketIdentifier=2",
+							"raw": "{{base-url}}/orders/create-order?basketIdentifier=1",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1458,7 +1438,7 @@
 							"query": [
 								{
 									"key": "basketIdentifier",
-									"value": "2"
+									"value": "1"
 								},
 								{
 									"key": "addressIdentifier",
@@ -1476,7 +1456,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=2&paymentMethodIdentifier=pm_1MKInqINHgxPirwOmMLcqaMp",
+							"raw": "{{base-url}}/orders/confirm-order?orderIdentifier=1&paymentMethodIdentifier=pm_1MQwKPINHgxPirwOlEYHr3kP",
 							"host": [
 								"{{base-url}}"
 							],
@@ -1487,11 +1467,11 @@
 							"query": [
 								{
 									"key": "orderIdentifier",
-									"value": "2"
+									"value": "1"
 								},
 								{
 									"key": "paymentMethodIdentifier",
-									"value": "pm_1MKInqINHgxPirwOmMLcqaMp"
+									"value": "pm_1MQwKPINHgxPirwOlEYHr3kP"
 								}
 							]
 						}
@@ -2159,7 +2139,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"imageName\": \"test.jpg\",\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 1,\r\n            \"allergens\": []\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"allergens\": []\r\n        }\r\n    ],\r\n    \"productFamilies\": [{\"id\" : 1}],\r\n    \"onMenu\" : false\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"imageName\": null,\r\n    \"ingredients\": [\r\n        {\r\n            \"id\": 1\r\n        },\r\n        {\r\n            \"id\": 2\r\n        }\r\n    ],\r\n    \"productFamilies\": [\r\n        {\r\n            \"id\": 2\r\n        }\r\n    ],\r\n    \"onMenu\": true,\r\n    \"isAvailable\": true,\r\n    \"typeId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3175,34 +3155,6 @@
 					"response": []
 				},
 				{
-					"name": "CREATE - Single user",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"firstname\" : \"admin\",\r\n    \"lastname\" : \"admin\",\r\n    \"imageURL\" : \"\",\r\n    \"password\" : \"admin\",\r\n    \"status\" : \"confirmé\",\r\n    \"username\" : \"admin\",\r\n    \"role\" : {\"id\" : 1}\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base-url}}/api/auth/users",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"api",
-								"auth",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "MODIFY - User",
 					"request": {
 						"method": "PUT",
@@ -3493,7 +3445,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"lio\",\r\n    \"password\" : \"user2\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"stock\",\r\n    \"password\" : \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3520,7 +3472,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"Lio\",\r\n    \"email\" : \"lionel.maquet@gmail.com\",\r\n    \"firstname\" : \"user2\",\r\n    \"lastname\" : \"user2\",\r\n    \"password\" : \"user2\",\r\n    \"verificationUrl\" : \"http://localhost:8080/signup/signup/verify\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"lio\",\r\n    \"email\" : \"lionel.maquet@gmail.com\",\r\n    \"firstname\" : \" lio\",\r\n    \"lastname\" : \"lio\",\r\n    \"password\" : \"lio\",\r\n    \"verificationUrl\" : \"http://localhost:8080/signup/signup/verify\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3546,7 +3498,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/auth/verify?code=6Yo3ouV8KEtDIEhg02j1wIALmVZl8AB7ELmJcd8eaf98iM8s8w1J4T1DRC4aQNUf",
+							"raw": "{{base-url}}/auth/verify?code=LofFdvlwN8Q6mBQGBKJuKSopniEiDaQWmGoDJK5CMT1rO6PawFuTQMHYaTPAlMDX",
 							"host": [
 								"{{base-url}}"
 							],
@@ -3557,7 +3509,7 @@
 							"query": [
 								{
 									"key": "code",
-									"value": "6Yo3ouV8KEtDIEhg02j1wIALmVZl8AB7ELmJcd8eaf98iM8s8w1J4T1DRC4aQNUf"
+									"value": "LofFdvlwN8Q6mBQGBKJuKSopniEiDaQWmGoDJK5CMT1rO6PawFuTQMHYaTPAlMDX"
 								}
 							]
 						}
@@ -3567,6 +3519,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdG9jayIsImlhdCI6MTY3Mzg5MDU5NCwiZXhwIjoxNjczOTc2OTk0fQ.24T_Y0OnyV2z9M3VA_RXV7XHpaP9iVsenl0LUNCFVn8GVtkq14yPJy_LUpFxITbxS9Lwk0lWo1BtaF6CMY40Bg",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",

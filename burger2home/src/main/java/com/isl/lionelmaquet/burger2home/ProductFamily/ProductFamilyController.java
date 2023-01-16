@@ -2,6 +2,7 @@ package com.isl.lionelmaquet.burger2home.ProductFamily;
 
 import com.isl.lionelmaquet.burger2home.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,16 +30,19 @@ public class ProductFamilyController {
     }
 
     @PostMapping("/products/families")
+    @PreAuthorize("hasRole('ADMIN')")
     ProductFamily createProductFamily(@RequestBody ProductFamily productFamily){
         return productFamilyService.createProductFamily(productFamily);
     }
 
     @PutMapping("/products/families")
+    @PreAuthorize("hasRole('ADMIN')")
     ProductFamily modifyProductFamily(@RequestBody ProductFamily productFamily){
         return productFamilyService.modifyProductFamily(productFamily);
     }
 
     @DeleteMapping("/products/families/{productFamilyIdentifier}")
+    @PreAuthorize("hasRole('ADMIN')")
     void deleteProductFamily(@PathVariable Integer productFamilyIdentifier){
         productFamilyService.deleteProductFamily(productFamilyIdentifier);
     }

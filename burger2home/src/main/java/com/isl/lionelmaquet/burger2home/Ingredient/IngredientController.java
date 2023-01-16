@@ -1,6 +1,7 @@
 package com.isl.lionelmaquet.burger2home.Ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,16 +29,20 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients")
+    @PreAuthorize("hasRole('ADMIN')")
     Ingredient createIngredient(@RequestBody Ingredient ingredient){
-        return ingredientService.createIngredient(ingredient);
+
+       return ingredientService.createIngredient(ingredient);
     }
 
     @PutMapping("/ingredients")
+    @PreAuthorize("hasRole('ADMIN')")
     Ingredient modifyIngredient(@RequestBody Ingredient ingredient){
         return ingredientService.modifyIngredient(ingredient);
     }
 
     @DeleteMapping("/ingredients/{ingredientIdentifier}")
+    @PreAuthorize("hasRole('ADMIN')")
     void deleteIngredient(@PathVariable Integer ingredientIdentifier){
         ingredientService.deleteIngredient(ingredientIdentifier);
     }

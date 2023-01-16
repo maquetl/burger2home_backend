@@ -2,6 +2,7 @@ package com.isl.lionelmaquet.burger2home.Auth;
 
 
 import java.io.UnsupportedEncodingException;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,8 @@ import com.isl.lionelmaquet.burger2home.Auth.Model.JwtResponse;
 import com.isl.lionelmaquet.burger2home.Auth.Model.LoginRequest;
 import com.isl.lionelmaquet.burger2home.Auth.Model.MessageResponse;
 import com.isl.lionelmaquet.burger2home.Auth.Model.SignupRequest;
+import com.isl.lionelmaquet.burger2home.Basket.Basket;
+import com.isl.lionelmaquet.burger2home.Basket.BasketService;
 import com.isl.lionelmaquet.burger2home.Role.Role;
 import com.isl.lionelmaquet.burger2home.Role.RoleRepository;
 import com.isl.lionelmaquet.burger2home.Security.jwt.JwtUtils;
@@ -43,6 +46,9 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    BasketService basketService;
 
     @Autowired
     RoleRepository roleRepository;
@@ -137,23 +143,37 @@ public class AuthController {
 //            }
 //            ;
 //        }
-        Role role = roleRepository.findByName("ROLE_USER")
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        user.setRole(role);
 
-        String randomCode = RandomString.make(64);
-        user.setVerificationCode(randomCode);
-        user.setEnabled(false);
+        if (user.getUsername().equals("admin")){
+            // Only for user with username admin
+            Role adminRole = roleRepository.findByName("ROLE_ADMIN")
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            user.setRole(adminRole);
+            user.setEnabled(true);
+        } else {
+            // For all other users
+            Role role = roleRepository.findByName("ROLE_USER")
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            user.setRole(role);
+            String randomCode = RandomString.make(64);
+            user.setVerificationCode(randomCode);
+            user.setEnabled(false);
 
-        userRepository.save(user);
-
-        try {
-            sendVerificationEmail(user, signUpRequest.getVerificationUrl());
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
+            try {
+                sendVerificationEmail(user, signUpRequest.getVerificationUrl());
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+        User u = userRepository.save(user);
+
+        Basket userBasket = new Basket();
+        userBasket.setUserId(u.getId());
+        userBasket.setLastUpdate(Instant.now());
+        basketService.createBasket(userBasket);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

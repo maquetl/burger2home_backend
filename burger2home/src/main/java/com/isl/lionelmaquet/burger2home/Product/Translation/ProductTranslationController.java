@@ -4,6 +4,7 @@ import com.isl.lionelmaquet.burger2home.Ingredient.Translation.IngredientTransla
 import com.isl.lionelmaquet.burger2home.Product.Product;
 import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,16 +22,19 @@ public class ProductTranslationController {
     }
 
     @PostMapping("/products/translations")
+    @PreAuthorize("hasRole('ADMIN')")
     public ProductTranslation createProductTranslation(@RequestBody ProductTranslation productTranslation){
         return productTranslationService.createProductTranslation(productTranslation);
     }
 
     @DeleteMapping("/products/translations/{translationId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteProductTranslation(@PathVariable Integer translationId){
         productTranslationService.deleteById(translationId);
     }
 
     @PutMapping("/products/translations")
+    @PreAuthorize("hasRole('ADMIN')")
     public ProductTranslation modifyProductTranslation(@RequestBody ProductTranslation productTranslation){
         return productTranslationService.modifyProductTranslation(productTranslation);
     }

@@ -40,4 +40,9 @@ public class TypeTranslationServiceImpl implements TypeTranslationService {
     public TypeTranslation getSingle(Integer typeTranslationIdentifier) {
         return typeTranslationRepository.findById(typeTranslationIdentifier).get();
     }
+
+    @Override
+    public List<TypeTranslation> getByLanguage(Integer languageId) {
+        return typeTranslationRepository.findByLanguageId(languageId);
+    }
 }

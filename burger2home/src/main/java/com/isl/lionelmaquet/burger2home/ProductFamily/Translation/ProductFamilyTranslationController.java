@@ -3,6 +3,7 @@ package com.isl.lionelmaquet.burger2home.ProductFamily.Translation;
 import com.isl.lionelmaquet.burger2home.Product.Translation.ProductTranslation;
 import com.isl.lionelmaquet.burger2home.Utils.TranslationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,16 +31,19 @@ public class ProductFamilyTranslationController {
     }
 
     @PostMapping("/products/families/translations")
+    @PreAuthorize("hasRole('ADMIN')")
     ProductFamilyTranslation createProductFamilyTranslation(@RequestBody ProductFamilyTranslation productFamilyTranslation){
         return productFamilyTranslationService.createProductFamilyTranslation(productFamilyTranslation);
     }
 
     @PutMapping("/products/families/translations")
+    @PreAuthorize("hasRole('ADMIN')")
     ProductFamilyTranslation modifyProductFamilyTranslation(@RequestBody ProductFamilyTranslation productFamilyTranslation){
         return productFamilyTranslationService.modifyProductFamilyTranslation(productFamilyTranslation);
     }
 
     @DeleteMapping("/products/families/translations/{productFamilyTranslationIdentifier}")
+    @PreAuthorize("hasRole('ADMIN')")
     void deleteSingleProductFamilyTranslation(@PathVariable Integer productFamilyTranslationIdentifier){
         productFamilyTranslationService.deleteSingleProductFamilyTranslation(productFamilyTranslationIdentifier);
     }
