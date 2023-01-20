@@ -1,9 +1,21 @@
+INSERT IGNORE INTO `burger2home`.`role` (`id`, `name`)
+VALUES
+(1, "ROLE_ADMIN"),
+(2, "ROLE_MARKETING"),
+(3, "ROLE_STOCK"),
+(4, "ROLE_USER");
+
+INSERT IGNORE INTO `burger2home`.`user` (`id`, `email`, `firstname`, `lastname`, `image_url`, `password`, `enabled`, `username`, `role_id`)
+VALUES
+(1, "user@gmail.com", "user", "user", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "user", 4),
+(2, "admin@gmail.com", "admin", "admin", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "admin", 1),
+(3, "stock@gmail.com", "stock", "stock", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "stock", 3),
+(4, "marketing@gmail.com", "marketing", "marketing", NULL, "$2a$10$KMWCCdvwiTqOkYhP9BeI1.F2/ovJNIMcI2RlKLkThJn4d.CTnJL1i", true, "marketing", 2);
+
 INSERT IGNORE INTO burger2home.language (`id`, `creation_date` ,`name`, `abbreviation`) 
 VALUES 
 (1, CURRENT_TIMESTAMP() ,"ENGLISH", "EN"),
 (2, CURRENT_TIMESTAMP(), "FRENCH", "FR");
-
-
 
 INSERT IGNORE INTO `burger2home`.`type` (`id`)
 VALUES 
@@ -133,7 +145,7 @@ VALUES
 INSERT IGNORE INTO `burger2home`.`credit_card` (`id`, `last4`, `exp_month`, `exp_year`, `brand`, `payment_method_id`, `user_id`)
 VALUES
 (1, "Lionel Maquet", "1234123412341234", "2024-06-22", 1);*/
-
+/*
 INSERT IGNORE INTO `burger2home`.`order` (`id`, `user_id`, `credit_card_id`, `address_id`, `order_date`, `status`)
 VALUES
 (1, 1, 1, 1, CURRENT_TIMESTAMP(), 'waiting_for_payment');
@@ -141,4 +153,4 @@ VALUES
 INSERT IGNORE INTO `burger2home`.`order_line` (`id`, `order_id`, `product_id`, `amount`)
 VALUES
 (1, 1, 1, 1),
-(2, 1, 3, 1);
+(2, 1, 3, 1);*/

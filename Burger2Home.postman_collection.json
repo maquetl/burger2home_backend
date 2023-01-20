@@ -94,7 +94,7 @@
 							"variable": [
 								{
 									"key": "userIdentifier",
-									"value": "1"
+									"value": "5"
 								}
 							]
 						}
@@ -108,7 +108,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" :1,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
+							"raw": "{\r\n    \"id\" : null,\r\n    \"city\" : \"Momalle\",\r\n    \"zipcode\" : 4244,\r\n    \"street\" : \"Rue de la chose\",\r\n    \"number\" : 150,\r\n    \"extension\" : null,\r\n    \"note\" : null,\r\n    \"userId\" :5,\r\n    \"active\" : true,\r\n    \"label\" : \"Maison secondaire\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -569,7 +569,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 1,\r\n    \"lastUpdate\" : \"2022-12-01 23:00:00\",\r\n    \"userId\" :1,\r\n    \"basketLines\" : [{\"id\" : 1}]\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"lastUpdate\": \"2023-01-20 09:39:30\",\r\n    \"userId\": 2,\r\n    \"basketLines\": [\r\n        {\r\n            \"id\": 1,\r\n            \"basketId\": 1,\r\n            \"productId\": 1,\r\n            \"amount\": 1\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3445,7 +3445,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"stock\",\r\n    \"password\" : \"admin\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3472,7 +3472,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"lio\",\r\n    \"email\" : \"lionel.maquet@gmail.com\",\r\n    \"firstname\" : \" lio\",\r\n    \"lastname\" : \"lio\",\r\n    \"password\" : \"lio\",\r\n    \"verificationUrl\" : \"http://localhost:8080/signup/signup/verify\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"Lionel\",\r\n    \"email\" : \"lionel.maquet@gmail.com\",\r\n    \"firstname\" : \" Lionel\",\r\n    \"lastname\" : \"Maquet\",\r\n    \"password\" : \"lionel456\",\r\n    \"verificationUrl\" : \"http://localhost:8080/signup/signup/verify\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3498,7 +3498,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-url}}/auth/verify?code=LofFdvlwN8Q6mBQGBKJuKSopniEiDaQWmGoDJK5CMT1rO6PawFuTQMHYaTPAlMDX",
+							"raw": "{{base-url}}/auth/verify?code=m0Sj4aAWBndcvL3CoPhRLNyFe6TyhkbBuxbgc9vlgfCcdV03gfLL1aHcJsQf3DvE",
 							"host": [
 								"{{base-url}}"
 							],
@@ -3509,7 +3509,7 @@
 							"query": [
 								{
 									"key": "code",
-									"value": "LofFdvlwN8Q6mBQGBKJuKSopniEiDaQWmGoDJK5CMT1rO6PawFuTQMHYaTPAlMDX"
+									"value": "m0Sj4aAWBndcvL3CoPhRLNyFe6TyhkbBuxbgc9vlgfCcdV03gfLL1aHcJsQf3DvE"
 								}
 							]
 						}
@@ -3524,7 +3524,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdG9jayIsImlhdCI6MTY3Mzg5MDU5NCwiZXhwIjoxNjczOTc2OTk0fQ.24T_Y0OnyV2z9M3VA_RXV7XHpaP9iVsenl0LUNCFVn8GVtkq14yPJy_LUpFxITbxS9Lwk0lWo1BtaF6CMY40Bg",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3NDIwNzc0OSwiZXhwIjoxNjc0Mjk0MTQ5fQ.p-Wa1Z0H8f1sU4vzBalL1peZu6w-t86PJlb4B1VikpwgTLx6bQ_6GcEJm44vq-wXcDSyPVoowEdH8TtSy_aAOQ",
 				"type": "string"
 			}
 		]
